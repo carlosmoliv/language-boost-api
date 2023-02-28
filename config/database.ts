@@ -4,7 +4,7 @@ const MONGO_URL = process.env.MONGO_URL;
 
 export const connect = () => {
   if (!MONGO_URL)
-    throw Error(
+    throw new Error(
       "MongoDB URL not found. Check your environment variable to ensure that the URL is set correctly."
     );
 
