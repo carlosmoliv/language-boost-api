@@ -17,10 +17,12 @@ import { hashPassword } from "../../../utils/bcrypt.utils";
 })
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class User {
+  public token: string;
+
   @prop({ unique: true })
   public email!: string;
 
-  @prop()
+  @prop({ select: false })
   public password!: string;
 
   @prop()
@@ -31,6 +33,9 @@ export class User {
 
   @prop({ default: Role.student })
   public role: Role;
+
+  // @prop({ref: () => User})
+  // public student: Ref<Student>
 }
 
 export const userModel = getModelForClass(User);
