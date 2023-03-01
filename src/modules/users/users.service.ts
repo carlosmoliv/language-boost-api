@@ -1,9 +1,11 @@
 import { userModel } from "./users.model";
 import { IRegisterUser } from "./dtos/registerUser.dto";
 import { ILoginUserByEmail } from "./dtos/loginUserByEmail.dto";
-import { comparePasswords } from "../../../utils/bcrypt.utils";
+
 import { createToken } from "../../../utils/jwt.utils";
-import { logger } from "../../../utils/logger.utils";
+import { comparePasswords } from "../../../utils/bcrypt.utils";
+
+import { AppError } from "../../../utils/errors.utils";
 
 export class UsersService {
   async registerUser(data: IRegisterUser) {
@@ -19,10 +21,14 @@ export class UsersService {
         active: true,
       })
       .select("+password")
-      .orFail(() => new Error("Invalid credentials."));
+      .orFail(
+        () => new AppError("AuthenticationError", "Invalid credentials.", 401)
+      );
 
     const isPasswordValid = await comparePasswords(password, user.password);
-    if (!isPasswordValid) throw new Error("Invalid credentials");
+
+    if (!isPasswordValid)
+      throw new AppError("AuthenticationError", "Invalid credentials.", 401);
 
     const token = createToken({ userId: user.id });
     user.token = token;

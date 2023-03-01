@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { logger } from "../../../utils/logger.utils";
 import { UsersService } from "./users.service";
 
@@ -9,32 +9,28 @@ export class UsersController {
     this.usersService = new UsersService();
   }
 
-  async register(req: Request, res: Response) {
+  async register(req: Request, res: Response, next: NextFunction) {
     try {
       const user = await this.usersService.registerUser(req.body);
       return res.status(201).json(user);
     } catch (error) {
       logger.error(error);
-
-      return res.status(400).json({
-        error: "Looks like something went wrong, please try again later.",
-      });
+      return next(error);
     }
   }
 
-  async login(req: Request, res: Response) {
+  async login(req: Request, res: Response, next: NextFunction) {
     try {
       const user = await this.usersService.loginUserByEmail(req.body);
       return res.status(200).json({ user });
     } catch (error) {
       logger.error(error);
-
-      const errorMessage =
-        error instanceof Error  
-          ? error.message
-          : "Looks like something went wrong, please try again later";
-
-      return res.status(400).json({ error: errorMessage });
+      return next(error);
     }
+  }
+
+  async testContext(req: Request, res: Response) {
+    console.log(req.user);
+    logger.info("Test context: ", req.user.id);
   }
 }
