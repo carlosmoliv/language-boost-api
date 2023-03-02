@@ -13,12 +13,23 @@ export const authMiddleware = async (
 
   try {
     const token = authorization?.replace("Bearer ", "");
-    if (!token) return res.status(401).json({ error: "Unauthorized" });
+    if (!token)
+      return res.status(401).json({
+        name: "AuthorizationError",
+        status: "error",
+        message: "Token is missing.",
+      });
 
     const decoded = verifyToken(token) as JwtPayload;
 
     return userModel.findById(decoded.userId).then((user) => {
-      if (!user) return res.status(401).json({ error: "Unauthorized" });
+      if (!user)
+        return res.status(401).json({
+          name: "AuthorizationError",
+          status: "error",
+          message:
+            "Unauthorized request. The user associated with the provided authentication token was not found in the system.",
+        });
 
       req.user = {
         id: user.id,
