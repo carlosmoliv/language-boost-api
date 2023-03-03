@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = "mongodb://localhost:27017/knowledge-boost-api";
 
 export const connect = () => {
   if (!MONGO_URL)
@@ -12,3 +12,5 @@ export const connect = () => {
 
   return mongoose.connect(MONGO_URL);
 };
+
+export const disconnect = () => mongoose.disconnect();

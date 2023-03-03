@@ -6,9 +6,18 @@ import { createToken } from "../../../utils/jwt.utils";
 import { comparePasswords } from "../../../utils/bcrypt.utils";
 
 import { AppError } from "../../../utils/errors.utils";
+import { logger } from "@typegoose/typegoose/lib/logSettings";
 
 export class UsersService {
   async registerUser(data: IRegisterUser) {
+    const user = await userModel.findOne({ email: data.email });
+    if (user)
+      throw new AppError(
+        "UserConflictError",
+        "User already exists with the provided email address.",
+        409
+      );
+
     return userModel.create(data);
   }
 
