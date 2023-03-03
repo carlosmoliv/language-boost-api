@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
-const MONGO_URL = "mongodb://localhost:27017/knowledge-boost-api";
+const MONGO_URI = process.env.MONGO_URI;
 
 export const connect = () => {
-  if (!MONGO_URL)
+  if (!MONGO_URI)
     throw new Error(
-      "MongoDB URL not found. Check your environment variable to ensure that the URL is set correctly."
+      "MongoDB URI not found. Check your environment variable to ensure that the URL is set correctly."
     );
 
   mongoose.set("strictQuery", false);
 
-  return mongoose.connect(MONGO_URL);
+  return mongoose.connect(MONGO_URI);
 };
 
 export const disconnect = () => mongoose.disconnect();

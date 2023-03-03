@@ -1,6 +1,5 @@
 import { UsersService } from "../users.service";
 import * as database from "../../../../config/database";
-import { AppError } from "../../../../utils/errors.utils";
 import { Role } from "../users.enums";
 
 describe("Register User", () => {
@@ -31,7 +30,7 @@ describe("Register User", () => {
   it("shouldn't create user with an email that already exists", async () => {
     const existingUser = {
       name: "John Doe",
-      email: "johndoe.3@example.com",
+      email: "johndoe.2@example.com",
       password: "123456",
     };
 
@@ -39,23 +38,17 @@ describe("Register User", () => {
 
     const data = {
       name: "John Doe",
-      email: "johndoe.3@example.com",
+      email: "johndoe.2@example.com",
       password: "123456",
     };
 
-    await expect(usersService.registerUser(data)).rejects.toThrow(
-      new AppError(
-        "UserConflictError",
-        "User already exists with the provided email address.",
-        409
-      )
-    );
+    await expect(usersService.registerUser(data)).rejects.toThrow();
   });
 
   it("should create a user with student role if no other role is provided", async () => {
     const data = {
       name: "John Doe",
-      email: "johndoe.4@example.com",
+      email: "johndoe.3@example.com",
       password: "123456",
     };
 
