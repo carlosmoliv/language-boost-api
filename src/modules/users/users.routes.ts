@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response, Router } from "express";
 import { authMiddleware } from "../../middleware/auth.middleware";
+import { validator } from "../../middleware/validation.middleware";
 import { UsersController } from "./users.controller";
+import { registerUserSchema } from "./users.validations";
 
 const usersRouter: Router = express.Router();
 
@@ -8,6 +10,7 @@ const usersController = new UsersController();
 
 usersRouter.post(
   "/register",
+  validator(registerUserSchema),
   (req: Request, res: Response, next: NextFunction) =>
     usersController.register(req, res, next)
 );

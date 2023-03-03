@@ -1,17 +1,20 @@
 import { NextFunction, Request, Response } from "express";
-import Joi from "joi";
+import Joi, { ValidationError } from "joi";
 
-export const validate = (schema: Joi.ObjectSchema) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    const { error } = schema.validate(req.body);
+export const validator =
+  (schema: Joi.ObjectSchema) =>
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await schema.validateAsync(req.body);
+      return next();
+    } catch (error) {
+      if (error instanceof ValidationError)
+        return res.status(400).json({
+          status: "error",
+          name: "ValidationError",
+          message: error.details[0].message,
+        });
 
-    if (error)
-      return res.status(400).json({
-        status: "error",
-        name: "ValidationError",
-        message: error.details[0].message,
-      });
-
-    return next();
+      return next(error);
+    }
   };
-};
