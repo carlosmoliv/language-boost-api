@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://carlosmoliveira.com/node-js.png" width="320" aly="Node Logo"/>
+  <img src="https://carlosmoliveira.com/nodejs.png" width="230" aly="Node Logo"/>
 </p>
 
-<h1 align="center">Knowledge Boost Courses - API (under construction)</h1> 
+<h1 align="center">Knowledge Boost Courses - API (under construction)</h1>
 
 ## :rocket: About the project
 
