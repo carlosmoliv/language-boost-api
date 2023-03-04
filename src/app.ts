@@ -5,6 +5,7 @@ import api from "./routes";
 import * as database from "../config/database";
 import { AppError } from "../utils/errors.utils";
 import { expressLogger } from "../utils/logger.utils";
+import { errorHandler } from "./middleware/errorHandler.middleware";
 
 const configureExpress = () => {
   const app: express.Application = express();
@@ -17,18 +18,7 @@ const configureExpress = () => {
 
   app.use("/v1", api);
 
-  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    if (err instanceof AppError)
-      return res
-        .status(err.statusCode)
-        .json({ status: "error", name: err.name, message: err.message });
-
-    return res.status(500).json({
-      status: "error",
-      name: "InternalServerError",
-      message: `Looks like something went wrong - ${err.message}`,
-    });
-  });
+  app.use(errorHandler);
 
   return app;
 };
