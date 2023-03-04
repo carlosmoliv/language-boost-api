@@ -8,29 +8,4 @@ export class UsersController {
   constructor() {
     this.usersService = new UsersService();
   }
-
-  async register(req: Request, res: Response, next: NextFunction) {
-    try {
-      const user = await this.usersService.registerUser(req.body);
-      return res.status(201).json(user);
-    } catch (error) {
-      logger.error(error);
-      return next(error);
-    }
-  }
-
-  async login(req: Request, res: Response, next: NextFunction) {
-    try {
-      const user = await this.usersService.loginUserByEmail(req.body);
-      return res.status(200).json({ user });
-    } catch (error) {
-      logger.error(error);
-      return next(error);
-    }
-  }
-
-  async testContext(req: Request, res: Response) {
-    console.log(req.user);
-    logger.info("Test context: ", req.user.id);
-  }
 }

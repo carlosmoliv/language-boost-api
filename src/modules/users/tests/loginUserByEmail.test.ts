@@ -1,5 +1,6 @@
 import { UsersService } from "../users.service";
 import * as database from "../../../../config/database";
+import { Role } from "../users.enums";
 
 describe("Login User by email", () => {
   let usersService: UsersService;
@@ -19,7 +20,7 @@ describe("Login User by email", () => {
       password: "12345678",
     };
 
-    const user = await usersService.loginUserByEmail(data);
+    const user = await usersService.logInUserByEmail(data, Role.student);
 
     expect(user.token).toBeDefined();
   });

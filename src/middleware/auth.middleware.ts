@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
 import { verifyToken } from "../../utils/jwt.utils";
 import { logger } from "../../utils/logger.utils";
-import { userModel } from "../modules/users/users.model";
+import { userModel } from "../modules/models";
 
 export const authMiddleware = async (
   req: Request,

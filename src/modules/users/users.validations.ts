@@ -1,6 +1,7 @@
 import Joi from "joi";
-import { User, userModel } from "./users.model";
+import { User } from "./users.model";
 import { AppError } from "../../../utils/errors.utils";
+import { userModel } from "../models";
 
 export const registerUserSchema = Joi.object<User>({
   name: Joi.string().max(30).required().messages({

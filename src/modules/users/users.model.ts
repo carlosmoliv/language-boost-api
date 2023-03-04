@@ -3,10 +3,14 @@ import {
   modelOptions,
   pre,
   prop,
+  Ref,
 } from "@typegoose/typegoose";
 
 import { Role } from "./users.enums";
 import { hashPassword } from "../../../utils/bcrypt.utils";
+import { Student } from "../students/students.model";
+import { Admin } from "../admins/admins.model";
+import { Tutor } from "../tutors/tutors.model";
 
 @pre<User>("save", async function (next) {
   if (this.isModified("password")) {
@@ -17,7 +21,7 @@ import { hashPassword } from "../../../utils/bcrypt.utils";
 })
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class User {
-  public token: string;
+  public token?: string;
 
   @prop({ unique: true })
   public email!: string;
@@ -29,13 +33,17 @@ export class User {
   public name!: string;
 
   @prop({ default: true })
-  public active: boolean;
+  public active!: boolean;
 
   @prop({ default: Role.student })
-  public role: Role;
+  public role!: Role;
 
-  // @prop({ref: () => User})
-  // public student: Ref<Student>
+  @prop({ ref: () => Student })
+  public student?: Ref<Student>;
+
+  @prop({ ref: () => Tutor })
+  public tutor?: Ref<Tutor>;
+
+  @prop({ ref: () => Admin })
+  public admin?: Ref<Admin>;
 }
-
-export const userModel = getModelForClass(User);
