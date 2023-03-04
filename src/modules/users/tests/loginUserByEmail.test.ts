@@ -23,6 +23,4 @@ describe("Login User by email", () => {
 
     expect(user.token).toBeDefined();
   });
-
-  it("should");
 });

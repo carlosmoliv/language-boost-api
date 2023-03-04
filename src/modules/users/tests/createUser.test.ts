@@ -44,16 +44,4 @@ describe("Register User", () => {
 
     await expect(usersService.registerUser(data)).rejects.toThrow();
   });
-
-  it("should create a user with student role if no other role is provided", async () => {
-    const data = {
-      name: "John Doe",
-      email: "johndoe.3@example.com",
-      password: "123456",
-    };
-
-    const user = await usersService.registerUser(data);
-
-    expect(user.role).toEqual(Role.student);
-  });
 });

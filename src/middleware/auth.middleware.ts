@@ -43,6 +43,8 @@ export const authMiddleware = async (
     const errorMessage =
       error instanceof JsonWebTokenError ? "Invalid Token" : "Unauthorized";
 
-    return res.status(401).json({ error: errorMessage });
+    return res
+      .status(401)
+      .json({ name: "InvalidToken", status: "error", message: errorMessage });
   }
 };
