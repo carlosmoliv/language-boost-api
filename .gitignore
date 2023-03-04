@@ -3,3 +3,4 @@ node_modules
 temp/**/*
 dist
 dumps
+yarn-error.log*

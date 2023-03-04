@@ -11,8 +11,6 @@ import { adminsModel, studentsModel, tutorsModel, userModel } from "../models";
 
 export class UsersService {
   async registerUser(data: IRegisterUser, role: Role = Role.student) {
-    logger.info(role);
-
     switch (role) {
       case Role.student:
         const studentId = new mongoose.Types.ObjectId();
@@ -64,12 +62,12 @@ export class UsersService {
       default:
         throw new AppError(
           "InvalidUserRoleError",
-          "Invalid user role specified."
+          "Invalid user role provided."
         );
     }
   }
 
-  async logInUserByEmail(data: ILoginUserByEmail, role: Role) {
+  async logInUserByEmail(data: ILoginUserByEmail, role: Role = Role.student) {
     const { email, password } = data;
 
     const user = await userModel
