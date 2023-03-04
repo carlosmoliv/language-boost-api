@@ -6,8 +6,8 @@ describe("Register User", () => {
   let usersService: UsersService;
 
   beforeAll(() => {
-    database.connect();
     usersService = new UsersService();
+    database.connect();
   });
 
   afterAll(() => {
