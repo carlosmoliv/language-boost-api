@@ -37,23 +37,23 @@ This section is currently under development. Please check back later for updates
 
 ## :gear: Installation
 
-- Use a `yarn` or `npm` in order to install all dependencies
+Use a `yarn` or `npm` in order to install all dependencies
 
   ```bash
   yarn
   ```
 
-- Create and config `.env` file using `.env.example` as a example
+Create and config `.env` file using `.env.example` as a example
 
 ## :computer: Usage
 
-- To start the development server, simply run the `dev` command
+To start the development server, simply run the `dev` command
 
   ```bash
   yarn dev
   ```
 
-- To run the test suite, use the `test` command. To run in watch mode just run `test:watch`
+To run the test suite, use the `test` command. To run in watch mode just run `test:watch`
 
   ```bash
   yarn test
