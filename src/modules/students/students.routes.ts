@@ -1,5 +1,7 @@
 import express, { NextFunction, Request, Response, Router } from "express";
+import { authMiddleware } from "../../middleware/auth.middleware";
 import { validator } from "../../middleware/validation.middleware";
+import { Role } from "../users/users.enums";
 import { registerUserSchema } from "../users/users.validations";
 import { StudentsController } from "./students.controller";
 
@@ -14,6 +16,7 @@ studentsRouter.post(
 
 studentsRouter.post(
   "/register",
+  authMiddleware([Role.student]),
   validator(registerUserSchema),
   (req: Request, res: Response, next: NextFunction) =>
     studentsController.register(req, res, next)
