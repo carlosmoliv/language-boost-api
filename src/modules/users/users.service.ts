@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 import { IRegisterUser } from "./dtos/registerUser.dto";
 import { ILoginUserByEmail } from "./dtos/loginUserByEmail.dto";
-import { createToken } from "../../../utils/jwt.utils";
-import { comparePasswords } from "../../../utils/bcrypt.utils";
-import { AppError } from "../../../utils/errors.utils";
+import { createToken } from "../../utils/jwt.utils";
+import { comparePasswords } from "../../utils/bcrypt.utils";
+import { AppError } from "../../utils/errors.utils";
 import { Role } from "./users.enums";
-import { logger } from "../../../utils/logger.utils";
+import { logger } from "../../utils/logger.utils";
 import { adminsModel, studentsModel, tutorsModel, userModel } from "../models";
 
 export class UsersService {

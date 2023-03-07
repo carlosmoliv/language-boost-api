@@ -3,8 +3,8 @@ import cors from "cors";
 
 import api from "./routes";
 import * as database from "../config/database";
-import { AppError } from "../utils/errors.utils";
-import { expressLogger } from "../utils/logger.utils";
+import { AppError } from "./utils/errors.utils";
+import { expressLogger } from "./utils/logger.utils";
 import { errorHandler } from "./middleware/errorHandler.middleware";
 
 const configureExpress = () => {

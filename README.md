@@ -31,7 +31,7 @@ This section is currently under development. Please check back later for updates
 - [Joi](https://joi.dev/)
 - [Pino](https://getpino.io/)
 - [Jest](https://jestjs.io/)
-- Docker (I haven't gotten around to setting up Docker yet)
+- [Docker](https://www.docker.com/)
 - CI/CD (I haven't gotten around to setting up and choosing the tool for the CI/CD yet).
 - Documentantion (I haven't gotten around to setting up and choosing the tool for the documentation yet).
 
@@ -39,9 +39,9 @@ This section is currently under development. Please check back later for updates
 
 Use a `yarn` or `npm` in order to install all dependencies
 
-  ```bash
-  yarn
-  ```
+```bash
+yarn
+```
 
 Create and config `.env` file using `.env.example` as a example
 
@@ -49,19 +49,19 @@ Create and config `.env` file using `.env.example` as a example
 
 To start the development server, simply run the `dev` command
 
-  ```bash
-  yarn dev
-  ```
+```bash
+yarn dev
+```
 
 To run the test suite, use the `test` command. To run in watch mode just run `test:watch`
 
-  ```bash
-  yarn test
-  ```
+```bash
+yarn test
+```
 
-  ```bash
-  yarn test:watch
-  ```
+```bash
+yarn test:watch
+```
 
 ## License
 

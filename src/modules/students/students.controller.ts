@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { logger } from "../../../utils/logger.utils";
+import { logger } from "../../utils/logger.utils";
 import { Role } from "../users/users.enums";
 import { UsersService } from "../users/users.service";
 

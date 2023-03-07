@@ -7,7 +7,7 @@ import {
 } from "@typegoose/typegoose";
 
 import { Role } from "./users.enums";
-import { hashPassword } from "../../../utils/bcrypt.utils";
+import { hashPassword } from "../../utils/bcrypt.utils";
 import { Student } from "../students/students.model";
 import { Admin } from "../admins/admins.model";
 import { Tutor } from "../tutors/tutors.model";

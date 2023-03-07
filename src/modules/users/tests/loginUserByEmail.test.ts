@@ -1,7 +1,7 @@
 import { UsersService } from "../users.service";
 import * as database from "../../../../config/database";
 import { Role } from "../users.enums";
-import { AppError } from "../../../../utils/errors.utils";
+import { AppError } from "../../../utils/errors.utils";
 
 describe("Login User by email", () => {
   let usersService: UsersService;

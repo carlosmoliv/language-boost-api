@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
-import { verifyToken } from "../../utils/jwt.utils";
-import { logger } from "../../utils/logger.utils";
+import { verifyToken } from "../utils/jwt.utils";
+import { logger } from "../utils/logger.utils";
 import { userModel } from "../modules/models";
 import { Role } from "../modules/users/users.enums";
 

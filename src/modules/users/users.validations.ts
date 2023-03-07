@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { User } from "./users.model";
-import { AppError } from "../../../utils/errors.utils";
+import { AppError } from "../../utils/errors.utils";
 import { userModel } from "../models";
 
 export const registerUserSchema = Joi.object<User>({
