@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc-watch --onSuccess 'node ./dist/server.js'",
+    "dev": "tsc-watch --onSuccess 'node ./dist/src/shared/infrastructure/http/server.js'",
     "start": "node ./dist/server.js",
     "test": "jest",
     "test:watch": "jest --watch"

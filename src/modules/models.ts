@@ -1,12 +1,13 @@
 import { getModelForClass } from "@typegoose/typegoose";
-import { Admin } from "./admins/admins.model";
-import { Student } from "./students/students.model";
-import { Tutor } from "./tutors/tutors.model";
-import { User } from "./users/users.model";
 
-const userModel = getModelForClass(User);
+import { Admin } from "./admins/infrastructure/mongo/models/Admin";
+import { Student } from "./students/infrastructure/mongo/models/Student";
+import { Tutor } from "./tutors/infrastructure/mongo/tutors.model";
+import { User } from "./users/infrastructure/mongo/models/User";
+
+const usersModel = getModelForClass(User);
 const tutorsModel = getModelForClass(Tutor);
 const adminsModel = getModelForClass(Admin);
 const studentsModel = getModelForClass(Student);
 
-export { userModel, tutorsModel, adminsModel, studentsModel };
+export { usersModel, tutorsModel, adminsModel, studentsModel };
