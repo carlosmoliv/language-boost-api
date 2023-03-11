@@ -6,9 +6,9 @@
 
 ## :rocket: About the project
 
-A Node.js REST API for a courses platform that I'm developing from scratch for study purposes.
+A Node.js Role-Based Access Control REST API for a courses platform that I'm developing from scratch for study purposes.
 
-The idea is to apply the best practices, such as good architecture, new concepts, and new technologies, and also stay up-to-date with the latest trends.
+The idea is to apply **DDD**, **Clean Architecture**, **TDD**, and also stay up-to-date with the latest trends.
 
 My main focus with this project is the backend for the moment, but I have plans to start the frontend using React in another repository.
 
@@ -32,8 +32,8 @@ This section is currently under development. Please check back later for updates
 - [Pino](https://getpino.io/)
 - [Jest](https://jestjs.io/)
 - [Docker](https://www.docker.com/)
-- CI/CD (I haven't gotten around to setting up and choosing the tool for the CI/CD yet).
-- Documentantion (I haven't gotten around to setting up and choosing the tool for the documentation yet).
+- CI/CD
+- Documentantion
 
 ## :gear: Installation
 
