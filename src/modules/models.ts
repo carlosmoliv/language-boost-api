@@ -2,7 +2,7 @@ import { getModelForClass } from "@typegoose/typegoose";
 
 import { Admin } from "./admins/infrastructure/mongo/models/Admin";
 import { Student } from "./students/infrastructure/mongo/models/Student";
-import { Tutor } from "./tutors/infrastructure/mongo/tutors.model";
+import { Tutor } from "./tutors/infrastructure/mongo/models/tutors.model";
 import { User } from "./users/infrastructure/mongo/models/User";
 
 const usersModel = getModelForClass(User);

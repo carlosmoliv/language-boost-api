@@ -10,7 +10,7 @@ import { Base } from "../../../../../shared/domain/types/base.type";
 import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
-import { Tutor } from "../../../../tutors/infrastructure/mongo/tutors.model";
+import { Tutor } from "../../../../tutors/infrastructure/mongo/models/tutors.model";
 import { Role } from "../../../domain/users.enums";
 
 @pre<User>("save", async function (next) {
