@@ -5,7 +5,7 @@ import { verifyAuthentication } from "../middlewares/verifyAuthentication.middle
 import { UsersRepository } from "../../../../modules/users/infrastructure/mongo/repositories/UsersRepository";
 import { CreateUserByRoleController } from "../../../../modules/users/application/CreateUserByRoleController";
 import { LoginUserByRoleController } from "../../../../modules/users/application/LoginUserByRoleController";
-import { registerUserSchema } from "../../../../modules/users/domain/users.validations";
+import { createUserSchema } from "../../../../modules/users/domain/users.validations";
 
 const studentsRouter: Router = express.Router();
 const usersRepository = new UsersRepository();
@@ -26,7 +26,7 @@ studentsRouter.post(
 
 studentsRouter.post(
   "/register",
-  validator(registerUserSchema),
+  validator(createUserSchema),
   (req: Request, res: Response, next: NextFunction) =>
     createUserByRoleController.handle(req, res, next, Role.student)
 );

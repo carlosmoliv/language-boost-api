@@ -3,7 +3,7 @@ import { AppError } from "../../../shared/errors/AppError";
 import { usersModel } from "../../models";
 import { User } from "../infrastructure/mongo/models/User";
 
-export const registerUserSchema = Joi.object<User>({
+export const createUserSchema = Joi.object<User>({
   name: Joi.string().max(30).required().messages({
     "any.required": "Name is a required field.",
   }),

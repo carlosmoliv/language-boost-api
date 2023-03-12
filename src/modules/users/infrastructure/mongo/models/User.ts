@@ -6,12 +6,13 @@ import {
   Ref,
 } from "@typegoose/typegoose";
 
-import { Base } from "../../../../../shared/domain/types/base.type";
 import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
-import { Tutor } from "../../../../tutors/infrastructure/mongo/models/tutors.model";
+import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
 import { Role } from "../../../domain/users.enums";
+import { Base } from "@typegoose/typegoose/lib/defaultClasses";
+import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
 
 @pre<User>("save", async function (next) {
   if (this.isModified("password")) {
@@ -21,7 +22,7 @@ import { Role } from "../../../domain/users.enums";
   next();
 })
 @modelOptions({ schemaOptions: { timestamps: true } })
-export class User extends Base {
+export class User extends BaseModel {
   public token?: string;
 
   @prop({ unique: true })
