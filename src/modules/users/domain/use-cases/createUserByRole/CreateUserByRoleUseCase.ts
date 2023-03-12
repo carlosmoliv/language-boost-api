@@ -1,4 +1,5 @@
 import { AppError } from "../../../../../shared/errors/AppError";
+import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { Role } from "../../users.enums";
 
@@ -18,13 +19,22 @@ export class CreateUserByRoleUseCase {
   async execute(data: ICreateUserRequest, role: Role = Role.student) {
     switch (role) {
       case Role.student:
-        return this.usersRepository.createUserStudent(data);
+        return this.usersRepository.createUserStudent({
+          ...data,
+          password: await hashPassword(data.password),
+        });
 
       case Role.tutor:
-        return this.usersRepository.createUserTutor(data);
+        return this.usersRepository.createUserTutor({
+          ...data,
+          password: await hashPassword(data.password),
+        });
 
       case Role.admin:
-        return this.usersRepository.createUserAdmin(data);
+        return this.usersRepository.createUserAdmin({
+          ...data,
+          password: await hashPassword(data.password),
+        });
 
       default:
         throw new AppError(

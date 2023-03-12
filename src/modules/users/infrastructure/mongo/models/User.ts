@@ -14,13 +14,6 @@ import { Role } from "../../../domain/users.enums";
 import { Base } from "@typegoose/typegoose/lib/defaultClasses";
 import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
 
-@pre<User>("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await hashPassword(this.password);
-  }
-
-  next();
-})
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class User extends BaseModel {
   public token?: string;
