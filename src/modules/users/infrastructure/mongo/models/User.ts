@@ -6,12 +6,10 @@ import {
   Ref,
 } from "@typegoose/typegoose";
 
-import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
 import { Role } from "../../../domain/users.enums";
-import { Base } from "@typegoose/typegoose/lib/defaultClasses";
 import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
 
 @modelOptions({ schemaOptions: { timestamps: true } })

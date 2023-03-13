@@ -1,4 +1,4 @@
-import { comparePasswords } from "../../../../../shared/infrastructure/adapters/bcrypt";
+import { comparePasswords } from "../../../../../shared/infrastructure/adapters/bcrypt.utils";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { createToken } from "../../../../../shared/infrastructure/adapters/jwt.utils";
 import { ILoginUserByEmail } from "../../dtos/loginUserByEmail.dto";

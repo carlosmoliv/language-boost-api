@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { AppError } from "../../../shared/errors/AppError";
-import { usersModel } from "../../models";
+import { userModel } from "../../models";
 import { User } from "../infrastructure/mongo/models/User";
 
 export const createUserSchema = Joi.object<User>({
@@ -15,7 +15,7 @@ export const createUserSchema = Joi.object<User>({
     .email()
     .required()
     .external(async (email: string) => {
-      const user = await usersModel.findOne({ email: email });
+      const user = await userModel.findOne({ email: email });
 
       if (user)
         throw new AppError(

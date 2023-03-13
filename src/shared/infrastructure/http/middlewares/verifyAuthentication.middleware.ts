@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
-import { usersModel } from "../../../../modules/models";
+import { userModel } from "../../../../modules/models";
 import { Role } from "../../../../modules/users/domain/users.enums";
 import { verifyToken } from "../../adapters/jwt.utils";
 import { logger } from "../../adapters/logger.utils";
@@ -21,7 +21,7 @@ export const verifyAuthentication =
 
       const decoded = verifyToken(token) as JwtPayload;
 
-      return usersModel.findById(decoded.userId).then((user) => {
+      return userModel.findById(decoded.userId).then((user) => {
         if (!user)
           return res.status(401).json({
             name: "AuthorizationError",

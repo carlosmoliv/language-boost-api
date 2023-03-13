@@ -14,7 +14,9 @@ My main focus with this project is the backend for the moment, but I have plans 
 
 ## :dart: Mind Map, Storyboard, and Data modeling
 
-This section is currently under development. Please check back later for updates.
+- Mind Map: https://miro.com/app/board/uXjVMfni4k8=/?share_link_id=498114699109 **(under construction)**
+- Storyboard: **Check back later for updates.**
+- Data Modeling: **Check back later for updates.**
 
 ## :toolbox: Technologies
 

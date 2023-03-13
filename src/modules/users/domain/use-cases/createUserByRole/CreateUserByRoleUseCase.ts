@@ -1,5 +1,5 @@
 import { AppError } from "../../../../../shared/errors/AppError";
-import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt";
+import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt.utils";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { Role } from "../../users.enums";
 

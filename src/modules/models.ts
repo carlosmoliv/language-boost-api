@@ -5,9 +5,11 @@ import { Student } from "./students/infrastructure/mongo/models/Student";
 import { Tutor } from "./tutors/infrastructure/mongo/models/Tutor";
 import { User } from "./users/infrastructure/mongo/models/User";
 
-const usersModel = getModelForClass(User);
-const tutorsModel = getModelForClass(Tutor);
-const adminsModel = getModelForClass(Admin);
-const studentsModel = getModelForClass(Student);
+const userModel = getModelForClass(User);
+const tutorModel = getModelForClass(Tutor);
+const adminModel = getModelForClass(Admin);
+const studentModel = getModelForClass(Student);
+const courseModel = getModelForClass(Student);
+const lessonModel = getModelForClass(Student);
 
-export { usersModel, tutorsModel, adminsModel, studentsModel };
+export { userModel, tutorModel, adminModel, studentModel, courseModel };
