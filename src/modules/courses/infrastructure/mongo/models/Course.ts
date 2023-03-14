@@ -14,6 +14,9 @@ export class Course extends BaseModel {
   @prop()
   public description?: string;
 
+  @prop()
+  public price?: number;
+
   @prop({ default: CourseStatus.in_development })
   public status: CourseStatus;
 

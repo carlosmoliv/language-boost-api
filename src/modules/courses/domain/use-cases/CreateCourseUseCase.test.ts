@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError";
 import { CourseStatus, CourseType } from "../courses.enums";
 import { ICreateCourseDTO } from "../dtos/ICreateCourse.dto";
 import { ICoursesRepository } from "../repositories/ICoursesRepository";
@@ -17,6 +18,7 @@ describe("Create Course Use Case", () => {
     const data: ICreateCourseDTO = {
       title: "Test Course",
       type: CourseType.paid,
+      price: 500,
       description: "Test Course Description",
     };
 
@@ -25,5 +27,36 @@ describe("Create Course Use Case", () => {
     expect(result.title).toBeDefined();
     expect(result.status).toEqual(CourseStatus.in_development);
     expect(Object.values(CourseType)).toContain(result.type);
+  });
+
+  it("should throw an error if no price is provided for paid course", async () => {
+    const data: ICreateCourseDTO = {
+      title: "Test Course",
+      type: CourseType.paid,
+      description: "Test Course Description",
+    };
+
+    expect(createCourseUseCase.execute(data)).rejects.toEqual(
+      new AppError(
+        "MissingPriceError",
+        "Cannot create a paid course without a price"
+      )
+    );
+  });
+
+  it("should throw an error if price is smaller than 9.99", () => {
+    const data: ICreateCourseDTO = {
+      title: "Test Course",
+      type: CourseType.paid,
+      price: 9.98,
+      description: "Test Course Description",
+    };
+
+    expect(createCourseUseCase.execute(data)).rejects.toEqual(
+      new AppError(
+        "MissingPriceError",
+        "Cannot create a paid course with a price smaller than 9.99"
+      )
+    );
   });
 });
