@@ -1,5 +1,5 @@
 import { User } from "../../infrastructure/mongo/models/User";
-import { ICreateUser } from "../dtos/createUser.dto";
+import { ICreateUser } from "../dtos/ICreateUser.dto";
 import { Role } from "../users.enums";
 
 export interface IUsersRepository {

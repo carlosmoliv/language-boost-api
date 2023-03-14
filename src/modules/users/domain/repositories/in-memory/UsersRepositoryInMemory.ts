@@ -3,7 +3,7 @@ import { User } from "../../../infrastructure/mongo/models/User";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
-import { ICreateUser } from "../../../domain/dtos/createUser.dto";
+import { ICreateUser } from "../../dtos/ICreateUser.dto";
 import { IUsersRepository } from "../../../domain/repositories/IUsersRepository";
 
 export class UsersRepositoryInMemory implements IUsersRepository {

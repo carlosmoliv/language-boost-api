@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
-import { Base } from "@typegoose/typegoose/lib/defaultClasses";
+import { Base, TimeStamps } from "@typegoose/typegoose/lib/defaultClasses";
 
-export class BaseModel implements Base {
+export class BaseModel extends TimeStamps implements Base {
   public _id: Types.ObjectId;
   public id: string;
 }

@@ -5,7 +5,7 @@ import {
   tutorModel,
   userModel,
 } from "../../../../models";
-import { ICreateUser } from "../../../domain/dtos/createUser.dto";
+import { ICreateUser } from "../../../domain/dtos/ICreateUser.dto";
 import { IUsersRepository } from "../../../domain/repositories/IUsersRepository";
 import { Role } from "../../../domain/users.enums";
 import { User } from "../models/User";
