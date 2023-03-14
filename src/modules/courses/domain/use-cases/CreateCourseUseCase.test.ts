@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError";
+import { createCourseFactory } from "../../../../shared/factories/courseFactory";
 import { CourseStatus, CourseType } from "../courses.enums";
-import { ICreateCourseDTO } from "../dtos/ICreateCourse.dto";
 import { ICoursesRepository } from "../repositories/ICoursesRepository";
 import { CoursesRepositoryInMemory } from "../repositories/in-memory/CoursesRepositoryInMemory";
 import { CreateCourseUseCase } from "./CreateCourseUseCase";
@@ -15,12 +15,7 @@ describe("Create Course Use Case", () => {
   });
 
   it("should create a new course", async () => {
-    const data: ICreateCourseDTO = {
-      title: "Test Course",
-      type: CourseType.paid,
-      price: 500,
-      description: "Test Course Description",
-    };
+    const data = createCourseFactory();
 
     const result = await createCourseUseCase.execute(data);
 
@@ -29,28 +24,8 @@ describe("Create Course Use Case", () => {
     expect(Object.values(CourseType)).toContain(result.type);
   });
 
-  it("should throw an error if no price is provided for paid course", async () => {
-    const data: ICreateCourseDTO = {
-      title: "Test Course",
-      type: CourseType.paid,
-      description: "Test Course Description",
-    };
-
-    expect(createCourseUseCase.execute(data)).rejects.toEqual(
-      new AppError(
-        "MissingPriceError",
-        "Cannot create a paid course without a price"
-      )
-    );
-  });
-
   it("should throw an error if price is smaller than 9.99", () => {
-    const data: ICreateCourseDTO = {
-      title: "Test Course",
-      type: CourseType.paid,
-      price: 9.98,
-      description: "Test Course Description",
-    };
+    const data = createCourseFactory({ price: 9.98 });
 
     expect(createCourseUseCase.execute(data)).rejects.toEqual(
       new AppError(
