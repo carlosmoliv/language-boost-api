@@ -1,5 +1,5 @@
 import { prop } from "@typegoose/typegoose";
-import { BaseModel } from "../../../../../../shared/domain/types/BaseModel.type";
+import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
 
 export class Lesson extends BaseModel {
   @prop()
