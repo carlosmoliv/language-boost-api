@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { logger } from "../../../shared/infrastructure/adapters/logger.utils";
-import { IUsersRepository } from "../domain/repositories/IUsersRepository";
-import { CreateUserByRoleUseCase } from "../domain/use-cases/createUserByRole/CreateUserByRoleUseCase";
-import { Role } from "../domain/users.enums";
+import { logger } from "../../../../shared/infrastructure/adapters/logger.utils";
+import { IUsersRepository } from "../../domain/repositories/IUsersRepository";
+import { CreateUserByRoleUseCase } from "../../domain/use-cases/createUserByRole/CreateUserByRoleUseCase";
+import { Role } from "../../domain/users.enums";
 
 export class CreateUserByRoleController {
   private createUserByRoleUseCase: CreateUserByRoleUseCase;
