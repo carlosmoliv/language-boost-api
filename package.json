@@ -24,7 +24,8 @@
     "pino": "^8.11.0",
     "pino-http": "^8.3.3",
     "pino-pretty": "^9.4.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

@@ -10,7 +10,7 @@ export class CreateCourseUseCase {
   }
 
   async execute(data: ICreateCourseDTO): Promise<Course> {
-    const { type, price, ...rest } = data;
+    const { type, price } = data;
 
     if (type === CourseType.paid && !price)
       throw new AppError(
