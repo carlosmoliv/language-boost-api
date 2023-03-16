@@ -1,8 +1,8 @@
 import { prop, Ref } from "@typegoose/typegoose";
-import { CourseStatus, CourseType } from "../../../domain/courses.enums";
+import { CourseStatus, CourseType } from "../../../domain/course.enums";
 
 import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
-import { Lesson } from "./Lesson";
+import { Lesson } from "../../../../lessons/infrastructure/mongo/models/Lesson";
 
 export class Course extends BaseModel {
   @prop()

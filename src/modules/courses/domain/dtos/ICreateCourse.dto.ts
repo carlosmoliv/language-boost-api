@@ -1,4 +1,4 @@
-import { CourseType } from "../courses.enums";
+import { CourseType } from "../course.enums";
 
 export interface ICreateCourseDTO {
   title: string;

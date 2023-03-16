@@ -1,16 +1,17 @@
 import { AppError } from "../../../../shared/errors/AppError";
-import { createCourseFactory } from "../../../../shared/factories/courseFactory";
-import { CourseStatus, CourseType } from "../courses.enums";
-import { ICoursesRepository } from "../repositories/ICoursesRepository";
-import { CoursesRepositoryInMemory } from "../repositories/in-memory/CoursesRepositoryInMemory";
+
+import { CourseStatus, CourseType } from "../course.enums";
 import { CreateCourseUseCase } from "./CreateCourseUseCase";
+import { createCourseFactory } from "../../../../shared/factories/courseFactory";
+import { ICourseRepository } from "../repositories/ICourseRepository";
+import { CourseRepositoryInMemory } from "../repositories/in-memory/CourseRepositoryInMemory";
 
 describe("Create Course Use Case", () => {
   let createCourseUseCase: CreateCourseUseCase;
-  let coursesRepositoryInMemory: ICoursesRepository;
+  let coursesRepositoryInMemory: ICourseRepository;
 
   beforeEach(() => {
-    coursesRepositoryInMemory = new CoursesRepositoryInMemory();
+    coursesRepositoryInMemory = new CourseRepositoryInMemory();
     createCourseUseCase = new CreateCourseUseCase(coursesRepositoryInMemory);
   });
 

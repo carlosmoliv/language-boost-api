@@ -2,8 +2,8 @@ import { comparePasswords } from "../../../../../shared/infrastructure/adapters/
 import { AppError } from "../../../../../shared/errors/AppError";
 import { createToken } from "../../../../../shared/infrastructure/adapters/jwt.utils";
 import { ILoginUserByEmail } from "../../dtos/ILoginUserByEmail.dto";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { Role } from "../../users.enums";
+import { IUsersRepository } from "../../repositories/IUserRepository";
+import { Role } from "../../user.enums";
 
 export class LogInUserByRoleUseCase {
   private usersRepository: IUsersRepository;

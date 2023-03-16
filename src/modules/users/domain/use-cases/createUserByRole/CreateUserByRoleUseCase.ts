@@ -1,7 +1,7 @@
 import { AppError } from "../../../../../shared/errors/AppError";
 import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt.utils";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
-import { Role } from "../../users.enums";
+import { IUsersRepository } from "../../repositories/IUserRepository";
+import { Role } from "../../user.enums";
 
 interface ICreateUserRequest {
   name: string;

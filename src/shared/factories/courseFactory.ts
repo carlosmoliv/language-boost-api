@@ -1,4 +1,4 @@
-import { CourseType } from "../../modules/courses/domain/courses.enums";
+import { CourseType } from "../../modules/courses/domain/course.enums";
 import { ICreateCourseDTO } from "../../modules/courses/domain/dtos/ICreateCourse.dto";
 
 export const createCourseFactory = ({

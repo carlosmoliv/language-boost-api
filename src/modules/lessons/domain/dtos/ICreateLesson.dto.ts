@@ -1,4 +1,4 @@
-export interface ICreateCourseLessonDTO {
+export interface ICreateLessonDTO {
   courseId: string;
   title: string;
   videoUrl: string;

@@ -1,10 +1,10 @@
-import { Role } from "../../../domain/users.enums";
+import { Role } from "../../user.enums";
 import { User } from "../../../infrastructure/mongo/models/User";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
 import { ICreateUser } from "../../dtos/ICreateUser.dto";
-import { IUsersRepository } from "../../../domain/repositories/IUsersRepository";
+import { IUsersRepository } from "../IUserRepository";
 
 export class UsersRepositoryInMemory implements IUsersRepository {
   private users: User[] = [];

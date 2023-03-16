@@ -1,6 +1,6 @@
 import { prop, Ref } from "@typegoose/typegoose";
 import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
-import { Course } from "./Course";
+import { Course } from "../../../../courses/infrastructure/mongo/models/Course";
 
 export class Lesson extends BaseModel {
   @prop()
@@ -12,9 +12,9 @@ export class Lesson extends BaseModel {
   @prop()
   public description?: string;
 
-  @prop()
+  @prop({ type: () => [String] })
   public materials?: string[];
 
-  @prop()
+  @prop({ ref: () => Course })
   public courseId: Ref<Course>;
 }

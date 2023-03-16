@@ -1,11 +1,11 @@
 import { Lesson } from "../../../infrastructure/mongo/models/Lesson";
-import { ICreateCourseLessonDTO } from "../../dtos/ICreateCourseLesson.dto";
-import { ILessonsRepository } from "../ILessonsRepository";
+import { ICreateLessonDTO } from "../../dtos/ICreateLesson.dto";
+import { ILessonRepository } from "../ILessonsRepository";
 
-export class LessonsRepositoryInMemory implements ILessonsRepository {
+export class LessonRepositoryInMemory implements ILessonRepository {
   private lessons: Lesson[] = [];
 
-  async create(data: ICreateCourseLessonDTO): Promise<Lesson> {
+  async create(data: ICreateLessonDTO): Promise<Lesson> {
     const lesson = new Lesson();
 
     Object.assign(lesson, {

@@ -9,7 +9,7 @@ import {
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
-import { Role } from "../../../domain/users.enums";
+import { Role } from "../../../domain/user.enums";
 import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
 
 @modelOptions({ schemaOptions: { timestamps: true } })

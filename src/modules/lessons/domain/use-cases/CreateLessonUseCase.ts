@@ -1,18 +1,18 @@
 import { AppError } from "../../../../shared/errors/AppError";
-import { ICreateCourseLessonDTO } from "../dtos/ICreateCourseLesson.dto";
-import { ICoursesRepository } from "../repositories/ICoursesRepository";
-import { ILessonsRepository } from "../repositories/ILessonsRepository";
+import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
+import { ILessonRepository } from "../repositories/ILessonsRepository";
+import { ICreateLessonDTO } from "../dtos/ICreateLesson.dto";
 
-export class CreateCourseLessonUseCase {
+export class CreateLessonUseCase {
   constructor(
-    private lessonsRepository: ILessonsRepository,
-    private coursesRepository: ICoursesRepository
+    private lessonsRepository: ILessonRepository,
+    private coursesRepository: ICourseRepository
   ) {
     this.lessonsRepository = lessonsRepository;
     this.coursesRepository = coursesRepository;
   }
 
-  async execute(data: ICreateCourseLessonDTO) {
+  async execute(data: ICreateLessonDTO) {
     const { courseId } = data;
 
     const course = await this.coursesRepository.findById(courseId);

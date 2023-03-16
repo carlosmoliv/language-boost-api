@@ -1,6 +1,6 @@
 import { User } from "../../infrastructure/mongo/models/User";
 import { ICreateUser } from "../dtos/ICreateUser.dto";
-import { Role } from "../users.enums";
+import { Role } from "../user.enums";
 
 export interface IUsersRepository {
   findByEmailAndRole(email: string, role: Role): Promise<User | null>;

@@ -6,8 +6,8 @@ import {
   userModel,
 } from "../../../../models";
 import { ICreateUser } from "../../../domain/dtos/ICreateUser.dto";
-import { IUsersRepository } from "../../../domain/repositories/IUsersRepository";
-import { Role } from "../../../domain/users.enums";
+import { IUsersRepository } from "../../../domain/repositories/IUserRepository";
+import { Role } from "../../../domain/user.enums";
 import { User } from "../models/User";
 
 export class UsersRepository implements IUsersRepository {

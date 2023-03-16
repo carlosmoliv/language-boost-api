@@ -1,9 +1,4 @@
-import {
-  getModelForClass,
-  modelOptions,
-  prop,
-  Ref,
-} from "@typegoose/typegoose";
+import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Address } from "../../../../../shared/domain/types/Adress.type";
 import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
 import { User } from "../../../../users/infrastructure/mongo/models/User";

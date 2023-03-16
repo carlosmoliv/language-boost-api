@@ -1,5 +1,5 @@
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
-import { Role } from "../../users.enums";
+import { UsersRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
+import { Role } from "../../user.enums";
 import { CreateUserByRoleUseCase } from "./CreateUserByRoleUseCase";
 
 describe("Create User by Role", () => {

@@ -1,9 +1,9 @@
 import { Course } from "../../../infrastructure/mongo/models/Course";
-import { CourseStatus } from "../../courses.enums";
+import { CourseStatus } from "../../course.enums";
 import { ICreateCourseDTO } from "../../dtos/ICreateCourse.dto";
-import { ICoursesRepository } from "../ICoursesRepository";
+import { ICourseRepository } from "../ICourseRepository";
 
-export class CoursesRepositoryInMemory implements ICoursesRepository {
+export class CourseRepositoryInMemory implements ICourseRepository {
   private courses: Course[] = [];
 
   async findById(courseId: string): Promise<Course | null> {
