@@ -10,7 +10,7 @@ import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
 import { Role } from "../../../domain/user.enums";
-import { BaseModel } from "../../../../../shared/domain/types/BaseModel.type";
+import { BaseModel } from "../../../../../shared/types/BaseModel.type";
 
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class User extends BaseModel {
