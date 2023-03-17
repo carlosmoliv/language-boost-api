@@ -14,11 +14,10 @@ export class LessonRepositoryInMemory implements ILessonRepository {
       videoUrl: data.videoUrl,
       description: data.description,
       materials: data.materials,
-      courseId: data.courseId,
+      moduleId: data.moduleId,
     });
 
     this.lessons.push(lesson);
-
     return lesson;
   }
 

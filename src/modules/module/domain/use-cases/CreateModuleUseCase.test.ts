@@ -1,13 +1,14 @@
-import { createCourseFactory } from "../../../../shared/factories/courseFactory";
 import { CourseNotFoundError } from "../../../../shared/errors/courses/CourseNotFoundError";
+import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
+
+import { ICreateModuleDTO } from "../dtos/ICreateModule.dto";
+import { IModuleRepository } from "../repositories/IModuleRepository";
+import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
 
 import { CreateModuleUseCase } from "./CreateModuleUseCase";
-import { ICreateModuleDTO } from "../dtos/ICreateModule.dto";
 import { CreateCourseUseCase } from "../../../courses/domain/use-cases/CreateCourseUseCase";
-import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
 import { ModuleRepositoryInMemory } from "../repositories/in-memory/ModuleRepositoryInMemory";
 import { CourseRepositoryInMemory } from "../../../courses/domain/repositories/in-memory/CourseRepositoryInMemory";
-import { IModuleRepository } from "../repositories/IModuleRepository";
 
 describe("Create Course Module", () => {
   let createModuleUseCase: CreateModuleUseCase;

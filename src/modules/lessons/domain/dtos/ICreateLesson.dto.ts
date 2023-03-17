@@ -1,7 +1,7 @@
 export interface ICreateLessonDTO {
-  courseId: string;
+  moduleId: string;
   title: string;
-  videoUrl: string;
+  videoUrl?: string;
   description?: string;
   materials?: string[];
 }

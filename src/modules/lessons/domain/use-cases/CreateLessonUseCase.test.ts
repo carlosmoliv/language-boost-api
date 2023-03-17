@@ -1,28 +1,40 @@
-import { createCourseFactory } from "../../../../shared/factories/courseFactory";
+import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
+import { createLessonFactory } from "../../../../shared/factories/createLessonFactory";
 import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
 import { CourseRepositoryInMemory } from "../../../courses/domain/repositories/in-memory/CourseRepositoryInMemory";
 import { CreateCourseUseCase } from "../../../courses/domain/use-cases/CreateCourseUseCase";
-
-import { ICreateLessonDTO } from "../dtos/ICreateLesson.dto";
+import { IModuleRepository } from "../../../module/domain/repositories/IModuleRepository";
+import { ModuleRepositoryInMemory } from "../../../module/domain/repositories/in-memory/ModuleRepositoryInMemory";
+import { CreateModuleUseCase } from "../../../module/domain/use-cases/CreateModuleUseCase";
 import { ILessonRepository } from "../repositories/ILessonsRepository";
 import { LessonRepositoryInMemory } from "../repositories/in-memory/LessonRepositoryInMemory";
 
 import { CreateLessonUseCase } from "./CreateLessonUseCase";
 
-describe("Create Course Lesson", () => {
-  let createCourseLessonUseCase: CreateLessonUseCase;
+describe("Create Module Lesson", () => {
+  let createLessonUseCase: CreateLessonUseCase;
+  let createModuleUseCase: CreateModuleUseCase;
   let createCourseUseCase: CreateCourseUseCase;
-  let coursesRepositoryInMemory: ICourseRepository;
-  let lessonsRepositoryInMemory: ILessonRepository;
+
+  let lessonRepositoryInMemory: ILessonRepository;
+  let moduleRepositoryInMemory: IModuleRepository;
+  let courseRepositoryInMemory: ICourseRepository;
 
   beforeEach(() => {
-    lessonsRepositoryInMemory = new LessonRepositoryInMemory();
-    coursesRepositoryInMemory = new CourseRepositoryInMemory();
+    lessonRepositoryInMemory = new LessonRepositoryInMemory();
+    moduleRepositoryInMemory = new ModuleRepositoryInMemory();
+    courseRepositoryInMemory = new CourseRepositoryInMemory();
 
-    createCourseUseCase = new CreateCourseUseCase(coursesRepositoryInMemory);
-    createCourseLessonUseCase = new CreateLessonUseCase(
-      lessonsRepositoryInMemory,
-      coursesRepositoryInMemory
+    createCourseUseCase = new CreateCourseUseCase(courseRepositoryInMemory);
+
+    createModuleUseCase = new CreateModuleUseCase(
+      courseRepositoryInMemory,
+      moduleRepositoryInMemory
+    );
+
+    createLessonUseCase = new CreateLessonUseCase(
+      lessonRepositoryInMemory,
+      moduleRepositoryInMemory
     );
   });
 
@@ -30,17 +42,13 @@ describe("Create Course Lesson", () => {
     const course = createCourseFactory();
     const resultCourse = await createCourseUseCase.execute(course);
 
-    const lesson: ICreateLessonDTO = {
-      courseId: resultCourse.id,
-      title: "Test Lesson",
-      videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      description: "Test Lesson Description",
-      materials: [],
-    };
+    const module = { title: "Module 1", courseId: resultCourse.id };
+    const resultModule = await createModuleUseCase.execute(module);
 
-    const resultLesson = await createCourseLessonUseCase.execute(lesson);
+    const lesson = createLessonFactory({ moduleId: resultModule.id });
+    const resultLesson = await createLessonUseCase.execute(lesson);
 
     expect(resultLesson).toBeDefined();
-    expect(resultLesson.courseId).toEqual(resultCourse.id);
+    expect(resultLesson.moduleId).toEqual(resultModule.id);
   });
 });

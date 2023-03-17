@@ -1,29 +1,25 @@
-import { AppError } from "../../../../shared/errors/AppError";
-import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
-import { ILessonRepository } from "../repositories/ILessonsRepository";
+import { ModuleNotFoundError } from "../../../../shared/errors/courses-modules/ModuleNotFoundError";
+
 import { ICreateLessonDTO } from "../dtos/ICreateLesson.dto";
+import { ILessonRepository } from "../repositories/ILessonsRepository";
+import { IModuleRepository } from "../../../module/domain/repositories/IModuleRepository";
 
 export class CreateLessonUseCase {
   constructor(
-    private lessonsRepository: ILessonRepository,
-    private coursesRepository: ICourseRepository
+    private lessonRepository: ILessonRepository,
+    private moduleRepository: IModuleRepository
   ) {
-    this.lessonsRepository = lessonsRepository;
-    this.coursesRepository = coursesRepository;
+    this.lessonRepository = lessonRepository;
+    this.moduleRepository = moduleRepository;
   }
 
   async execute(data: ICreateLessonDTO) {
-    const { courseId } = data;
+    const { moduleId } = data;
 
-    const course = await this.coursesRepository.findById(courseId);
+    const module = await this.moduleRepository.findById(moduleId);
+    if (!module) throw new ModuleNotFoundError();
 
-    if (!course)
-      throw new AppError(
-        "CourseNotFoundError",
-        "Course not found with the id provided."
-      );
-
-    const lesson = await this.lessonsRepository.create(data);
+    const lesson = await this.lessonRepository.create(data);
     return lesson;
   }
 }

@@ -2,7 +2,7 @@ import { AppError } from "../../../../shared/errors/AppError";
 
 import { CourseStatus, CourseType } from "../course.enums";
 import { CreateCourseUseCase } from "./CreateCourseUseCase";
-import { createCourseFactory } from "../../../../shared/factories/courseFactory";
+import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
 import { ICourseRepository } from "../repositories/ICourseRepository";
 import { CourseRepositoryInMemory } from "../repositories/in-memory/CourseRepositoryInMemory";
 
