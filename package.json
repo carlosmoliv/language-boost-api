@@ -7,7 +7,9 @@
     "dev": "tsc-watch --onSuccess 'node ./dist/src/shared/infrastructure/http/server.js'",
     "start": "node ./dist/server.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:unit": "jest --testPathIgnorePatterns=integration.test.ts",
+    "test:integration": "jest --testPathIgnorePatterns=unit.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -41,6 +43,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.4.3",
     "prettier": "^2.8.4",
+    "supertest": "^6.3.3",
     "ts-jest": "^29.0.5",
     "tsc-watch": "^6.0.0",
     "typescript": "^4.9.5"
