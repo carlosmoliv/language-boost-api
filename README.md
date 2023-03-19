@@ -33,6 +33,7 @@ My main focus with this project is the backend for the moment, but I have plans 
 - [Joi](https://joi.dev/)
 - [Pino](https://getpino.io/)
 - [Jest](https://jestjs.io/)
+- [SuperTest](https://www.npmjs.com/package/supertest)
 - [Docker](https://www.docker.com/)
 - CI/CD
 - Documentantion
@@ -55,7 +56,19 @@ To start the development server, simply run the `dev` command
 yarn dev
 ```
 
-To run the test suite, use the `test` command. To run in watch mode just run `test:watch`
+To run only unit tests, use the `test:unit` command.
+
+```bash
+yarn test:unit
+```
+
+To run only integration tests, use the `test:integration` command.
+
+```bash
+yarn test:integration
+```
+
+To run all test suites, use the `test` command. To run in watch mode just run `test:watch`
 
 ```bash
 yarn test

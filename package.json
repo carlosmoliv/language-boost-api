@@ -8,8 +8,8 @@
     "start": "node ./dist/server.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:unit": "jest --testPathIgnorePatterns=integration.test.ts",
-    "test:integration": "jest --testPathIgnorePatterns=unit.test.ts"
+    "test:unit": "jest --config jest.config.ts",
+    "test:integration": "jest --config jest.config.integration.ts --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
@@ -26,8 +26,7 @@
     "pino": "^8.11.0",
     "pino-http": "^8.3.3",
     "pino-pretty": "^9.4.0",
-    "ts-node": "^10.9.1",
-    "uuid": "^9.0.0"
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -36,6 +35,7 @@
     "@types/jest": "^29.4.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.14.2",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "eslint": "^8.35.0",

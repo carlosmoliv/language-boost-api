@@ -152,10 +152,10 @@ const config: Config.InitialOptions = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: [
-    "**/__tests__/**/*.+(ts|tsx|js)",
-    "**/?(*.)+(spec|test).+(ts|tsx|js)",
-  ],
+  // testMatch: [
+  //   "**/__tests__/**/*.+(ts|tsx|js)",
+  //   "**/?(*.)+(spec|test).+(ts|tsx|js)",
+  // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -164,7 +164,7 @@ const config: Config.InitialOptions = {
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  // testRegex: [],
+  testRegex: ".unit.test.ts$",
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
