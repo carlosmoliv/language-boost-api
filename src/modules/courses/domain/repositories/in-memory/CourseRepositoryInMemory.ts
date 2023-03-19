@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import { Course } from "../../../infrastructure/mongo/models/Course";
 import { CourseStatus } from "../../course.enums";
 import { ICreateCourseDTO } from "../../dtos/ICreateCourse.dto";
@@ -17,16 +18,12 @@ export class CourseRepositoryInMemory implements ICourseRepository {
 
     Object.assign(course, {
       ...data,
-      id: this.generateId(),
+      id: crypto.randomUUID(),
       status: CourseStatus.in_development,
       lessons: [],
     });
 
     this.courses.push(course);
     return course;
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
   }
 }

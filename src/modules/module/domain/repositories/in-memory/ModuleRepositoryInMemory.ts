@@ -1,3 +1,5 @@
+import crypto from "node:crypto";
+
 import { Module } from "../../../Infrastructure/models/Module";
 import { ICreateModuleDTO } from "../../dtos/ICreateModule.dto";
 import { IModuleRepository } from "../IModuleRepository";
@@ -13,16 +15,12 @@ export class ModuleRepositoryInMemory implements IModuleRepository {
     const module = new Module();
 
     Object.assign(module, {
-      id: this.generateId(),
+      id: crypto.randomUUID(),
       title: data.title,
       courseId: data.courseId,
     });
 
     this.modules.push(module);
     return module;
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
   }
 }

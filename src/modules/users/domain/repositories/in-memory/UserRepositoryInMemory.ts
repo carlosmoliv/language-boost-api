@@ -1,3 +1,5 @@
+import crypto from "node:crypto";
+
 import { Role } from "../../user.enums";
 import { User } from "../../../infrastructure/mongo/models/User";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
@@ -21,8 +23,8 @@ export class UsersRepositoryInMemory implements IUsersRepository {
   }
 
   async createUserStudent(data: ICreateUser) {
-    const userId = this.generateId();
-    const studentId = this.generateId();
+    const userId = crypto.randomUUID();
+    const studentId = crypto.randomUUID();
 
     const user = new User();
     const student = new Student();
@@ -48,8 +50,8 @@ export class UsersRepositoryInMemory implements IUsersRepository {
   }
 
   async createUserTutor(data: ICreateUser) {
-    const userId = this.generateId();
-    const tutorId = this.generateId();
+    const userId = crypto.randomUUID();
+    const tutorId = crypto.randomUUID();
 
     const user = new User();
     const tutor = new Tutor();
@@ -74,8 +76,8 @@ export class UsersRepositoryInMemory implements IUsersRepository {
   }
 
   async createUserAdmin(data: ICreateUser) {
-    const userId = this.generateId();
-    const adminId = this.generateId();
+    const userId = crypto.randomUUID();
+    const adminId = crypto.randomUUID();
 
     const user = new User();
     const admin = new Admin();
@@ -97,9 +99,5 @@ export class UsersRepositoryInMemory implements IUsersRepository {
     this.admins.push(admin);
 
     return user;
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
   }
 }
