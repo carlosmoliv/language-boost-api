@@ -1,7 +1,7 @@
 import express, { Router } from "express";
-import adminsRouter from "./admins/admins.routes";
-import studentsRouter from "./students/students.routes";
-import tutorsRouter from "./tutors/tutors.routes";
+import adminsRouter from "./admins/admin.routes";
+import studentsRouter from "./students/student.routes";
+import tutorsRouter from "./tutors/tutor.routes";
 
 const api: Router = express.Router();
 
