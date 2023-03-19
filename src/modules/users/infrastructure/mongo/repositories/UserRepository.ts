@@ -6,11 +6,11 @@ import {
   userModel,
 } from "../../../../models";
 import { ICreateUser } from "../../../domain/dtos/ICreateUser.dto";
-import { IUsersRepository } from "../../../domain/repositories/IUserRepository";
+import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { Role } from "../../../domain/user.enums";
 import { User } from "../models/User";
 
-export class UsersRepository implements IUsersRepository {
+export class UsersRepository implements IUserRepository {
   async findByEmailAndRole(email: string, role: Role): Promise<User | null> {
     return userModel.findOne({ email, active: true, role }).select("+password");
   }

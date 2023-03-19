@@ -1,6 +1,6 @@
 import { AppError } from "../../../../../shared/errors/AppError";
 import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt.utils";
-import { IUsersRepository } from "../../repositories/IUserRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { Role } from "../../user.enums";
 
 interface ICreateUserRequest {
@@ -10,11 +10,7 @@ interface ICreateUserRequest {
 }
 
 export class CreateUserByRoleUseCase {
-  private usersRepository: IUsersRepository;
-
-  constructor(usersRepository: IUsersRepository) {
-    this.usersRepository = usersRepository;
-  }
+  constructor(private usersRepository: IUserRepository) {}
 
   async execute(data: ICreateUserRequest, role: Role = Role.student) {
     switch (role) {

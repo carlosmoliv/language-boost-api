@@ -6,9 +6,7 @@ import { Course } from "../../infrastructure/mongo/models/Course";
 import { ICourseRepository } from "../repositories/ICourseRepository";
 
 export class CreateCourseUseCase {
-  constructor(private coursesRepository: ICourseRepository) {
-    this.coursesRepository = coursesRepository;
-  }
+  constructor(private coursesRepository: ICourseRepository) {}
 
   async execute(data: ICreateCourseDTO): Promise<Course> {
     const { type, price } = data;

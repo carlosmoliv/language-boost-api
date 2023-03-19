@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { logger } from "../../../../shared/infrastructure/adapters/logger.utils";
-import { IUsersRepository } from "../../domain/repositories/IUserRepository";
+import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { LogInUserByRoleUseCase } from "../../domain/use-cases/loginUserByRole/LoginUserByRoleUseCase";
 import { Role } from "../../domain/user.enums";
 
 export class LoginUserByRoleController {
   private loginUserByRoleUseCase: LogInUserByRoleUseCase;
 
-  constructor(usersRepository: IUsersRepository) {
+  constructor(usersRepository: IUserRepository) {
     this.loginUserByRoleUseCase = new LogInUserByRoleUseCase(usersRepository);
   }
 

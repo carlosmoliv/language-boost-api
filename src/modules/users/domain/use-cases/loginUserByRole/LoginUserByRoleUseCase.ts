@@ -2,20 +2,16 @@ import { comparePasswords } from "../../../../../shared/infrastructure/adapters/
 import { AppError } from "../../../../../shared/errors/AppError";
 import { createToken } from "../../../../../shared/infrastructure/adapters/jwt.utils";
 import { ILoginUserByEmail } from "../../dtos/ILoginUserByEmail.dto";
-import { IUsersRepository } from "../../repositories/IUserRepository";
+import { IUserRepository } from "../../repositories/IUserRepository";
 import { Role } from "../../user.enums";
 
 export class LogInUserByRoleUseCase {
-  private usersRepository: IUsersRepository;
-
-  constructor(usersRepository: IUsersRepository) {
-    this.usersRepository = usersRepository;
-  }
+  constructor(private userRepository: IUserRepository) {}
 
   async execute(data: ILoginUserByEmail, role: Role = Role.student) {
     const { email, password } = data;
 
-    const user = await this.usersRepository.findByEmailAndRole(email, role);
+    const user = await this.userRepository.findByEmailAndRole(email, role);
 
     if (!user)
       throw new AppError("AuthenticationError", "Invalid credentials.", 401);

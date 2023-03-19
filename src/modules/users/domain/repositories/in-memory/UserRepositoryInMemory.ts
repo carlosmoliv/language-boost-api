@@ -6,9 +6,9 @@ import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
 import { ICreateUser } from "../../dtos/ICreateUser.dto";
-import { IUsersRepository } from "../IUserRepository";
+import { IUserRepository } from "../IUserRepository";
 
-export class UsersRepositoryInMemory implements IUsersRepository {
+export class UsersRepositoryInMemory implements IUserRepository {
   private users: User[] = [];
   private tutors: Tutor[] = [];
   private admins: Admin[] = [];

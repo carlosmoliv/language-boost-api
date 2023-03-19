@@ -7,10 +7,7 @@ export class CreateModuleUseCase {
   constructor(
     private courseRepository: ICourseRepository,
     private moduleRepository: IModuleRepository
-  ) {
-    this.courseRepository = courseRepository;
-    this.moduleRepository = moduleRepository;
-  }
+  ) {}
 
   async execute(data: ICreateModuleDTO) {
     const { courseId, title } = data;

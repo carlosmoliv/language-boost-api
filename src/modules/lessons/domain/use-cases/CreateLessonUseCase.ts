@@ -8,10 +8,7 @@ export class CreateLessonUseCase {
   constructor(
     private lessonRepository: ILessonRepository,
     private moduleRepository: IModuleRepository
-  ) {
-    this.lessonRepository = lessonRepository;
-    this.moduleRepository = moduleRepository;
-  }
+  ) {}
 
   async execute(data: ICreateLessonDTO) {
     const { moduleId } = data;
