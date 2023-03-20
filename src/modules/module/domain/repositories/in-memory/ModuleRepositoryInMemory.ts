@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 
-import { Module } from "../../../Infrastructure/models/Module";
+import { Module } from "../../../Infrastructure/mongo/models/Module";
 import { ICreateModuleDTO } from "../../dtos/ICreateModule.dto";
 import { IModuleRepository } from "../IModuleRepository";
 

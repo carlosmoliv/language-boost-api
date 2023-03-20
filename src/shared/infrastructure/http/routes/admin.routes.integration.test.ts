@@ -1,6 +1,6 @@
 import request from "supertest";
-import setupApp from "../../app";
-import { disconnect } from "../../../database/mongo";
+import setupApp from "../app";
+import { disconnect } from "../../database/mongo";
 import { Application } from "express";
 
 describe("Admin routes", () => {
