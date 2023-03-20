@@ -6,11 +6,11 @@
 
 ## :rocket: About the project
 
-A Node.js Role-Based Access Control REST API for a courses platform that I'm developing from scratch for study purposes.
+A Node.js **Role-Based** REST API for a courses platform with payments via **Stripe**, that I'm developing from scratch for study purposes.
 
-The idea is to apply **DDD**, **Clean Architecture**, **TDD**, and also stay up-to-date with the latest trends.
+The idea is to apply **DDD**, **Clean Architecture**, **TDD**, and also stay up-to-date with the **latest trends**.
 
-My main focus with this project is the backend for the moment, but I have plans to start the frontend using React in another repository.
+My main focus with this project is the **back-end** for the moment, but I have plans to start the frontend using React in another repository.
 
 ## :dart: Mind Map, Storyboard, and Data modeling
 
@@ -37,6 +37,9 @@ My main focus with this project is the backend for the moment, but I have plans 
 - [Docker](https://www.docker.com/)
 - CI/CD
 - Documentantion
+
+## Stripe API
+- [Stripe Checkout Docs] https://stripe.com/docs/payments/checkout
 
 ## :gear: Installation
 
