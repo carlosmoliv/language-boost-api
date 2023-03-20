@@ -8,9 +8,9 @@ export class Module extends BaseModel {
   @prop()
   public title!: string;
 
-  @prop({ type: () => [Lesson] })
-  public lessons?: Lesson[];
-
   @prop({ ref: () => Course })
   public courseId: Ref<Course>;
+
+  @prop({ ref: () => Lesson })
+  public lessons?: Ref<Lesson>[];
 }

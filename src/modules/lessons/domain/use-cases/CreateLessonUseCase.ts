@@ -6,8 +6,8 @@ import { IModuleRepository } from "../../../module/domain/repositories/IModuleRe
 
 export class CreateLessonUseCase {
   constructor(
-    private lessonRepository: ILessonRepository,
-    private moduleRepository: IModuleRepository
+    private moduleRepository: IModuleRepository,
+    private lessonRepository: ILessonRepository
   ) {}
 
   async execute(data: ICreateLessonDTO) {

@@ -33,8 +33,8 @@ describe("Create Module Lesson", () => {
     );
 
     createLessonUseCase = new CreateLessonUseCase(
-      lessonRepositoryInMemory,
-      moduleRepositoryInMemory
+      moduleRepositoryInMemory,
+      lessonRepositoryInMemory
     );
   });
 
