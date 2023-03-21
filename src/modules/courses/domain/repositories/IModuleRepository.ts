@@ -1,4 +1,4 @@
-import { Module } from "../../Infrastructure/mongo/models/Module";
+import { Module } from "../../infrastructure/mongo/models/Module";
 import { ICreateModuleDTO } from "../dtos/ICreateModule.dto";
 
 export interface IModuleRepository {

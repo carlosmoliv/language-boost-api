@@ -1,14 +1,14 @@
 import { CourseNotFoundError } from "../../../../shared/errors/courses/CourseNotFoundError";
 import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
 
-import { ICreateModuleDTO } from "../dtos/ICreateModule.dto";
-import { IModuleRepository } from "../repositories/IModuleRepository";
-import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
+import { ICreateModuleDTO } from "../../domain/dtos/ICreateModule.dto";
+import { IModuleRepository } from "../../domain/repositories/IModuleRepository";
+import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
 
 import { CreateModuleUseCase } from "./CreateModuleUseCase";
-import { CreateCourseUseCase } from "../../../courses/domain/use-cases/CreateCourseUseCase";
-import { ModuleRepositoryInMemory } from "../repositories/in-memory/ModuleRepositoryInMemory";
-import { CourseRepositoryInMemory } from "../../../courses/domain/repositories/in-memory/CourseRepositoryInMemory";
+import { CreateCourseUseCase } from "./CreateCourseUseCase";
+import { ModuleRepositoryInMemory } from "../../domain/repositories/in-memory/ModuleRepositoryInMemory";
+import { CourseRepositoryInMemory } from "../../domain/repositories/in-memory/CourseRepositoryInMemory";
 
 describe("Create Course Module", () => {
   let createModuleUseCase: CreateModuleUseCase;

@@ -3,8 +3,8 @@ import crypto from "node:crypto";
 import { Role } from "../../user.enums";
 import { User } from "../../../infrastructure/mongo/models/User";
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
-import { Student } from "../../../../students/infrastructure/mongo/models/Student";
-import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
+import { Student } from "../../../infrastructure/mongo/models/Student";
+import { Tutor } from "../../../infrastructure/mongo/models/Tutor";
 import { ICreateUser } from "../../dtos/ICreateUser.dto";
 import { IUserRepository } from "../IUserRepository";
 

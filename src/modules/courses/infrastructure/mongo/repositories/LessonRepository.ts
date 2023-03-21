@@ -1,7 +1,7 @@
-import { lessonModel, moduleModel } from "../../../models";
-import { ICreateLessonDTO } from "../../domain/dtos/ICreateLesson.dto";
-import { ILessonRepository } from "../../domain/repositories/ILessonsRepository";
-import { Lesson } from "../mongo/models/Lesson";
+import { lessonModel, moduleModel } from "../../../../models";
+import { ICreateLessonDTO } from "../../../domain/dtos/ICreateLesson.dto";
+import { ILessonRepository } from "../../../domain/repositories/ILessonsRepository";
+import { Lesson } from "../models/Lesson";
 
 export class LessonRepository implements ILessonRepository {
   async create(data: ICreateLessonDTO): Promise<Lesson> {

@@ -1,15 +1,15 @@
 import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
 import { createLessonFactory } from "../../../../shared/factories/createLessonFactory";
-import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
-import { CourseRepositoryInMemory } from "../../../courses/domain/repositories/in-memory/CourseRepositoryInMemory";
-import { CreateCourseUseCase } from "../../../courses/domain/use-cases/CreateCourseUseCase";
-import { IModuleRepository } from "../../../module/domain/repositories/IModuleRepository";
-import { ModuleRepositoryInMemory } from "../../../module/domain/repositories/in-memory/ModuleRepositoryInMemory";
-import { CreateModuleUseCase } from "../../../module/domain/use-cases/CreateModuleUseCase";
-import { ILessonRepository } from "../repositories/ILessonsRepository";
-import { LessonRepositoryInMemory } from "../repositories/in-memory/LessonRepositoryInMemory";
+import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
+import { CourseRepositoryInMemory } from "../../domain/repositories/in-memory/CourseRepositoryInMemory";
+import { IModuleRepository } from "../../domain/repositories/IModuleRepository";
+import { ModuleRepositoryInMemory } from "../../domain/repositories/in-memory/ModuleRepositoryInMemory";
+import { CreateModuleUseCase } from "./CreateModuleUseCase";
+import { ILessonRepository } from "../../domain/repositories/ILessonsRepository";
+import { LessonRepositoryInMemory } from "../../domain/repositories/in-memory/LessonRepositoryInMemory";
 
 import { CreateLessonUseCase } from "./CreateLessonUseCase";
+import { CreateCourseUseCase } from "./CreateCourseUseCase";
 
 describe("Create Module Lesson", () => {
   let createLessonUseCase: CreateLessonUseCase;

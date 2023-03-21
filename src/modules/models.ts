@@ -2,10 +2,10 @@ import { getModelForClass } from "@typegoose/typegoose";
 
 import { Admin } from "./admins/infrastructure/mongo/models/Admin";
 import { Course } from "./courses/infrastructure/mongo/models/Course";
-import { Lesson } from "./lessons/infrastructure/mongo/models/Lesson";
-import { Module } from "./module/Infrastructure/mongo/models/Module";
-import { Student } from "./students/infrastructure/mongo/models/Student";
-import { Tutor } from "./tutors/infrastructure/mongo/models/Tutor";
+import { Lesson } from "./courses/infrastructure/mongo/models/Lesson";
+import { Module } from "./courses/infrastructure/mongo/models/Module";
+import { Student } from "./users/infrastructure/mongo/models/Student";
+import { Tutor } from "./users/infrastructure/mongo/models/Tutor";
 import { User } from "./users/infrastructure/mongo/models/User";
 
 const userModel = getModelForClass(User);

@@ -1,4 +1,4 @@
-import { ICreateLessonDTO } from "../../modules/lessons/domain/dtos/ICreateLesson.dto";
+import { ICreateLessonDTO } from "../../modules/courses/domain/dtos/ICreateLesson.dto";
 
 export const createLessonFactory = ({
   moduleId = "1234567890",

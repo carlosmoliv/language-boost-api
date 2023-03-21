@@ -1,8 +1,8 @@
 import { ModuleNotFoundError } from "../../../../shared/errors/courses-modules/ModuleNotFoundError";
 
-import { ICreateLessonDTO } from "../dtos/ICreateLesson.dto";
-import { ILessonRepository } from "../repositories/ILessonsRepository";
-import { IModuleRepository } from "../../../module/domain/repositories/IModuleRepository";
+import { ICreateLessonDTO } from "../../domain/dtos/ICreateLesson.dto";
+import { ILessonRepository } from "../../domain/repositories/ILessonsRepository";
+import { IModuleRepository } from "../../domain/repositories/IModuleRepository";
 
 export class CreateLessonUseCase {
   constructor(

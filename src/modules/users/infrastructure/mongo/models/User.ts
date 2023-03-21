@@ -7,8 +7,8 @@ import {
 } from "@typegoose/typegoose";
 
 import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
-import { Student } from "../../../../students/infrastructure/mongo/models/Student";
-import { Tutor } from "../../../../tutors/infrastructure/mongo/models/Tutor";
+import { Student } from "./Student";
+import { Tutor } from "./Tutor";
 import { Role } from "../../../domain/user.enums";
 import { BaseModel } from "../../../../../shared/types/BaseModel.type";
 

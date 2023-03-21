@@ -1,10 +1,10 @@
 import { AppError } from "../../../../shared/errors/AppError";
 
-import { CourseStatus, CourseType } from "../course.enums";
 import { CreateCourseUseCase } from "./CreateCourseUseCase";
 import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
-import { ICourseRepository } from "../repositories/ICourseRepository";
-import { CourseRepositoryInMemory } from "../repositories/in-memory/CourseRepositoryInMemory";
+import { CourseRepositoryInMemory } from "../../domain/repositories/in-memory/CourseRepositoryInMemory";
+import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
+import { CourseStatus, CourseType } from "../../domain/course.enums";
 
 describe("Create Course Use Case", () => {
   let createCourseUseCase: CreateCourseUseCase;

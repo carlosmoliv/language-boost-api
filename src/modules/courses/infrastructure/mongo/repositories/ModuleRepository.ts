@@ -1,7 +1,7 @@
 import { courseModel, moduleModel } from "../../../../models";
 import { ICreateModuleDTO } from "../../../domain/dtos/ICreateModule.dto";
 import { IModuleRepository } from "../../../domain/repositories/IModuleRepository";
-import { Module } from "../../../Infrastructure/mongo/models/Module";
+import { Module } from "../models/Module";
 
 export class ModuleRepository implements IModuleRepository {
   async findById(moduleId: string): Promise<Module | null> {

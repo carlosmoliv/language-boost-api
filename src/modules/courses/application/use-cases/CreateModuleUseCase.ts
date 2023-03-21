@@ -1,7 +1,7 @@
 import { CourseNotFoundError } from "../../../../shared/errors/courses/CourseNotFoundError";
-import { ICourseRepository } from "../../../courses/domain/repositories/ICourseRepository";
-import { ICreateModuleDTO } from "../dtos/ICreateModule.dto";
-import { IModuleRepository } from "../repositories/IModuleRepository";
+import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
+import { ICreateModuleDTO } from "../../domain/dtos/ICreateModule.dto";
+import { IModuleRepository } from "../../domain/repositories/IModuleRepository";
 
 export class CreateModuleUseCase {
   constructor(

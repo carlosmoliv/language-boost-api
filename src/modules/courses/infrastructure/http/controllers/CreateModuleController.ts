@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { ICourseRepository } from "../../courses/domain/repositories/ICourseRepository";
-import { IModuleRepository } from "../domain/repositories/IModuleRepository";
-import { CreateModuleUseCase } from "../domain/use-cases/CreateModuleUseCase";
+import { ICourseRepository } from "../../../domain/repositories/ICourseRepository";
+import { IModuleRepository } from "../../../domain/repositories/IModuleRepository";
+import { CreateModuleUseCase } from "../../../application/use-cases/CreateModuleUseCase";
 
 export class CreateModuleController {
   private createModuleUseCase: CreateModuleUseCase;

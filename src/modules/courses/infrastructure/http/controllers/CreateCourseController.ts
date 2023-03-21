@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { ICourseRepository } from "../domain/repositories/ICourseRepository";
-import { CreateCourseUseCase } from "../domain/use-cases/CreateCourseUseCase";
+import { CreateCourseUseCase } from "../../../application/use-cases/CreateCourseUseCase";
+import { ICourseRepository } from "../../../domain/repositories/ICourseRepository";
 
 export class CreateCourseController {
   private createCourseUseCase: CreateCourseUseCase;

@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response, Router } from "express";
-import { CreateLessonController } from "../../../../modules/lessons/application/CreateLessonController";
-import { LessonRepository } from "../../../../modules/lessons/infrastructure/repositories/LessonRepository";
-import { ModuleRepository } from "../../../../modules/module/Infrastructure/mongo/repositories/ModuleRepository";
+import { CreateLessonController } from "../../../../modules/courses/infrastructure/http/controllers/CreateLessonController";
+import { LessonRepository } from "../../../../modules/courses/infrastructure/mongo/repositories/LessonRepository";
+import { ModuleRepository } from "../../../../modules/courses/infrastructure/mongo/repositories/ModuleRepository";
 
 const lessonRepository = new LessonRepository();
 const moduleRepository = new ModuleRepository();

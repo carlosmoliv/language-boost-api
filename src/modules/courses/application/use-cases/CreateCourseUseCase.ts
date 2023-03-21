@@ -1,9 +1,8 @@
 import { AppError } from "../../../../shared/errors/AppError";
-
-import { CourseType } from "../course.enums";
-import { ICreateCourseDTO } from "../dtos/ICreateCourse.dto";
+import { CourseType } from "../../domain/course.enums";
+import { ICreateCourseDTO } from "../../domain/dtos/ICreateCourse.dto";
+import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
 import { Course } from "../../infrastructure/mongo/models/Course";
-import { ICourseRepository } from "../repositories/ICourseRepository";
 
 export class CreateCourseUseCase {
   constructor(private coursesRepository: ICourseRepository) {}

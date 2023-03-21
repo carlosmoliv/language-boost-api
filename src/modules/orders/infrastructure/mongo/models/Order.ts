@@ -1,7 +1,7 @@
 import { prop, Ref } from "@typegoose/typegoose";
 import { BaseModel } from "../../../../../shared/types/BaseModel.type";
 import { Item } from "./Item";
-import { Student } from "../../../../students/infrastructure/mongo/models/Student";
+import { Student } from "../../../../users/infrastructure/mongo/models/Student";
 import { OrderStatus } from "../../../order.enums";
 
 export class Order extends BaseModel {
