@@ -8,9 +8,9 @@
 
 A Node.js **Role-Based** REST API for a courses platform with payments via **Stripe**, that I'm developing from scratch for study purposes.
 
-The idea is to apply **DDD**, **Clean Architecture**, **TDD**, and also stay up-to-date with the **latest trends**.
+The idea is to apply **DDD** and **Clean Architecture** to have separation of concerns and **TDD** for testing concepts, and also keep up with the latest trends.
 
-My main focus with this project is the **back-end** for the moment, but I have plans to start the frontend using React in another repository.
+My main focus with this project is the back-end for the moment, but I have plans to start the frontend using React in another repository.
 
 ## :dart: Mind Map, Storyboard, and Data modeling
 
@@ -39,6 +39,7 @@ My main focus with this project is the **back-end** for the moment, but I have p
 - Documentantion
 
 ## Stripe API
+
 - [Stripe Checkout Docs] https://stripe.com/docs/payments/checkout
 
 ## :gear: Installation

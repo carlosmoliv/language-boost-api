@@ -1,9 +1,12 @@
 import { prop, Ref } from "@typegoose/typegoose";
 import { BaseModel } from "../../../../../shared/types/BaseModel.type";
 import { Course } from "../../../../courses/infrastructure/mongo/models/Course";
-import { Order } from "../../../../orders/infrastructure/mongo/models/Order";
+import { Order } from "./Order";
 
 export class Item extends BaseModel {
+  @prop()
+  name: string;
+
   @prop({ type: "numeric" })
   amount: number;
 

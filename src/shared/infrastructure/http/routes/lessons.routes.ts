@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response, Router } from "express";
-import { CreateLessonController } from "../../../../modules/lessons/applications/CreateLessonController";
+import { CreateLessonController } from "../../../../modules/lessons/application/CreateLessonController";
 import { LessonRepository } from "../../../../modules/lessons/infrastructure/repositories/LessonRepository";
 import { ModuleRepository } from "../../../../modules/module/Infrastructure/mongo/repositories/ModuleRepository";
 

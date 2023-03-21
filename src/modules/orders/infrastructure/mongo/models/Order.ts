@@ -1,6 +1,6 @@
 import { prop, Ref } from "@typegoose/typegoose";
 import { BaseModel } from "../../../../../shared/types/BaseModel.type";
-import { Item } from "../../../../Items/infrastructure/mongo/models/Item";
+import { Item } from "./Item";
 import { Student } from "../../../../students/infrastructure/mongo/models/Student";
 import { OrderStatus } from "../../../domain/order.enums";
 

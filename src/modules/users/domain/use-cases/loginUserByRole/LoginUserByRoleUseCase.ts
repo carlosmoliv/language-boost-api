@@ -13,8 +13,6 @@ export class LogInUserByRoleUseCase {
 
     const user = await this.userRepository.findByEmailAndRole(email, role);
 
-    console.log(user);
-
     if (!user)
       throw new AppError("AuthenticationError", "Invalid credentials.", 401);
 
