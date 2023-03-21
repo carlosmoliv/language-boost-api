@@ -1,4 +1,5 @@
 import { PaymentService } from "./PaymentService";
+import crypto from "node:crypto";
 
 describe("Stripe Payment Service", () => {
   let paymentService: PaymentService;
@@ -15,7 +16,15 @@ describe("Stripe Payment Service", () => {
       },
     ];
 
-    const checkout = await paymentService.createCheckoutSession(items, "1");
+    const checkoutSessionParamaters = {
+      items: items,
+      orderId: crypto.randomUUID(),
+    };
+
+    const checkout = await paymentService.createCheckoutSession(
+      checkoutSessionParamaters
+    );
+
     console.log(checkout);
 
     expect(checkout).toBeDefined();

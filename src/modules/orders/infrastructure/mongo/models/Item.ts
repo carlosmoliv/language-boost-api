@@ -1,6 +1,7 @@
 import { prop, Ref } from "@typegoose/typegoose";
 import { BaseModel } from "../../../../../shared/types/BaseModel.type";
 import { Course } from "../../../../courses/infrastructure/mongo/models/Course";
+import { ItemCurrency } from "../../../item.enums";
 import { Order } from "./Order";
 
 export class Item extends BaseModel {
@@ -9,6 +10,9 @@ export class Item extends BaseModel {
 
   @prop({ type: "numeric" })
   amount: number;
+
+  @prop()
+  currency: ItemCurrency;
 
   @prop()
   order: Ref<Order>;

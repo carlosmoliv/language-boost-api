@@ -1,11 +1,15 @@
 import Stripe from "stripe";
-import { Item } from "../../../../modules/orders/infrastructure/mongo/models/Item";
 import { AppError } from "../../../errors/AppError";
 import { logger } from "../../adapters/logger.utils";
 
 interface ICheckoutItem {
   name: string;
   amount: number;
+}
+
+interface ICheckoutSessionDTO {
+  items: ICheckoutItem[];
+  orderId: string;
 }
 
 export class PaymentService {
@@ -23,7 +27,7 @@ export class PaymentService {
     });
   }
 
-  async createCheckoutSession(items: ICheckoutItem[], orderId: string) {
+  async createCheckoutSession({ items, orderId }: ICheckoutSessionDTO) {
     const lineItems = items.map((item: ICheckoutItem) => {
       return {
         price_data: {
