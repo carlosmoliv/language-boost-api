@@ -1,18 +1,15 @@
 import Stripe from "stripe";
+import { ICreateItemDTO } from "../../../../modules/orders/domain/dtos/ICreateItemDTO";
+import { Item } from "../../../../modules/orders/infrastructure/mongo/models/Item";
 import { AppError } from "../../../errors/AppError";
-import { logger } from "../../adapters/logger.utils";
+import { logger } from "../../adapters/logger";
 
-interface ICheckoutItem {
-  name: string;
-  amount: number;
-}
-
-interface ICheckoutSessionDTO {
-  items: ICheckoutItem[];
+interface ICheckoutSession {
+  items: ICreateItemDTO[];
   orderId: string;
 }
 
-export class PaymentService {
+export class StripePaymentService {
   private stripe: Stripe;
 
   constructor() {
@@ -27,11 +24,11 @@ export class PaymentService {
     });
   }
 
-  async createCheckoutSession({ items, orderId }: ICheckoutSessionDTO) {
-    const lineItems = items.map((item: ICheckoutItem) => {
+  async createCheckoutSession({ items, orderId }: ICheckoutSession) {
+    const lineItems = items.map((item: ICreateItemDTO) => {
       return {
         price_data: {
-          currency: "USD",
+          currency: item.currency,
           unit_amount: Math.floor(item.amount * 100),
           product_data: {
             name: item.name,

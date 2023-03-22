@@ -1,11 +1,13 @@
-import { PaymentService } from "./PaymentService";
+import { StripePaymentService } from "./StripePayment";
 import crypto from "node:crypto";
+import { ICreateItemDTO } from "../../../../modules/orders/domain/dtos/ICreateItemDTO";
+import { ItemCurrency } from "../../../../modules/orders/domain/enums/item.enums";
 
 describe("Stripe Payment Service", () => {
-  let paymentService: PaymentService;
+  let paymentService: StripePaymentService;
 
   beforeAll(() => {
-    paymentService = new PaymentService();
+    paymentService = new StripePaymentService();
   });
 
   it("it should create a Stripe checkout session", async () => {
@@ -13,6 +15,8 @@ describe("Stripe Payment Service", () => {
       {
         name: "Item 1",
         amount: 500,
+        courseId: "12345678",
+        currency: ItemCurrency.BRL,
       },
     ];
 
@@ -24,8 +28,6 @@ describe("Stripe Payment Service", () => {
     const checkout = await paymentService.createCheckoutSession(
       checkoutSessionParamaters
     );
-
-    console.log(checkout);
 
     expect(checkout).toBeDefined();
   });
