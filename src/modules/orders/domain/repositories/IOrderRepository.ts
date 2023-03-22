@@ -1,6 +1,11 @@
 import { Order } from "../../infrastructure/mongo/models/Order";
-import { ICreateOrderDTO } from "../dtos/ICreateOrderDTO";
+
+export interface ICreateOrderRepository {
+  total: number;
+  userId: string;
+  itemsIds: string[];
+}
 
 export interface IOrderRepository {
-  createOrder(order: ICreateOrderDTO): Promise<Order>;
+  create(data: ICreateOrderRepository): Promise<Order>;
 }
