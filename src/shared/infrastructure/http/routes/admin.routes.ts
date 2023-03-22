@@ -1,22 +1,20 @@
 import express, { NextFunction, Request, Response, Router } from "express";
 import { Role } from "../../../../modules/users/domain/user.enums";
 import { validator } from "../middlewares/validator.middleware";
-import { UsersRepository } from "../../../../modules/users/infrastructure/mongo/repositories/UserRepository";
+import { UserRepository } from "../../../../modules/users/infrastructure/mongo/repositories/UserRepository";
 import { CreateUserByRoleController } from "../../../../modules/users/application/controllers/CreateUserByRoleController";
 import { LoginUserByRoleController } from "../../../../modules/users/application/controllers/LoginUserByRoleController";
 import { createUserSchema } from "../../../../modules/users/domain/user.validations";
 
 const adminsRouter: Router = express.Router();
 
-const usersRepository = new UsersRepository();
+const userRepository = new UserRepository();
 
 const createUserByRoleController = new CreateUserByRoleController(
-  usersRepository
+  userRepository
 );
 
-const loginUserByRoleController = new LoginUserByRoleController(
-  usersRepository
-);
+const loginUserByRoleController = new LoginUserByRoleController(userRepository);
 
 adminsRouter.post("/login", (req: Request, res: Response, next: NextFunction) =>
   loginUserByRoleController.handle(req, res, next, Role.admin)
