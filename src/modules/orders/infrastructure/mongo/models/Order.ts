@@ -1,9 +1,17 @@
-import { prop, Ref } from "@typegoose/typegoose";
-import { BaseModel } from "../../../../../shared/types/BaseModel.type";
+import { modelOptions, plugin, prop, Ref } from "@typegoose/typegoose";
+import { autoIncrement, AutoIncSettings } from "mongoose-plugin-autoinc";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
 import { Item } from "./Item";
-import { Student } from "../../../../users/infrastructure/mongo/models/Student";
-import { OrderStatus } from "../../../order.enums";
+import { OrderStatus } from "../../../domain/enums/order.enums";
+import { User } from "../../../../users/infrastructure/mongo/models/User";
 
+@modelOptions({ schemaOptions: { timestamps: true } })
+@plugin<typeof autoIncrement, AutoIncSettings>(autoIncrement, {
+  model: "Order",
+  field: "number",
+  startAt: 100000,
+  unique: true,
+})
 export class Order extends BaseModel {
   @prop()
   number: number;
@@ -11,15 +19,15 @@ export class Order extends BaseModel {
   @prop()
   status: OrderStatus;
 
-  @prop({ type: "numeric" })
+  @prop()
   total: number;
 
-  @prop({ type: "numeric" })
+  @prop()
   amount: number;
 
-  @prop()
+  @prop({ ref: () => Item })
   items: Ref<Item>[];
 
-  @prop({ ref: () => Student })
-  students: Ref<Student>[];
+  @prop({ ref: () => User })
+  students: Ref<User>[];
 }

@@ -1,22 +1,22 @@
 import { prop, Ref } from "@typegoose/typegoose";
-import { BaseModel } from "../../../../../shared/types/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
 import { Course } from "../../../../courses/infrastructure/mongo/models/Course";
-import { ItemCurrency } from "../../../item.enums";
+import { ItemCurrency } from "../../../domain/enums/item.enums";
 import { Order } from "./Order";
 
 export class Item extends BaseModel {
   @prop()
-  name: string;
-
-  @prop({ type: "numeric" })
-  amount: number;
+  name!: string;
 
   @prop()
-  currency: ItemCurrency;
+  amount!: number;
 
   @prop()
-  order: Ref<Order>;
+  currency!: ItemCurrency;
+
+  @prop({ ref: () => Order })
+  order!: Ref<Order>;
 
   @prop({ ref: () => Course })
-  course: Ref<Course>;
+  course!: Ref<Course>;
 }

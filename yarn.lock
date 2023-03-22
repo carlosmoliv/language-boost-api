@@ -3895,6 +3895,11 @@ mongodb@4.14.0:
     "@aws-sdk/credential-providers" "^3.186.0"
     saslprep "^1.0.3"
 
+mongoose-plugin-autoinc@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/mongoose-plugin-autoinc/-/mongoose-plugin-autoinc-1.1.9.tgz#a928ad3af4bb2ea6d35d1141e61394f7af171358"
+  integrity sha512-DCkXJjgdQhMJCoRd1xwgKUQCOb/VgC8t3ewZ3+0GNCqCdYD1nxIdnvecO1IWh3ER8KINL98A0b97DgRVwOMxsg==
+
 mongoose@^6.10.0:
   version "6.10.0"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.10.0.tgz#42aa9134b665cb17d7b6e9a7ba89f89751021074"

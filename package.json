@@ -23,6 +23,7 @@
     "joi": "^17.8.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.10.0",
+    "mongoose-plugin-autoinc": "^1.1.9",
     "pino": "^8.11.0",
     "pino-http": "^8.3.3",
     "pino-pretty": "^9.4.0",
