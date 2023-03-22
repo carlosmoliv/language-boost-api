@@ -8,7 +8,7 @@ import { Tutor } from "../../../infrastructure/mongo/models/Tutor";
 import { ICreateUser } from "../../dtos/ICreateUser.dto";
 import { IUserRepository } from "../IUserRepository";
 
-export class UsersRepositoryInMemory implements IUserRepository {
+export class UserRepositoryInMemory implements IUserRepository {
   private users: User[] = [];
   private tutors: Tutor[] = [];
   private admins: Admin[] = [];
@@ -18,6 +18,14 @@ export class UsersRepositoryInMemory implements IUserRepository {
     return (
       this.users.find(
         (user) => user.email === email && user.role === role && user.active
+      ) ?? null
+    );
+  }
+
+  async findByIdAndRole(userId: string, role: Role): Promise<User | null> {
+    return (
+      this.users.find(
+        (user) => user.id === userId && user.role === role && user.active
       ) ?? null
     );
   }

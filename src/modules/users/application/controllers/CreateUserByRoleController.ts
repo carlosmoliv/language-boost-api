@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { logger } from "../../../../shared/infrastructure/adapters/logger.utils";
+import { logger } from "../../../../shared/infrastructure/adapters/logger";
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { CreateUserByRoleUseCase } from "../../domain/use-cases/createUserByRole/CreateUserByRoleUseCase";
 import { Role } from "../../domain/user.enums";
@@ -7,8 +7,8 @@ import { Role } from "../../domain/user.enums";
 export class CreateUserByRoleController {
   private createUserByRoleUseCase: CreateUserByRoleUseCase;
 
-  constructor(usersRepository: IUserRepository) {
-    this.createUserByRoleUseCase = new CreateUserByRoleUseCase(usersRepository);
+  constructor(userRepository: IUserRepository) {
+    this.createUserByRoleUseCase = new CreateUserByRoleUseCase(userRepository);
   }
 
   async handle(req: Request, res: Response, next: NextFunction, role: Role) {

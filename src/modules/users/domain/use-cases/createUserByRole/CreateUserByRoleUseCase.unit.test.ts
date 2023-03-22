@@ -1,15 +1,15 @@
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
+import { UserRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
 import { Role } from "../../user.enums";
 import { CreateUserByRoleUseCase } from "./CreateUserByRoleUseCase";
 
 describe("Create User by Role", () => {
-  let usersRepositoryInMemory: UsersRepositoryInMemory;
+  let userRepositoryInMemory: UserRepositoryInMemory;
   let createUserByRoleUseCase: CreateUserByRoleUseCase;
 
   beforeEach(() => {
-    usersRepositoryInMemory = new UsersRepositoryInMemory();
+    userRepositoryInMemory = new UserRepositoryInMemory();
     createUserByRoleUseCase = new CreateUserByRoleUseCase(
-      usersRepositoryInMemory
+      userRepositoryInMemory
     );
   });
 

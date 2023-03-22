@@ -1,6 +1,6 @@
-import { comparePasswords } from "../../../../../shared/infrastructure/adapters/bcrypt.utils";
+import { comparePasswords } from "../../../../../shared/infrastructure/adapters/bcrypt";
 import { AppError } from "../../../../../shared/errors/AppError";
-import { createToken } from "../../../../../shared/infrastructure/adapters/jwt.utils";
+import { createToken } from "../../../../../shared/infrastructure/adapters/jwt";
 import { ILoginUserByEmail } from "../../dtos/ILoginUserByEmail.dto";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { Role } from "../../user.enums";

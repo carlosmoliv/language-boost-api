@@ -1,5 +1,5 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { BaseModel } from "../../../../../shared/types/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
 import { Course } from "./Course";
 import { Lesson } from "./Lesson";
 

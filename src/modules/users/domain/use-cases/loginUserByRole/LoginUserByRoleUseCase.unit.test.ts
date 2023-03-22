@@ -1,18 +1,18 @@
 import { AppError } from "../../../../../shared/errors/AppError";
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
+import { UserRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
 import { Role } from "../../user.enums";
 import { CreateUserByRoleUseCase } from "../createUserByRole/CreateUserByRoleUseCase";
 import { LogInUserByRoleUseCase } from "./LoginUserByRoleUseCase";
 
 describe("Login User by Role", () => {
-  let usersRepository: UsersRepositoryInMemory;
+  let userRepository: UserRepositoryInMemory;
   let loginUserByRole: LogInUserByRoleUseCase;
   let createUserByRole: CreateUserByRoleUseCase;
 
   beforeEach(() => {
-    usersRepository = new UsersRepositoryInMemory();
-    loginUserByRole = new LogInUserByRoleUseCase(usersRepository);
-    createUserByRole = new CreateUserByRoleUseCase(usersRepository);
+    userRepository = new UserRepositoryInMemory();
+    loginUserByRole = new LogInUserByRoleUseCase(userRepository);
+    createUserByRole = new CreateUserByRoleUseCase(userRepository);
   });
 
   it("should login a user student and provide a token", async () => {

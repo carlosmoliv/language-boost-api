@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { logger } from "../adapters/logger.utils";
+import { logger } from "../adapters/logger";
 import setupApp from "./app";
 
 const PORT = process.env.PORT || 4000;

@@ -3,7 +3,7 @@ import cors from "cors";
 
 import api from "./routes";
 import * as database from "../database/mongo";
-import { expressLogger } from "../adapters/logger.utils";
+import { expressLogger } from "../adapters/logger";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 
 const configureExpress = () => {

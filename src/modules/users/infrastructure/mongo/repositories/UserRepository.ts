@@ -10,9 +10,13 @@ import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { Role } from "../../../domain/user.enums";
 import { User } from "../models/User";
 
-export class UsersRepository implements IUserRepository {
+export class UserRepository implements IUserRepository {
   async findByEmailAndRole(email: string, role: Role): Promise<User | null> {
     return userModel.findOne({ email, active: true, role }).select("+password");
+  }
+
+  async findByIdAndRole(userId: string, role: Role): Promise<User | null> {
+    return userModel.findOne({ _id: userId, active: true, role });
   }
 
   async createUserStudent(data: ICreateUser) {

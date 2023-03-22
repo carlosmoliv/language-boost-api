@@ -10,33 +10,33 @@ import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
 import { Student } from "./Student";
 import { Tutor } from "./Tutor";
 import { Role } from "../../../domain/user.enums";
-import { BaseModel } from "../../../../../shared/types/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
 
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class User extends BaseModel {
-  public token?: string;
+  token?: string;
 
   @prop({ unique: true })
-  public email!: string;
+  email!: string;
 
   @prop({ select: false })
-  public password!: string;
+  password!: string;
 
   @prop()
-  public name!: string;
+  name!: string;
 
   @prop({ default: true })
-  public active!: boolean;
+  active!: boolean;
 
   @prop({ default: Role.student })
-  public role!: Role;
+  role!: Role;
 
   @prop({ ref: () => Student })
-  public student?: Ref<Student>;
+  student?: Ref<Student>;
 
   @prop({ ref: () => Tutor })
-  public tutor?: Ref<Tutor>;
+  tutor?: Ref<Tutor>;
 
   @prop({ ref: () => Admin })
-  public admin?: Ref<Admin>;
+  admin?: Ref<Admin>;
 }

@@ -1,5 +1,5 @@
 import { AppError } from "../../../../../shared/errors/AppError";
-import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt.utils";
+import { hashPassword } from "../../../../../shared/infrastructure/adapters/bcrypt";
 import { IUserRepository } from "../../repositories/IUserRepository";
 import { Role } from "../../user.enums";
 
@@ -10,24 +10,24 @@ interface ICreateUserRequest {
 }
 
 export class CreateUserByRoleUseCase {
-  constructor(private usersRepository: IUserRepository) {}
+  constructor(private userRepository: IUserRepository) {}
 
   async execute(data: ICreateUserRequest, role: Role = Role.student) {
     switch (role) {
       case Role.student:
-        return this.usersRepository.createUserStudent({
+        return this.userRepository.createUserStudent({
           ...data,
           password: await hashPassword(data.password),
         });
 
       case Role.tutor:
-        return this.usersRepository.createUserTutor({
+        return this.userRepository.createUserTutor({
           ...data,
           password: await hashPassword(data.password),
         });
 
       case Role.admin:
-        return this.usersRepository.createUserAdmin({
+        return this.userRepository.createUserAdmin({
           ...data,
           password: await hashPassword(data.password),
         });

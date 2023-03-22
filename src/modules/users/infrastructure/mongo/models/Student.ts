@@ -1,6 +1,6 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { Address } from "../../../../../shared/types/Adress.type";
-import { BaseModel } from "../../../../../shared/types/BaseModel.type";
+import { Address } from "../../../../../shared/infrastructure/database/mongo/types/Adress.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
 import { User } from "./User";
 
 modelOptions({ schemaOptions: { timestamps: true } });
