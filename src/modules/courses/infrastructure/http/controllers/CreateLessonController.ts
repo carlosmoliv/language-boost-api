@@ -19,7 +19,7 @@ export class CreateLessonController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const data = await this.createLessonUseCase.execute(req.body);
-      return res.status(201).json(data);
+      return res.status(200).json(data);
     } catch (error) {
       return next(error);
     }

@@ -12,7 +12,7 @@ export class CreateCourseController {
   async handle(req: Request, res: Response, next: NextFunction) {
     try {
       const course = await this.createCourseUseCase.execute(req.body);
-      return res.status(201).json(course);
+      return res.status(200).json(course);
     } catch (error) {
       return next(error);
     }

@@ -14,7 +14,7 @@ export class CreateUserByRoleController {
   async handle(req: Request, res: Response, next: NextFunction, role: Role) {
     try {
       const user = await this.createUserByRoleUseCase.execute(req.body, role);
-      return res.status(201).json(user);
+      return res.status(200).json(user);
     } catch (error) {
       logger.error(error);
       return next(error);
