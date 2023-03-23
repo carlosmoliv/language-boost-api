@@ -1,6 +1,6 @@
 import { modelOptions, plugin, prop, Ref } from "@typegoose/typegoose";
 import { autoIncrement, AutoIncSettings } from "mongoose-plugin-autoinc";
-import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel";
 import { Item } from "./Item";
 import { OrderStatus } from "../../../domain/enums/order.enums";
 import { User } from "../../../../users/infrastructure/mongo/models/User";

@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { UserNotFoundError } from "../../../../shared/errors/users/UserNotFoundError";
-import { logger } from "../../../../shared/infrastructure/adapters/logger";
+import { logger } from "../../../../shared/infrastructure/adapters/utils/logger.utils";
 import { StripePaymentService } from "../../../../shared/infrastructure/providers/stripe/StripePayment";
 import { IUserRepository } from "../../../users/domain/repositories/IUserRepository";
 import { Role } from "../../../users/domain/user.enums";

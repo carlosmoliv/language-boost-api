@@ -1,5 +1,5 @@
 import { prop, Ref } from "@typegoose/typegoose";
-import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel";
 import { Module } from "./Module";
 
 export class Lesson extends BaseModel {

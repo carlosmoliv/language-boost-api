@@ -1,7 +1,7 @@
 import { prop, Ref } from "@typegoose/typegoose";
 import { CourseStatus, CourseType } from "../../../domain/course.enums";
 
-import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel";
 import { Module } from "./Module";
 
 export class Course extends BaseModel {

@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { JsonWebTokenError, JwtPayload } from "jsonwebtoken";
 import { userModel } from "../../../../modules/models";
 import { Role } from "../../../../modules/users/domain/user.enums";
-import { verifyToken } from "../../adapters/jwt";
-import { logger } from "../../adapters/logger";
+import { verifyToken } from "../../adapters/utils/jwt.utils";
+import { logger } from "../../adapters/utils/logger.utils";
 
 export const verifyAuthentication =
   (allowedRoles: Role[]) =>

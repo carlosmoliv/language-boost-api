@@ -1,5 +1,5 @@
 import { prop, Ref } from "@typegoose/typegoose";
-import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel";
 import { Course } from "../../../../courses/infrastructure/mongo/models/Course";
 import { ItemCurrency } from "../../../domain/enums/item.enums";
 import { Order } from "./Order";

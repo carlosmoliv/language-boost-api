@@ -6,11 +6,11 @@ import {
   Ref,
 } from "@typegoose/typegoose";
 
-import { Admin } from "../../../../admins/infrastructure/mongo/models/Admin";
+import { Admin } from "./Admin";
 import { Student } from "./Student";
 import { Tutor } from "./Tutor";
 import { Role } from "../../../domain/user.enums";
-import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel.type";
+import { BaseModel } from "../../../../../shared/infrastructure/database/mongo/BaseModel";
 
 @modelOptions({ schemaOptions: { timestamps: true } })
 export class User extends BaseModel {
