@@ -28,6 +28,7 @@
     "pino-http": "^8.3.3",
     "pino-pretty": "^9.4.0",
     "stripe": "^11.15.0",
+    "swagger-ui-express": "^4.6.2",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
@@ -38,6 +39,7 @@
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.14.2",
     "@types/supertest": "^2.0.12",
+    "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
     "eslint": "^8.35.0",

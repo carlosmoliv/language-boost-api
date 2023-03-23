@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Knowledge Boost Api",
+    "description": "Test description",
+    "contact": {
+      "email": "hello@carlosmoliveira.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/v1",
+      "description": "Test API"
+    }
+  ],
+  "paths": {
+    "/courses": {
+      "post": {
+        "sumamry": "Course creation",
+        "description": "Route responsible for the creation of new courses",
+        "tags": ["Courses"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              },
+              "examples": {
+                "course": {
+                  "value": {
+                    "title": "TDD with Node.js Crash Course",
+                    "description": "In this course you are going to...",
+                    "price": 500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401a": {
+            "description": "Token is missing."
+          },
+          "401b": {
+            "description": "Unauthorized request. The user associated with the provided authentication token was not found in the system."
+          },
+          "401c": {
+            "description": "Unauthorized request. User role is not authorized for this action."
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Course"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Course": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "price": { "type": "number" }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
