@@ -1,8 +1,8 @@
 import { AppError } from "../../../../shared/errors/AppError";
 import { UserRepositoryInMemory } from "../../domain/repositories/in-memory/UserRepositoryInMemory";
 import { Role } from "../../domain/user.enums";
-import { CreateUserByRoleUseCase } from "./CreateUserByRoleUseCase";
-import { LogInUserByRoleUseCase } from "./LoginUserByRoleUseCase";
+import { CreateUserByRoleUseCase } from "./CreateUserUseCase";
+import { LogInUserByRoleUseCase } from "./LoginUserUseCase";
 
 describe("Login User by Role", () => {
   let userRepository: UserRepositoryInMemory;

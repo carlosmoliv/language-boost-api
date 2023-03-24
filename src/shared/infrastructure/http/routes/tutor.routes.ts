@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response, Router } from "express";
 import { Role } from "../../../../modules/users/domain/user.enums";
 import { validator } from "../middlewares/validator.middleware";
-import { CreateUserByRoleController } from "../../../../modules/users/infrastructure/http/controllers/CreateUserByRoleController";
-import { LoginUserByRoleController } from "../../../../modules/users/infrastructure/http/controllers/LoginUserByRoleController";
+import { CreateUserByRoleController } from "../../../../modules/users/infrastructure/http/controllers/CreateUserController";
+import { LoginUserByRoleController } from "../../../../modules/users/infrastructure/http/controllers/LoginUserController";
 import { createUserSchema } from "../../../../modules/users/domain/user.validations";
 
 const tutorsRouter: Router = express.Router();

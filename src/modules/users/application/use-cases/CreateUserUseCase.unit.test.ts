@@ -1,6 +1,6 @@
-import { UserRepositoryInMemory } from "../../domain/repositories/in-memory/UserRepositoryInMemory";
 import { Role } from "../../domain/user.enums";
-import { CreateUserByRoleUseCase } from "./CreateUserByRoleUseCase";
+import { UserRepositoryInMemory } from "../../domain/repositories/in-memory/UserRepositoryInMemory";
+import { CreateUserByRoleUseCase } from "./CreateUserUseCase";
 
 describe("Create User by Role", () => {
   let userRepositoryInMemory: UserRepositoryInMemory;
@@ -26,30 +26,6 @@ describe("Create User by Role", () => {
     expect(user).toHaveProperty("_id");
     expect(user.role).toEqual(Role.student);
   });
-
-  // it("shouldn't create user with an email that already exists", async () => {
-  //   const existingUser = {
-  //     name: "John Doe",
-  //     email: "johndoe.student.2@example.com",
-  //     password: "12345678",
-  //   };
-
-  //   await createUserByRoleUseCase.execute(existingUser);
-
-  //   const data = {
-  //     name: "John Doe",
-  //     email: "johndoe.student.2@example.com",
-  //     password: "12345678",
-  //   };
-
-  //   await expect(createUserByRoleUseCase.execute(data)).rejects.toEqual(
-  //     new AppError(
-  //       "UserConflictError",
-  //       "User already exists with the provided email address.",
-  //       409
-  //     )
-  //   );
-  // });
 
   it("should create a user tutor if role tutor is provided", async () => {
     const data = {

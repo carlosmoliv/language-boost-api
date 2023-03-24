@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { ModuleNotFoundError } from "../../../../shared/errors/courses/ModuleNotFoundError";
 
+import { ModuleNotFoundError } from "../../../../shared/errors/courses/ModuleNotFoundError";
 import { ICreateLessonDTO } from "../../domain/dtos/ICreateLesson.dto";
 import { ILessonRepository } from "../../domain/repositories/ILessonsRepository";
 import { IModuleRepository } from "../../domain/repositories/IModuleRepository";

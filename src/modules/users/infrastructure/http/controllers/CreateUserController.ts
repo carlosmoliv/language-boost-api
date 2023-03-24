@@ -3,7 +3,7 @@ import { container } from "tsyringe";
 
 import { Role } from "../../../domain/user.enums";
 import { logger } from "../../../../../shared/infrastructure/adapters/utils/logger.utils";
-import { CreateUserByRoleUseCase } from "../../../application/use-cases/CreateUserByRoleUseCase";
+import { CreateUserByRoleUseCase } from "../../../application/use-cases/CreateUserUseCase";
 
 export class CreateUserByRoleController {
   async handle(req: Request, res: Response, next: NextFunction, role: Role) {

@@ -1,23 +1,22 @@
 import { AppError } from "../../../../shared/errors/AppError";
-
-import { CreateCourseUseCase } from "./CreateCourseUseCase";
 import { createCourseFactory } from "../../../../shared/factories/createCourseFactory";
-import { CourseRepositoryInMemory } from "../../domain/repositories/in-memory/CourseRepositoryInMemory";
-import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
+
 import { CourseStatus, CourseType } from "../../domain/course.enums";
+import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
+import { CourseRepositoryInMemory } from "../../domain/repositories/in-memory/CourseRepositoryInMemory";
+import { CreateCourseUseCase } from "./CreateCourseUseCase";
 
 describe("Create Course Use Case", () => {
   let createCourseUseCase: CreateCourseUseCase;
-  let coursesRepositoryInMemory: ICourseRepository;
+  let courseRepositoryInMemory: ICourseRepository;
 
   beforeEach(() => {
-    coursesRepositoryInMemory = new CourseRepositoryInMemory();
-    createCourseUseCase = new CreateCourseUseCase(coursesRepositoryInMemory);
+    courseRepositoryInMemory = new CourseRepositoryInMemory();
+    createCourseUseCase = new CreateCourseUseCase(courseRepositoryInMemory);
   });
 
   it("should create a new course", async () => {
     const data = createCourseFactory();
-
     const result = await createCourseUseCase.execute(data);
 
     expect(result.title).toBeDefined();

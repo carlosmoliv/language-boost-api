@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+
 import { AppError } from "../../../../shared/errors/AppError";
 import { CourseType } from "../../domain/course.enums";
 import { ICreateCourseDTO } from "../../domain/dtos/ICreateCourse.dto";

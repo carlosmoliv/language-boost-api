@@ -39,10 +39,11 @@ My main focus with this project is the back-end for the moment, but I have plans
 - [Swagger](https://swagger.io/)
 - CI/CD
 
-## Stripe API
+## :credit_card: Stripe API
 
-- [Stripe Checkout Docs] https://stripe.com/docs/payments/checkout
-
+- Stripe Checkout Docs: 
+  - https://stripe.com/docs/payments/checkout
+  - https://stripe.com/docs/api/checkout/sessions
 ## :gear: Installation
 
 Use a `yarn` or `npm` in order to install all dependencies
@@ -82,6 +83,16 @@ yarn test
 ```bash
 yarn test:watch
 ```
+
+## :octocat: Contributing
+
+If you would like to contribute code to the project, please follow these steps:
+
+- Fork the repository.
+- Create a new branch for your changes.
+- Make your changes and commit them to your branch.
+- Push your branch to your forked repository.
+- Open a pull request against the main branch of the original repository.
 
 ## License
 

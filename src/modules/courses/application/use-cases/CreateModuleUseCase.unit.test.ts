@@ -5,10 +5,11 @@ import { ICreateModuleDTO } from "../../domain/dtos/ICreateModule.dto";
 import { IModuleRepository } from "../../domain/repositories/IModuleRepository";
 import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
 
-import { CreateModuleUseCase } from "./CreateModuleUseCase";
-import { CreateCourseUseCase } from "./CreateCourseUseCase";
 import { ModuleRepositoryInMemory } from "../../domain/repositories/in-memory/ModuleRepositoryInMemory";
 import { CourseRepositoryInMemory } from "../../domain/repositories/in-memory/CourseRepositoryInMemory";
+
+import { CreateModuleUseCase } from "./CreateModuleUseCase";
+import { CreateCourseUseCase } from "./CreateCourseUseCase";
 
 describe("Create Course Module", () => {
   let createModuleUseCase: CreateModuleUseCase;
