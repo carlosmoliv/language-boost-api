@@ -5,7 +5,7 @@ import { Role } from "../../../../modules/users/domain/user.enums";
 import { verifyAuthentication } from "../middlewares/verifyAuthentication.middleware";
 
 const courseRepository = new CourseRepository();
-const createCourseController = new CreateCourseController(courseRepository);
+const createCourseController = new CreateCourseController();
 
 const coursesRouter: Router = express.Router();
 

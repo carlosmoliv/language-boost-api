@@ -1,11 +1,16 @@
+import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
 import { CourseType } from "../../domain/course.enums";
 import { ICreateCourseDTO } from "../../domain/dtos/ICreateCourse.dto";
 import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
 import { Course } from "../../infrastructure/mongo/models/Course";
 
+@injectable()
 export class CreateCourseUseCase {
-  constructor(private coursesRepository: ICourseRepository) {}
+  constructor(
+    @inject("CourseRepository")
+    private courseRepository: ICourseRepository
+  ) {}
 
   async execute(data: ICreateCourseDTO): Promise<Course> {
     const { type, price } = data;
@@ -22,6 +27,6 @@ export class CreateCourseUseCase {
         "Cannot create a paid course with a price smaller than 9.99"
       );
 
-    return this.coursesRepository.create(data);
+    return this.courseRepository.create(data);
   }
 }
