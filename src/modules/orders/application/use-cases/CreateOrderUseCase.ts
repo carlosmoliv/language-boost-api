@@ -1,10 +1,9 @@
+import { Role } from "../../../users/domain/user.enums";
 import { AppError } from "../../../../shared/errors/AppError";
 import { UserNotFoundError } from "../../../../shared/errors/users/UserNotFoundError";
-import { logger } from "../../../../shared/infrastructure/adapters/utils/logger.utils";
 import { StripePaymentService } from "../../../../shared/infrastructure/providers/stripe/StripePayment";
+
 import { IUserRepository } from "../../../users/domain/repositories/IUserRepository";
-import { Role } from "../../../users/domain/user.enums";
-import { ICreateItemDTO } from "../../domain/dtos/ICreateItemDTO";
 import { ICreateOrderDTO } from "../../domain/dtos/ICreateOrderDTO";
 import { IItemRepository } from "../../domain/repositories/IItemRepository";
 import { IOrderRepository } from "../../domain/repositories/IOrderRepository";

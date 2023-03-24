@@ -34,9 +34,10 @@ My main focus with this project is the back-end for the moment, but I have plans
 - [Pino](https://getpino.io/)
 - [Jest](https://jestjs.io/)
 - [SuperTest](https://www.npmjs.com/package/supertest)
+- [tsyringe](https://www.npmjs.com/package/tsyringe?activeTab=readme)
 - [Docker](https://www.docker.com/)
+- [Swagger](https://swagger.io/)
 - CI/CD
-- Documentantion
 
 ## Stripe API
 

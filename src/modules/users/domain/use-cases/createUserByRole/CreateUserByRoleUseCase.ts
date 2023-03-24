@@ -1,3 +1,4 @@
+import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { hashPassword } from "../../../../../shared/infrastructure/adapters/utils/bcrypt.utils";
 import { IUserRepository } from "../../repositories/IUserRepository";
@@ -9,8 +10,12 @@ interface ICreateUserRequest {
   password: string;
 }
 
+@injectable()
 export class CreateUserByRoleUseCase {
-  constructor(private userRepository: IUserRepository) {}
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository
+  ) {}
 
   async execute(data: ICreateUserRequest, role: Role = Role.student) {
     switch (role) {

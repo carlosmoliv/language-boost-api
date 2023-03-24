@@ -9,10 +9,7 @@ import { createUserSchema } from "../../../../modules/users/domain/user.validati
 const tutorsRouter: Router = express.Router();
 const userRepository = new UserRepository();
 
-const createUserByRoleController = new CreateUserByRoleController(
-  userRepository
-);
-
+const createUserByRoleController = new CreateUserByRoleController();
 const loginUserByRoleController = new LoginUserByRoleController(userRepository);
 
 tutorsRouter.post("/login", (req: Request, res: Response, next: NextFunction) =>

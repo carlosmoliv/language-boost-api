@@ -1,6 +1,8 @@
+import "reflect-metadata";
 import express from "express";
 import cors from "cors";
 import swaggerUI from "swagger-ui-express";
+import "../../container";
 
 import api from "./routes";
 import * as database from "../database/mongo";

@@ -10,10 +10,7 @@ const adminsRouter: Router = express.Router();
 
 const userRepository = new UserRepository();
 
-const createUserByRoleController = new CreateUserByRoleController(
-  userRepository
-);
-
+const createUserByRoleController = new CreateUserByRoleController();
 const loginUserByRoleController = new LoginUserByRoleController(userRepository);
 
 adminsRouter.post("/login", (req: Request, res: Response, next: NextFunction) =>
