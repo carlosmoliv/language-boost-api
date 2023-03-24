@@ -1,9 +1,9 @@
-import { comparePasswords } from "../../../../../shared/infrastructure/adapters/utils/bcrypt.utils";
-import { AppError } from "../../../../../shared/errors/AppError";
-import { createToken } from "../../../../../shared/infrastructure/adapters/utils/jwt.utils";
-import { ILoginUserByEmail } from "../../dtos/ILoginUserByEmail.dto";
-import { IUserRepository } from "../../repositories/IUserRepository";
-import { Role } from "../../user.enums";
+import { comparePasswords } from "../../../../shared/infrastructure/adapters/utils/bcrypt.utils";
+import { AppError } from "../../../../shared/errors/AppError";
+import { createToken } from "../../../../shared/infrastructure/adapters/utils/jwt.utils";
+import { IUserRepository } from "../../domain/repositories/IUserRepository";
+import { ILoginUserByEmail } from "../../domain/dtos/ILoginUserByEmail.dto";
+import { Role } from "../../domain/user.enums";
 
 export class LogInUserByRoleUseCase {
   constructor(private userRepository: IUserRepository) {}

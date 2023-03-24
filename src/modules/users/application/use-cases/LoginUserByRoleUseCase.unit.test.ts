@@ -1,7 +1,7 @@
-import { AppError } from "../../../../../shared/errors/AppError";
-import { UserRepositoryInMemory } from "../../repositories/in-memory/UserRepositoryInMemory";
-import { Role } from "../../user.enums";
-import { CreateUserByRoleUseCase } from "../createUserByRole/CreateUserByRoleUseCase";
+import { AppError } from "../../../../shared/errors/AppError";
+import { UserRepositoryInMemory } from "../../domain/repositories/in-memory/UserRepositoryInMemory";
+import { Role } from "../../domain/user.enums";
+import { CreateUserByRoleUseCase } from "./CreateUserByRoleUseCase";
 import { LogInUserByRoleUseCase } from "./LoginUserByRoleUseCase";
 
 describe("Login User by Role", () => {
