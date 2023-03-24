@@ -7,13 +7,20 @@ import { IUserRepository } from "../../../users/domain/repositories/IUserReposit
 import { ICreateOrderDTO } from "../../domain/dtos/ICreateOrderDTO";
 import { IItemRepository } from "../../domain/repositories/IItemRepository";
 import { IOrderRepository } from "../../domain/repositories/IOrderRepository";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 export class CreateOrderUseCase {
   private paymentService: StripePaymentService;
 
   constructor(
+    @inject("OrderRepository")
     private orderRepository: IOrderRepository,
+
+    @inject("UserRepository")
     private userRepository: IUserRepository,
+
+    @inject("ItemRepository")
     private itemRepository: IItemRepository
   ) {
     this.paymentService = new StripePaymentService();

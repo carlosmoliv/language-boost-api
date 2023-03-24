@@ -11,6 +11,8 @@ import { CourseRepository } from "../../modules/courses/infrastructure/mongo/rep
 import { ModuleRepository } from "../../modules/courses/infrastructure/mongo/repositories/ModuleRepository";
 import { LessonRepository } from "../../modules/courses/infrastructure/mongo/repositories/LessonRepository";
 import { OrderRepository } from "../../modules/orders/infrastructure/repositories/OrderRepository";
+import { IItemRepository } from "../../modules/orders/domain/repositories/IItemRepository";
+import { ItemRepository } from "../../modules/orders/infrastructure/repositories/ItemRepository";
 
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 
@@ -33,3 +35,5 @@ container.registerSingleton<IOrderRepository>(
   "OrderRepository",
   OrderRepository
 );
+
+container.registerSingleton<IItemRepository>("ItemRepository", ItemRepository);

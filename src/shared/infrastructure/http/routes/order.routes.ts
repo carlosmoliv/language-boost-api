@@ -6,16 +6,7 @@ import { Role } from "../../../../modules/users/domain/user.enums";
 import { UserRepository } from "../../../../modules/users/infrastructure/mongo/repositories/UserRepository";
 import { verifyAuthentication } from "../middlewares/verifyAuthentication.middleware";
 
-const orderRepository = new OrderRepository();
-const userRepository = new UserRepository();
-const itemRepository = new ItemRepository();
-
-const createOrderController = new CreateOrderController(
-  orderRepository,
-  userRepository,
-  itemRepository
-);
-
+const createOrderController = new CreateOrderController();
 const ordersRouter: Router = express.Router();
 
 ordersRouter.post(
