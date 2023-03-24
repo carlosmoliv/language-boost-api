@@ -1,12 +1,19 @@
+import { inject, injectable } from "tsyringe";
+
+import { Role } from "../../domain/user.enums";
 import { comparePasswords } from "../../../../shared/infrastructure/adapters/utils/bcrypt.utils";
 import { AppError } from "../../../../shared/errors/AppError";
 import { createToken } from "../../../../shared/infrastructure/adapters/utils/jwt.utils";
+
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { ILoginUserByEmail } from "../../domain/dtos/ILoginUserByEmail.dto";
-import { Role } from "../../domain/user.enums";
 
+@injectable()
 export class LogInUserByRoleUseCase {
-  constructor(private userRepository: IUserRepository) {}
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository
+  ) {}
 
   async execute(data: ILoginUserByEmail, role: Role = Role.student) {
     const { email, password } = data;

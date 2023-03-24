@@ -1,16 +1,14 @@
 import express, { NextFunction, Request, Response, Router } from "express";
 import { Role } from "../../../../modules/users/domain/user.enums";
 import { validator } from "../middlewares/validator.middleware";
-import { UserRepository } from "../../../../modules/users/infrastructure/mongo/repositories/UserRepository";
 import { CreateUserByRoleController } from "../../../../modules/users/infrastructure/http/controllers/CreateUserByRoleController";
 import { LoginUserByRoleController } from "../../../../modules/users/infrastructure/http/controllers/LoginUserByRoleController";
 import { createUserSchema } from "../../../../modules/users/domain/user.validations";
 
 const studentsRouter: Router = express.Router();
-const userRepository = new UserRepository();
 
 const createUserByRoleController = new CreateUserByRoleController();
-const loginUserByRoleController = new LoginUserByRoleController(userRepository);
+const loginUserByRoleController = new LoginUserByRoleController();
 
 studentsRouter.post(
   "/login",
