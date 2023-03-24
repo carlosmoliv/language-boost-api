@@ -1,6 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { ICourseRepository } from "../../../domain/repositories/ICourseRepository";
-import { IModuleRepository } from "../../../domain/repositories/IModuleRepository";
 import { CreateModuleUseCase } from "../../../application/use-cases/CreateModuleUseCase";
 import { container } from "tsyringe";
 
