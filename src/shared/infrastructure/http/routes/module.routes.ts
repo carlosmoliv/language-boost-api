@@ -5,14 +5,7 @@ import { ModuleRepository } from "../../../../modules/courses/infrastructure/mon
 import { verifyAuthentication } from "../middlewares/verifyAuthentication.middleware";
 import { Role } from "../../../../modules/users/domain/user.enums";
 
-const courseRepository = new CourseRepository();
-const moduleRepository = new ModuleRepository();
-
-const createModuleController = new CreateModuleController(
-  courseRepository,
-  moduleRepository
-);
-
+const createModuleController = new CreateModuleController();
 const modulesRouter: Router = express.Router();
 
 modulesRouter.post(

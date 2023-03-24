@@ -2,10 +2,14 @@ import { CourseNotFoundError } from "../../../../shared/errors/courses/CourseNot
 import { ICourseRepository } from "../../domain/repositories/ICourseRepository";
 import { ICreateModuleDTO } from "../../domain/dtos/ICreateModule.dto";
 import { IModuleRepository } from "../../domain/repositories/IModuleRepository";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 export class CreateModuleUseCase {
   constructor(
+    @inject("CourseRepository")
     private courseRepository: ICourseRepository,
+    @inject("ModuleRepository")
     private moduleRepository: IModuleRepository
   ) {}
 
