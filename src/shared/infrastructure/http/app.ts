@@ -20,7 +20,7 @@ const configureExpress = () => {
 
   app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
-  app.use(expressLogger);
+  // app.use(expressLogger);
   app.use("/v1", api);
   app.use(errorHandler);
 

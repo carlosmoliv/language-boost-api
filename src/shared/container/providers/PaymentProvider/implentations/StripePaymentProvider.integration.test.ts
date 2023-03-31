@@ -1,6 +1,6 @@
-import { StripePaymentService } from "./StripePayment";
+import { StripePaymentService } from "./StripePaymentPaymentProvider";
 import crypto from "node:crypto";
-import { ItemCurrency } from "../../../../modules/orders/domain/enums/item.enums";
+import { ItemCurrency } from "../../../../../modules/orders/domain/enums/item.enums";
 
 describe("Stripe Payment Service", () => {
   let paymentService: StripePaymentService;

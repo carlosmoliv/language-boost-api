@@ -1,5 +1,6 @@
 import { container } from "tsyringe";
 
+import "./providers";
 import { IUserRepository } from "../../modules/users/domain/repositories/IUserRepository";
 import { ICourseRepository } from "../../modules/courses/domain/repositories/ICourseRepository";
 import { IModuleRepository } from "../../modules/courses/domain/repositories/IModuleRepository";

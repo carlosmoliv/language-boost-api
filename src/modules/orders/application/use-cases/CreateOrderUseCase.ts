@@ -1,18 +1,14 @@
 import { Role } from "../../../users/domain/user.enums";
-import { AppError } from "../../../../shared/errors/AppError";
 import { UserNotFoundError } from "../../../../shared/errors/users/UserNotFoundError";
-import { StripePaymentService } from "../../../../shared/infrastructure/providers/stripe/StripePayment";
-
 import { IUserRepository } from "../../../users/domain/repositories/IUserRepository";
 import { ICreateOrderDTO } from "../../domain/dtos/ICreateOrderDTO";
 import { IItemRepository } from "../../domain/repositories/IItemRepository";
 import { IOrderRepository } from "../../domain/repositories/IOrderRepository";
 import { inject, injectable } from "tsyringe";
+import { StripePaymentService } from "../../../../shared/container/providers/PaymentProvider/implentations/StripePaymentPaymentProvider";
 
 @injectable()
 export class CreateOrderUseCase {
-  private paymentService: StripePaymentService;
-
   constructor(
     @inject("OrderRepository")
     private orderRepository: IOrderRepository,
@@ -21,7 +17,10 @@ export class CreateOrderUseCase {
     private userRepository: IUserRepository,
 
     @inject("ItemRepository")
-    private itemRepository: IItemRepository
+    private itemRepository: IItemRepository,
+
+    @inject("PaymentServiceProvider")
+    private paymentService: StripePaymentService
   ) {
     this.paymentService = new StripePaymentService();
   }
@@ -48,17 +47,9 @@ export class CreateOrderUseCase {
       itemsIds: itemsIds,
     });
 
-    const sessionCheckout = await this.paymentService.createCheckoutSession({
+    return this.paymentService.createCheckoutSession({
       items: items,
       orderId: order.id,
     });
-
-    if (!sessionCheckout.url)
-      throw new AppError(
-        "StripeCheckoutSessionError",
-        "Stripe session checkout error."
-      );
-
-    return sessionCheckout.url;
   }
 }
