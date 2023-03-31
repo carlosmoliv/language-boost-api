@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { container } from "tsyringe";
 
 import { Role } from "../../../domain/user.enums";
-import { logger } from "../../../../../shared/infrastructure/adapters/utils/logger.utils";
+import { logger } from "../../../../../shared/infrastructure/utils/logger.utils";
 import { CreateUserByRoleUseCase } from "../../../application/use-cases/CreateUserUseCase";
 
 export class CreateUserByRoleController {

@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { ICreateItemDTO } from "../../../../modules/orders/domain/dtos/ICreateItemDTO";
 import { Item } from "../../../../modules/orders/infrastructure/mongo/models/Item";
 import { AppError } from "../../../errors/AppError";
-import { logger } from "../../adapters/utils/logger.utils";
+import { logger } from "../../utils/logger.utils";
 
 interface ICheckoutSession {
   items: ICreateItemDTO[];

@@ -41,9 +41,10 @@ My main focus with this project is the back-end for the moment, but I have plans
 
 ## :credit_card: Stripe API
 
-- Stripe Checkout Docs: 
+- Stripe Checkout Docs:
   - https://stripe.com/docs/payments/checkout
   - https://stripe.com/docs/api/checkout/sessions
+
 ## :gear: Installation
 
 Use a `yarn` or `npm` in order to install all dependencies
@@ -86,7 +87,7 @@ yarn test:watch
 
 ## :octocat: Contributing
 
-If you would like to contribute code to the project, please follow these steps:
+If you would like to contribute to the project, please follow these steps:
 
 - Fork the repository.
 - Create a new branch for your changes.

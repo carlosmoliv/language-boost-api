@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../shared/errors/AppError";
-import { hashPassword } from "../../../../shared/infrastructure/adapters/utils/bcrypt.utils";
+import { hashPassword } from "../../../../shared/infrastructure/utils/bcrypt.utils";
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { Role } from "../../domain/user.enums";
 

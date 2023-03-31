@@ -6,7 +6,7 @@ import "../../container";
 
 import api from "./routes";
 import * as database from "../database/mongo";
-import { expressLogger } from "../adapters/utils/logger.utils";
+import { expressLogger } from "../utils/logger.utils";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 
 import swaggerDocs from "../../../swagger.json";

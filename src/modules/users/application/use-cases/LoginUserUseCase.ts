@@ -1,9 +1,9 @@
 import { inject, injectable } from "tsyringe";
 
 import { Role } from "../../domain/user.enums";
-import { comparePasswords } from "../../../../shared/infrastructure/adapters/utils/bcrypt.utils";
+import { comparePasswords } from "../../../../shared/infrastructure/utils/bcrypt.utils";
 import { AppError } from "../../../../shared/errors/AppError";
-import { createToken } from "../../../../shared/infrastructure/adapters/utils/jwt.utils";
+import { createToken } from "../../../../shared/infrastructure/utils/jwt.utils";
 
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { ILoginUserByEmail } from "../../domain/dtos/ILoginUserByEmail.dto";

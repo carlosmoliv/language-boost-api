@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { container } from "tsyringe";
-import { logger } from "../../../../../shared/infrastructure/adapters/utils/logger.utils";
+import { logger } from "../../../../../shared/infrastructure/utils/logger.utils";
 import { LogInUserByRoleUseCase } from "../../../application/use-cases/LoginUserUseCase";
 import { IUserRepository } from "../../../domain/repositories/IUserRepository";
 import { Role } from "../../../domain/user.enums";

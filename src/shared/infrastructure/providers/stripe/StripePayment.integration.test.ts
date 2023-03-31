@@ -1,6 +1,5 @@
 import { StripePaymentService } from "./StripePayment";
 import crypto from "node:crypto";
-import { ICreateItemDTO } from "../../../../modules/orders/domain/dtos/ICreateItemDTO";
 import { ItemCurrency } from "../../../../modules/orders/domain/enums/item.enums";
 
 describe("Stripe Payment Service", () => {
