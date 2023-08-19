@@ -6,13 +6,11 @@
 
 ## :rocket: About the project
 
-A Node.js **Role-Based** REST API for a courses platform with payments via **Stripe**, that I'm developing from scratch for study purposes.
+A Node.js REST API for a courses platform, that I'm developing from scratch for study purposes.
 
-The idea is to apply good practices and also keep up with the latest trends.
+The idea is to apply TDD, Clean Architecture, Design Patterns, and SOLID principles
 
-My main focus with this project is the back-end for the moment, but I have plans to start the frontend using React in another repository.
-
-## :dart: Mind Map, Storyboard, and Data modeling
+## :dart: Mind Map, Storyboard, and Data Modeling
 
 - Mind Map: https://miro.com/app/board/uXjVMfni4k8=/?share_link_id=498114699109 **(under construction)**
 - Storyboard: **Check back later for updates.**
@@ -38,52 +36,6 @@ My main focus with this project is the back-end for the moment, but I have plans
 - [Docker](https://www.docker.com/)
 - [Swagger](https://swagger.io/)
 - CI/CD
-
-## :credit_card: Stripe API
-
-- Stripe Checkout Docs:
-  - https://stripe.com/docs/payments/checkout
-  - https://stripe.com/docs/api/checkout/sessions
-
-## :gear: Installation
-
-Use a `yarn` or `npm` in order to install all dependencies
-
-```bash
-yarn
-```
-
-Create and config `.env` file using `.env.example` as a example
-
-## :computer: Usage
-
-To start the development server, simply run the `dev` command
-
-```bash
-yarn dev
-```
-
-To run only unit tests, use the `test:unit` command.
-
-```bash
-yarn test:unit
-```
-
-To run only integration tests, use the `test:integration` command.
-
-```bash
-yarn test:integration
-```
-
-To run all test suites, use the `test` command. To run in watch mode just run `test:watch`
-
-```bash
-yarn test
-```
-
-```bash
-yarn test:watch
-```
 
 ## :octocat: Contributing
 
