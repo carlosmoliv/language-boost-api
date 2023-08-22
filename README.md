@@ -16,26 +16,25 @@ The idea is to apply TDD, Clean Architecture, Design Patterns, and SOLID princip
 - Storyboard: **Check back later for updates.**
 - Data Modeling: **Check back later for updates.**
 
-## :toolbox: Technologies
+## :toolbox: Techs
 
 - [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [ESLint](https://eslint.org/)
+- [EditorConfig](https://editorconfig.org/)
+- [lint-staged](https://github.com/okonet/lint-staged#readme)
+- [git-commit-msg-linter](https://github.com/legend80s/git-commit-msg-linter#readme)
+- [Husky](https://typicode.github.io/husky/)
+- [Jest](https://jestjs.io/)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
 - [Typegoose](https://typegoose.github.io/typegoose/)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [Bcrypt](https://www.npmjs.com/package/bcrypt)
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
-- [Joi](https://joi.dev/)
-- [Pino](https://getpino.io/)
-- [Jest](https://jestjs.io/)
 - [SuperTest](https://www.npmjs.com/package/supertest)
-- [tsyringe](https://www.npmjs.com/package/tsyringe?activeTab=readme)
 - [Docker](https://www.docker.com/)
-- [Swagger](https://swagger.io/)
-- CI/CD
+- [Rimraf](https://github.com/isaacs/rimraf#readme)
 
 ## :octocat: Contributing
 
