@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "rootDirs": ["src", "tests"],
+    "rootDirs": ["./src", "./tests"],
     "target": "ES2021",
     "incremental": true,
     "sourceMap": true,
@@ -10,7 +10,7 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "@domain/*": ["domain/*"],
       "@infra/*": ["infra/*"],
@@ -19,10 +19,8 @@
       "@tests/*": ["../tests/*"]
     },
     "strict": true,
-    "noImplicitOverride": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": true
   },
-  "include": ["src", "tests"]
+  "include": ["./src", "./tests"]
 }

@@ -5,3 +5,4 @@ dist
 documentation
 node_modules
 public
+jest.config.ts
