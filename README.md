@@ -2,8 +2,6 @@
 
 ## :rocket: About the project
 
-A Node.js REST API for a courses platform, that I'm developing from scratch for study purposes.
-
 My approach involves applying Test-Driven Development (TDD), Clean Architecture, Clean Code, Design Patterns, and SOLID principles. I'm adhering to the Classic School of TDD (also known as Detroit/Chicago), focusing on testing behavior rather than implementation details. This project aims to enhance my understanding of best practices in software development.
 
 ## :bookmark: Some References
