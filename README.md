@@ -20,7 +20,8 @@ My approach involves applying Test-Driven Development (TDD), Clean Architecture,
 - **Courses** 
   - Rodrigo Manguinho first Course - [NodeJs, Typescript, TDD, DDD, Clean Architecture e SOLID](https://www.udemy.com/course/tdd-com-mango/)
   - Rodrigo Manguinho second Course - [NodeJs Avançado com TDD, Clean Architecture e Typescript](https://www.udemy.com/course/nodejs-avancado/) 
-- **Youtube channels**
+- **Youtube channels** 
+  - Dave Farley Youtube channel - [Continuous Delivery](https://www.youtube.com/@ContinuousDelivery) 
   - Otavio Lemos Youtube channel - [Otavio Lemos](https://www.youtube.com/@otaviolemos) 
 
 ## :dart: Mind Map, Storyboard, and Data Modeling
