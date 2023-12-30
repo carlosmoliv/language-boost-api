@@ -15,10 +15,11 @@ export class AuthenticateUserUseCaseImp implements AuthenticateUserUseCase {
     const user = await this.userRepo.findByEmail({ email })
     if (user !== null) {
       const passwordMatch = await this.hashComparer.compare({ plainText: password, digest: user.password })
-      if (!passwordMatch) throw new AuthenticationError()
-      const accessToken = await this.tokenGenerator.generate({ key: user.id, expirationInMs: AccessToken.expirationInMs })
-      return { accessToken }
+      if (passwordMatch) {
+        const accessToken = await this.tokenGenerator.generate({ key: user.id, expirationInMs: AccessToken.expirationInMs })
+        return { accessToken }
+      }
     }
-    return null
+    throw new AuthenticationError()
   }
 }
