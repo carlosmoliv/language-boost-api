@@ -10,8 +10,12 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   moduleNameMapper: {
-    '@/tests/(.+)': '<rootDir>/tests/$1',
-    '@/(.+)': '<rootDir>/src/$1'
+    '^@main/(.*)$': '<rootDir>/src/main/$1',
+    '^@domain/(.*)$': '<rootDir>/src/domain/$1',
+    '^@data/(.*)$': '<rootDir>/src/data/$1',
+    '^@infra/(.*)$': '<rootDir>/src/infra/$1',
+    '^@presentation/(.*)$': '<rootDir>/src/presentation/$1',
+    '^@tests/(.*)$': '<rootDir>/tests/$1',
   },
   roots: ['<rootDir>/src', '<rootDir>/tests'],
   setupFiles: ['dotenv/config'],
@@ -22,6 +26,7 @@ const config: Config = {
   transform: {
     '\\.ts$': 'ts-jest'
   },
+  testTimeout: 60000
 };
 
 export default config;

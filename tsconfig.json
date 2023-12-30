@@ -10,13 +10,14 @@
     "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@domain/*": ["domain/*"],
-      "@infra/*": ["infra/*"],
-      "@main/*": ["main/*"],
-      "@application/*": ["presentation/*"],
-      "@tests/*": ["../tests/*"]
+      "@domain/*": ["src/domain/*"],
+      "@data/*": ["src/data/*"],
+      "@infra/*": ["src/infra/*"],
+      "@main/*": ["src/main/*"],
+      "@presentation/*": ["src/presentation/*"],
+      "@tests/*": ["tests/*"]
     },
     "strict": true,
     "emitDecoratorMetadata": true,
