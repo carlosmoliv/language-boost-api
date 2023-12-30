@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+  mongo:
+    container_name: mongo-container
+    image: mongo
+    restart: always
+    volume:
+      - ./mongo-data:/data/db
+    ports:
+      - 27017:27017
