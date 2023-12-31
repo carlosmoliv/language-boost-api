@@ -1,2 +1,2 @@
-export * from './hash-comparer'
-export * from './token-generator'
+export * from './hash-comparer.interface'
+export * from './token-generator.interface'

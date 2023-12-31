@@ -7,7 +7,7 @@ import { MongoUserRepository } from '@infra/db/mongo/repositories/user.repositor
 import { env } from '@main/config/env'
 import { AuthenticationError } from '@domain/errors'
 
-describe('AuthenticateUserUseCaseImp', () => {
+describe('AuthenticateUserImp', () => {
   let sut: AuthenticateUserUseCaseImp
   let userRepo: MongoUserRepository
 
