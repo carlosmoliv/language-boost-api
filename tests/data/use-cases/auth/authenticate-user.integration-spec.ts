@@ -1,6 +1,6 @@
 import { hash } from 'bcrypt'
 
-import { AuthenticateUserUseCaseImp } from '@data/use-cases'
+import { AuthenticateUserUseCase } from '@data/use-cases'
 import { MongoHelper } from '@infra/db/mongo/helpers'
 import { JwtAdapter, BcryptAdapter } from '@infra/gateways'
 import { MongoUserRepository } from '@infra/db/mongo/repositories/user.repository'
@@ -8,7 +8,7 @@ import { env } from '@main/config/env'
 import { AuthenticationError } from '@domain/errors'
 
 describe('AuthenticateUserImp', () => {
-  let sut: AuthenticateUserUseCaseImp
+  let sut: AuthenticateUserUseCase
   let userRepo: MongoUserRepository
 
   beforeAll(async () => {
@@ -16,7 +16,7 @@ describe('AuthenticateUserImp', () => {
     userRepo = new MongoUserRepository()
     const hashComparer = new BcryptAdapter()
     const tokenGenerator = new JwtAdapter('any_secret')
-    sut = new AuthenticateUserUseCaseImp(
+    sut = new AuthenticateUserUseCase(
       userRepo,
       hashComparer,
       tokenGenerator
