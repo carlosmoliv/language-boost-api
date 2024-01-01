@@ -27,4 +27,15 @@ describe('MongoUserRepository', () => {
       expect(user?.email).toBe(data.email)
     })
   })
+
+  describe('findByCriteria()', () => {
+    it('should return an User when passing email as a criteria', async () => {
+      const data = makeFakeUser()
+      await sut.create(data)
+
+      const result = await sut.findByCriteria({ email: data.email })
+
+      expect(result?.email).toBe(data.email)
+    })
+  })
 })
