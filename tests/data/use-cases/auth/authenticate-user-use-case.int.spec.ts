@@ -14,6 +14,7 @@ describe('AuthenticateUserImp', () => {
 
   beforeAll(async () => {
     await MongoHelper.connect(env.db.mongo.uri)
+    await MongoHelper.clearCollections(['users'])
     userRepo = new MongoUserRepository()
     const hashComparer = new BcryptAdapter()
     const tokenGenerator = new JwtAdapter('any_secret')

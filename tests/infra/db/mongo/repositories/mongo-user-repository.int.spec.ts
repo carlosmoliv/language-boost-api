@@ -8,6 +8,7 @@ describe('MongoUserRepository', () => {
 
   beforeAll(async () => {
     await MongoHelper.connect(env.db.mongo.uri)
+    await MongoHelper.clearCollections(['users'])
     sut = new MongoUserRepository()
   })
 
