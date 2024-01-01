@@ -37,5 +37,11 @@ describe('MongoUserRepository', () => {
 
       expect(result?.email).toBe(data.email)
     })
+
+    it('should return null when no User is found', async () => {
+      const result = await sut.findByCriteria({ id: 'any_id' })
+
+      expect(result).toBeNull()
+    })
   })
 })
