@@ -1,19 +1,10 @@
 export interface UserRepository {
-  findByEmail: (input: UserRepository.FindByEmailInput) => Promise<UserRepository.FindByEmailOutput>
   create: (input: UserRepository.CreateInput) => Promise<void>
+  findByCriteria: (input: UserRepository.FindByCriteriaInput) => Promise<UserRepository.FindByCriteriaOutput>
 }
 
 export namespace UserRepository {
-  export type FindByEmailInput = { email: string }
-  export type FindByEmailOutput = {
-    id: string
-    name: string
-    email: string
-    password: string
-  } | null
-  export type CreateInput = {
-    name: string
-    email: string
-    password: string
-  }
+  export type CreateInput = { name: string, email: string, password: string }
+  export type FindByCriteriaInput = { email?: string, id?: string }
+  export type FindByCriteriaOutput = { id: string, name: string, email: string, password: string } | null
 }

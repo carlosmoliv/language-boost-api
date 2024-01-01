@@ -14,7 +14,7 @@ export class AuthenticateUserUseCase {
   ) {}
 
   async execute ({ email, password }: Input): Promise<Output> {
-    const user = await this.userRepo.findByEmail({ email })
+    const user = await this.userRepo.findByCriteria({ email })
     if (user === null) throw new AuthenticationError()
     const passwordMatch = await this.hashComparer.compare({ plainText: password, digest: user.password })
     if (!passwordMatch) throw new AuthenticationError()
