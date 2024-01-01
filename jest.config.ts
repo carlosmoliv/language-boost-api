@@ -5,7 +5,8 @@ const config: Config = {
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/main/**',
-    '!<rootDir>/src/**/index.ts'
+    '!<rootDir>/src/**/index.ts',
+    '!<rootDir>/src/data/contracts/**',
   ],
   coverageDirectory: "coverage",
   coverageProvider: "v8",
