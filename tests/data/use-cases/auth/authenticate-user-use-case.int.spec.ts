@@ -6,6 +6,7 @@ import { JwtAdapter, BcryptAdapter } from '@infra/gateways'
 import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
 import { env } from '@main/config/env'
 import { AuthenticationError } from '@domain/errors'
+import { makeFakeUser } from '@tests/factories'
 
 describe('AuthenticateUserImp', () => {
   let sut: AuthenticateUserUseCase
@@ -28,28 +29,29 @@ describe('AuthenticateUserImp', () => {
   })
 
   it('should return a token when the provided password and email match', async () => {
-    const password = await hash('any_password', 12)
-    const userData = { name: 'any_name', email: 'any_email@gmail.com', password }
-    await userRepo.create(userData)
+    const userData = makeFakeUser()
+    const password = await hash(userData.password, 12)
+    await userRepo.create({ ...userData, password })
 
-    const result = await sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
+    const result = await sut.execute({ email: userData.email, password: userData.password })
 
     expect(result?.accessToken).toEqual(expect.any(String))
   })
 
-  it('should return AuthenticationError when the provided password and email does not match', async () => {
-    const password = await hash('any_password', 12)
-    const userData = { name: 'any_name', email: 'any_email@gmail.com', password }
-    await userRepo.create(userData)
+  it('should return AuthenticationError when the provided password does not match', async () => {
+    const userData = makeFakeUser()
+    const password = await hash(userData.password, 12)
+    await userRepo.create({ ...userData, password })
 
-    const promise = sut.execute({ email: 'any_email@gmail.com', password: 'any_invalid_password' })
+    const promise = sut.execute({ email: userData.email, password: 'any_invalid_password' })
 
     await expect(promise).rejects.toThrow(AuthenticationError)
   })
 
   it('should return AuthenticationError when User was not found', async () => {
     await MongoHelper.clearCollections(['users'])
-    const promise = sut.execute({ email: 'any_email@gmail.com', password: 'any_invalid_password' })
+
+    const promise = sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
 
     await expect(promise).rejects.toThrow(AuthenticationError)
   })
