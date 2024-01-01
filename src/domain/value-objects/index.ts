@@ -1,1 +1,1 @@
-export * from './access-token.value-object'
+export * from './access-token'
