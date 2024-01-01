@@ -46,4 +46,11 @@ describe('AuthenticateUserImp', () => {
 
     await expect(promise).rejects.toThrow(AuthenticationError)
   })
+
+  it('should return AuthenticationError when User was not found', async () => {
+    await MongoHelper.clearCollections(['users'])
+    const promise = sut.execute({ email: 'any_email@gmail.com', password: 'any_invalid_password' })
+
+    await expect(promise).rejects.toThrow(AuthenticationError)
+  })
 })

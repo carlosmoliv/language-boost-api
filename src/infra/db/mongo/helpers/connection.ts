@@ -1,4 +1,4 @@
-import { connect, disconnect } from 'mongoose'
+import { connect, disconnect, connection } from 'mongoose'
 
 export const MongoHelper = {
   uri: '',
@@ -10,5 +10,15 @@ export const MongoHelper = {
 
   async disconnect (): Promise<void> {
     await disconnect()
+  },
+
+  async clearCollections (collectionNames: string[]): Promise<void> {
+    const collections = Object.keys(connection.collections)
+    for (const collectionName of collections) {
+      if (collectionNames.includes(collectionName)) {
+        const collection = connection.collections[collectionName]
+        await collection.deleteMany({})
+      }
+    }
   }
 }
