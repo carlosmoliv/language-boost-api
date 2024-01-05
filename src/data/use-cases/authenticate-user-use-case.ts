@@ -8,13 +8,13 @@ type Output = { accessToken: string }
 
 export class AuthenticateUserUseCase {
   constructor (
-    private readonly userRepo: UserRepository,
+    private readonly userRepository: UserRepository,
     private readonly hashComparer: HashComparer,
     private readonly tokenGenerator: TokenGenerator
   ) {}
 
   async execute ({ email, password }: Input): Promise<Output> {
-    const user = await this.userRepo.findByCriteria({ email })
+    const user = await this.userRepository.findByCriteria({ email })
     if (user === null) throw new AuthenticationError()
     const passwordMatch = await this.hashComparer.compare({ plainText: password, digest: user.password })
     if (!passwordMatch) throw new AuthenticationError()
