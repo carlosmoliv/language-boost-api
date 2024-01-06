@@ -1,5 +1,5 @@
 import { AuthenticateUserUseCase } from '@data/use-cases'
-import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
+import { MongoUserRepository } from '@infra/db/mongo/repositories'
 import { BcryptAdapter, JwtAdapter } from '@infra/gateways'
 
 export const makeAuthenticateUserUseCase = (): AuthenticateUserUseCase => {

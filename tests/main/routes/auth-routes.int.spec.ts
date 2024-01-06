@@ -5,7 +5,7 @@ import { app } from '@main/config/app'
 import { env } from '@main/config/env'
 import { makeFakeUser } from '@tests/factories'
 import { MongoHelper } from '@infra/db/mongo/helpers'
-import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
+import { MongoUserRepository } from '@infra/db/mongo/repositories'
 import { UnauthorizedError } from '@presentation/errors'
 
 describe('Auth Routes', () => {
@@ -45,7 +45,7 @@ describe('Auth Routes', () => {
         email: userData.email,
         password: 'invalid_password'
       })
-    console.log(body)
+
     expect(status).toBe(401)
     expect(body).toEqual({ error: new UnauthorizedError().message })
   })

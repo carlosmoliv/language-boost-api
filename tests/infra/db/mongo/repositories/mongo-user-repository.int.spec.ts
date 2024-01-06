@@ -1,6 +1,6 @@
 import { makeFakeUser } from '@tests/factories'
 import { MongoHelper } from '@infra/db/mongo/helpers'
-import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
+import { MongoUserRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'
 
 describe('MongoUserRepository', () => {
