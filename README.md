@@ -1,6 +1,6 @@
 <h1 align="center">Knowledge Boost Courses - API (under construction)</h1>
 
-## :rocket: About the project
+## :bulb: About the project
 
 My approach involves applying Test-Driven Development (TDD), Clean Architecture, Clean Code, Design Patterns, and SOLID principles. I'm adhering to the Classic School of TDD (also known as Detroit/Chicago), focusing on testing behavior rather than implementation details. This project aims to enhance my understanding of best practices in software development.
 
