@@ -16,6 +16,7 @@ const config: Config = {
     '^@data/(.*)$': '<rootDir>/src/data/$1',
     '^@infra/(.*)$': '<rootDir>/src/infra/$1',
     '^@presentation/(.*)$': '<rootDir>/src/presentation/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@tests/(.*)$': '<rootDir>/tests/$1',
   },
   roots: ['<rootDir>/src', '<rootDir>/tests'],

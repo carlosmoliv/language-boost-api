@@ -60,6 +60,7 @@
     "@domain": "src/domain",
     "@data": "src/data",
     "@infra": "src/infra",
+    "@utils": "src/utils",
     "@tests": "tests"
   }
 }

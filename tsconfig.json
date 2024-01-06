@@ -17,6 +17,7 @@
       "@infra/*": ["src/infra/*"],
       "@main/*": ["src/main/*"],
       "@presentation/*": ["src/presentation/*"],
+      "@utils/*": ["src/utils/*"],
       "@tests/*": ["tests/*"]
     },
     "strict": true,
