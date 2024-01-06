@@ -36,7 +36,8 @@ describe('AuthenticateUserImp', () => {
 
     const result = await sut.execute({ email: userData.email, password: userData.password })
 
-    expect(result?.accessToken).toEqual(expect.any(String))
+    expect(result?.isRight).toBeTruthy()
+    expect(result?.value).toEqual({ accessToken: expect.any(String) })
   })
 
   it('should return AuthenticationError when the provided password does not match', async () => {
@@ -44,16 +45,18 @@ describe('AuthenticateUserImp', () => {
     const password = await hash(userData.password, 12)
     await userRepo.create({ ...userData, password })
 
-    const promise = sut.execute({ email: userData.email, password: 'any_invalid_password' })
+    const result = await sut.execute({ email: userData.email, password: 'any_invalid_password' })
 
-    await expect(promise).rejects.toThrow(AuthenticationError)
+    expect(result.isLeft()).toBeTruthy()
+    expect(result.value).toBeInstanceOf(AuthenticationError)
   })
 
   it('should return AuthenticationError when User was not found', async () => {
     await MongoHelper.clearCollections(['users'])
 
-    const promise = sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
+    const result = await sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
 
-    await expect(promise).rejects.toThrow(AuthenticationError)
+    expect(result.isLeft()).toBeTruthy()
+    expect(result.value).toBeInstanceOf(AuthenticationError)
   })
 })

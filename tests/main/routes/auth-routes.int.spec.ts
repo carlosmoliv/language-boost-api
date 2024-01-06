@@ -30,6 +30,6 @@ describe('Auth Routes', () => {
       })
 
     expect(status).toBe(200)
-    expect(body.accessToken).toBeDefined()
+    expect(body).toEqual({ accessToken: expect.any(String) })
   })
 })
