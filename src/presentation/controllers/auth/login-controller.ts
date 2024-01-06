@@ -1,11 +1,13 @@
-import { AuthenticateUserUseCase } from '@data/use-cases'
-import { ok, serverError, unauthorized } from '@presentation/helpers/http'
 import { Controller, HttpResponse } from '@presentation/interfaces'
+import { ok, serverError, unauthorized } from '@presentation/helpers/http'
+import { AuthenticateUserUseCase } from '@data/use-cases'
+
+type HttpRequest = { email: string, password: string }
 
 export class LoginController implements Controller {
   constructor (private readonly authenticateUser: AuthenticateUserUseCase) {}
 
-  async handle (request: LoginController.Request): Promise<HttpResponse> {
+  async handle (request: HttpRequest): Promise<HttpResponse> {
     try {
       const { email, password } = request
       const result = await this.authenticateUser.execute({ email, password })
@@ -14,12 +16,5 @@ export class LoginController implements Controller {
     } catch (error) {
       return serverError(error)
     }
-  }
-}
-
-export namespace LoginController {
-  export type Request = {
-    email: string
-    password: string
   }
 }
