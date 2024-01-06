@@ -28,7 +28,7 @@ My approach involves applying Test-Driven Development (TDD), Clean Architecture,
 - Storyboard: **Check back later for updates.**
 - Data Modeling: **Check back later for updates.**
 
-## :octocat: Contributing
+## :shipit: Contributing
 
 If you would like to contribute to the project, please follow these steps:
 
