@@ -6,6 +6,7 @@ import { env } from '@main/config/env'
 import { makeFakeUser } from '@tests/factories'
 import { MongoHelper } from '@infra/db/mongo/helpers'
 import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
+import { UnauthorizedError } from '@presentation/errors'
 
 describe('Auth Routes', () => {
   beforeAll(async () => {
@@ -31,5 +32,21 @@ describe('Auth Routes', () => {
 
     expect(status).toBe(200)
     expect(body).toEqual({ accessToken: expect.any(String) })
+  })
+
+  it('should return 401 when User is unauthorized', async () => {
+    const userData = makeFakeUser()
+    const password = await hash(userData.password, 12)
+    await new MongoUserRepository().create({ ...userData, password })
+
+    const { status, body } = await request(app)
+      .post('/api/login')
+      .send({
+        email: userData.email,
+        password: 'invalid_password'
+      })
+    console.log(body)
+    expect(status).toBe(401)
+    expect(body).toEqual({ error: new UnauthorizedError().message })
   })
 })
