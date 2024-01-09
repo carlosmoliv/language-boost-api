@@ -1,6 +1,6 @@
 import { HashComparer, TokenGenerator } from '@data/contracts/gateways'
 import { UserRepository } from '@data/contracts/repositories'
-import { AccessToken } from '@domain/value-objects'
+import { AccessToken } from '@domain/entities'
 import { AuthenticationError } from '@domain/errors'
 import { Either, left, right } from '@utils/either'
 

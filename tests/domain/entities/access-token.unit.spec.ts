@@ -1,4 +1,4 @@
-import { AccessToken } from '@domain/value-objects'
+import { AccessToken } from '@domain/entities'
 
 describe('AccessToken', () => {
   it('should have an expiration time of 30 minutes', async () => {
