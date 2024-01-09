@@ -1,7 +1,7 @@
-import { HashComparer, TokenGenerator } from '@data/contracts/gateways'
-import { UserRepository } from '@data/contracts/repositories'
+import { HashComparer, TokenGenerator } from '@application/contracts/gateways'
+import { UserRepository } from '@application/contracts/repositories'
+import { AuthenticationError } from '@application/errors'
 import { AccessToken } from '@domain/entities'
-import { AuthenticationError } from '@domain/errors'
 import { Either, left, right } from '@utils/either'
 
 type Input = { email: string, password: string }

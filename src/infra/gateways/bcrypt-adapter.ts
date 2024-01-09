@@ -1,6 +1,6 @@
 import { compare } from 'bcrypt'
 
-import { HashComparer } from '@data/contracts/gateways'
+import { HashComparer } from '@application/contracts/gateways'
 
 export class BcryptAdapter implements HashComparer {
   async compare ({ plainText, digest }: HashComparer.Input): Promise<HashComparer.Output> {

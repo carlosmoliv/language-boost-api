@@ -1,5 +1,5 @@
 import { MongoUserModel } from '@infra/db/mongo/models'
-import { UserRepository } from '@data/contracts/repositories'
+import { UserRepository } from '@application/contracts/repositories'
 
 export class MongoUserRepository implements UserRepository {
   async findByCriteria (input: UserRepository.FindByCriteriaInput): Promise<UserRepository.FindByCriteriaOutput> {

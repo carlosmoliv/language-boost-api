@@ -1,4 +1,4 @@
-import { AuthenticateUserUseCase } from '@data/use-cases'
+import { AuthenticateUserUseCase } from '@application/use-cases'
 import { MongoUserRepository } from '@infra/db/mongo/repositories'
 import { BcryptAdapter, JwtAdapter } from '@infra/gateways'
 

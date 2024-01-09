@@ -1,6 +1,6 @@
 import { sign } from 'jsonwebtoken'
 
-import { TokenGenerator } from '@data/contracts/gateways'
+import { TokenGenerator } from '@application/contracts/gateways'
 
 export class JwtAdapter implements TokenGenerator {
   constructor (private readonly secret: string) {}

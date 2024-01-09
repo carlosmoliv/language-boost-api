@@ -13,7 +13,7 @@
     "baseUrl": "./",
     "paths": {
       "@domain/*": ["src/domain/*"],
-      "@data/*": ["src/data/*"],
+      "@application/*": ["src/application/*"],
       "@infra/*": ["src/infra/*"],
       "@main/*": ["src/main/*"],
       "@presentation/*": ["src/presentation/*"],
