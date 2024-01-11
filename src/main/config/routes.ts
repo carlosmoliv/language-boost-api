@@ -4,7 +4,6 @@ import { join } from 'path'
 
 export const setupRoutes = (app: Express): void => {
   const router = Router()
-
   readdirSync(join(__dirname, '../routes'))
     .filter((file: string) => !file.endsWith('.map'))
     .map(async (file: string) => {
