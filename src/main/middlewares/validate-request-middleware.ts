@@ -6,7 +6,7 @@ export const validateRequest = (schema: z.ZodSchema) => (req: Request, res: Resp
     schema.parse(req.body)
     next()
   } catch (error) {
-    const errors = error instanceof z.ZodError ? error.issues : undefined
-    res.status(400).json({ error: errors })
+    const errors = error instanceof z.ZodError ? error : undefined
+    res.status(400).json({ errors })
   }
 }

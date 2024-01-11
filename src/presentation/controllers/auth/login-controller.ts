@@ -2,13 +2,10 @@ import { Controller, HttpResponse } from '@presentation/interfaces'
 import { ok, serverError, unauthorized } from '@presentation/helpers/http'
 import { AuthenticateUserUseCase } from '@application/use-cases'
 
-type HttpRequest = { email: string, password: string }
-type Output = { accessToken: string } | Error
-
 export class LoginController implements Controller {
   constructor (private readonly authenticateUser: AuthenticateUserUseCase) {}
 
-  async handle ({ email, password }: HttpRequest): Promise<HttpResponse<Output>> {
+  async handle ({ email, password }: LoginController.Request): Promise<HttpResponse<LoginController.Response>> {
     try {
       const result = await this.authenticateUser.execute({ email, password })
       if (result.isLeft()) return unauthorized()
@@ -17,4 +14,9 @@ export class LoginController implements Controller {
       return serverError(error)
     }
   }
+}
+
+export namespace LoginController {
+  export type Request = { email: string, password: string }
+  export type Response = { accessToken: string } | Error
 }

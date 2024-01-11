@@ -1,6 +1,8 @@
 import { z } from 'zod'
 
-export const loginSchema = z.object({
+import { LoginController } from '@presentation/controllers/auth'
+
+export const loginSchema: z.ZodType<LoginController.Request> = z.object({
   email: z.string().email(),
-  password: z.string().min(6).max(255)
+  password: z.string().min(6)
 })

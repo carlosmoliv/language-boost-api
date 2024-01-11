@@ -49,4 +49,32 @@ describe('Auth Routes', () => {
     expect(status).toBe(401)
     expect(body).toEqual({ error: new UnauthorizedError().message })
   })
+
+  it('should return 400 when password is not provided', async () => {
+    const { status } = await request(app)
+      .post('/api/login')
+      .send({
+        email: 'carlos@gmail.com'
+      })
+    expect(status).toBe(400)
+  })
+
+  it('should return 400 when email is not provided', async () => {
+    const { status } = await request(app)
+      .post('/api/login')
+      .send({
+        password: '123456'
+      })
+    expect(status).toBe(400)
+  })
+
+  it('should return 400 when email is not valid', async () => {
+    const { status } = await request(app)
+      .post('/api/login')
+      .send({
+        email: 'invalid_email',
+        password: '123456'
+      })
+    expect(status).toBe(400)
+  })
 })
