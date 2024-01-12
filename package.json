@@ -54,15 +54,5 @@
     "ts-jest": "^29.1.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "5.3.3"
-  },
-  "_moduleAliases": {
-    "@root": ".",
-    "@main": "dist/main",
-    "@domain": "dist/domain",
-    "@application": "dist/application",
-    "@infra": "dist/infra",
-    "@presentation": "dist/presentation",
-    "@utils": "dist/utils",
-    "@tests": "tests"
   }
 }
