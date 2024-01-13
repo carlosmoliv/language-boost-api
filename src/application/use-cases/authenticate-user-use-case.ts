@@ -4,9 +4,6 @@ import { AuthenticationError } from '@application/use-cases/errors'
 import { AccessToken } from '@domain/entities'
 import { Either, left, right } from '@utils/either'
 
-type Input = { email: string, password: string }
-type Output = Either<AuthenticationError, { accessToken: string }>
-
 export class AuthenticateUserUseCase {
   constructor (
     private readonly userRepository: UserRepository,
@@ -14,7 +11,7 @@ export class AuthenticateUserUseCase {
     private readonly tokenGenerator: TokenGenerator
   ) {}
 
-  async execute ({ email, password }: Input): Promise<Output> {
+  async execute ({ email, password }: AuthenticateUserUseCase.Input): Promise<AuthenticateUserUseCase.Output> {
     const user = await this.userRepository.findByCriteria({ email })
     if (user === null) return left(new AuthenticationError())
     const passwordMatch = await this.hashComparer.compare({ plainText: password, digest: user.password })
@@ -22,4 +19,9 @@ export class AuthenticateUserUseCase {
     const accessToken = await this.tokenGenerator.generate({ key: user.id, expirationInMs: AccessToken.expirationInMs })
     return right({ accessToken })
   }
+}
+
+export namespace AuthenticateUserUseCase {
+  export type Input = { email: string, password: string }
+  export type Output = Either<AuthenticationError, { accessToken: string }>
 }
