@@ -5,7 +5,7 @@ import { MongoHelper } from '@infra/db/mongo/helpers'
 import { JwtAdapter, BcryptAdapter } from '@infra/gateways'
 import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
 import { env } from '@main/config/env'
-import { AuthenticationError } from '@application/errors'
+import { AuthenticationError } from '@application/use-cases/errors'
 import { makeFakeUser } from '@tests/factories'
 
 describe('AuthenticateUserImp', () => {

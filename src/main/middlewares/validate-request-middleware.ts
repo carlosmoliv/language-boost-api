@@ -6,7 +6,6 @@ export const validateRequest = (schema: z.ZodSchema) => (req: Request, res: Resp
     schema.parse(req.body)
     next()
   } catch (error) {
-    console.log(error)
     const errors = error instanceof z.ZodError ? formatZodError(error) : undefined
     res.status(400).json({ errors })
   }
