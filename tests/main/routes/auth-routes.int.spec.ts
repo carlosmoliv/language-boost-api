@@ -56,6 +56,7 @@ describe('Auth Routes', () => {
       .send({
         email: 'carlos@gmail.com'
       })
+
     expect(status).toBe(400)
   })
 
@@ -65,6 +66,7 @@ describe('Auth Routes', () => {
       .send({
         password: '123456'
       })
+
     expect(status).toBe(400)
   })
 
@@ -75,6 +77,7 @@ describe('Auth Routes', () => {
         email: 'invalid_email',
         password: '123456'
       })
+
     expect(status).toBe(400)
   })
 })
