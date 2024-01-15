@@ -1,5 +1,6 @@
 import { connect, disconnect, connection, ClientSession, Connection } from 'mongoose'
 
+import { ConnectionNotInitializedError, TransactionNotInitializedError } from '@infra/db/mongo/helpers/errors'
 import { DbTransaction } from '@presentation/contracts'
 
 export class MongoConnection implements DbTransaction {
@@ -23,28 +24,28 @@ export class MongoConnection implements DbTransaction {
   }
 
   async openTransaction (): Promise<void> {
-    if (this.connection === undefined) throw new Error('Connection not initialized')
+    if (this.connection === undefined) throw new ConnectionNotInitializedError()
     this.session = await this.connection.startSession()
     this.session.startTransaction()
   }
 
   async closeTransaction (): Promise<void> {
-    if (this.session === undefined) throw new Error('Transaction not initialized')
+    if (this.session === undefined) throw new TransactionNotInitializedError()
     await this.session.endSession()
   }
 
   async commitTransaction (): Promise<void> {
-    if (this.session === undefined) throw new Error('Transaction not initialized')
+    if (this.session === undefined) throw new TransactionNotInitializedError()
     await this.session.commitTransaction()
   }
 
   async rollbackTransaction (): Promise<void> {
-    if (this.session === undefined) throw new Error('Transaction not initialized')
+    if (this.session === undefined) throw new TransactionNotInitializedError()
     await this.session.abortTransaction()
   }
 
   async clearCollections (collectionNames: string[]): Promise<void> {
-    if (this.connection === undefined) throw new Error('Connection not initialized')
+    if (this.connection === undefined) throw new ConnectionNotInitializedError()
     const collections = Object.keys(this.connection.collections)
     for (const collectionName of collections) {
       if (collectionNames.includes(collectionName)) {
