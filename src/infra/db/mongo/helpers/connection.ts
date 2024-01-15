@@ -1,10 +1,12 @@
-import { connect, disconnect, connection } from 'mongoose'
+import { connect, disconnect, connection, ClientSession, Connection } from 'mongoose'
 
-export class MongoConnection {
+import { DbTransaction } from '@presentation/contracts'
+
+export class MongoConnection implements DbTransaction {
   private static instance?: MongoConnection
+  private connection?: Connection
+  public session?: ClientSession
   uri?: string
-
-  private constructor () {}
 
   static getInstance (): MongoConnection {
     if (!this.instance) this.instance = new MongoConnection()
@@ -13,18 +15,40 @@ export class MongoConnection {
 
   async connect (uri: string): Promise<void> {
     this.uri = uri
-    await connect(uri)
+    this.connection = await connect(uri).then(() => connection)
   }
 
   async disconnect (): Promise<void> {
     await disconnect()
   }
 
+  async openTransaction (): Promise<void> {
+    if (this.connection === undefined) throw new Error('Connection not initialized')
+    this.session = await this.connection.startSession()
+    this.session.startTransaction()
+  }
+
+  async closeTransaction (): Promise<void> {
+    if (this.session === undefined) throw new Error('Transaction not initialized')
+    await this.session.endSession()
+  }
+
+  async commitTransaction (): Promise<void> {
+    if (this.session === undefined) throw new Error('Transaction not initialized')
+    await this.session.commitTransaction()
+  }
+
+  async rollbackTransaction (): Promise<void> {
+    if (this.session === undefined) throw new Error('Transaction not initialized')
+    await this.session.abortTransaction()
+  }
+
   async clearCollections (collectionNames: string[]): Promise<void> {
-    const collections = Object.keys(connection.collections)
+    if (this.connection === undefined) throw new Error('Connection not initialized')
+    const collections = Object.keys(this.connection.collections)
     for (const collectionName of collections) {
       if (collectionNames.includes(collectionName)) {
-        const collection = connection.collections[collectionName]
+        const collection = this.connection.collections[collectionName]
         await collection.deleteMany({})
       }
     }
