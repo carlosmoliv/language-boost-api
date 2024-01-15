@@ -1,7 +1,7 @@
 import { hash } from 'bcrypt'
 
 import { AuthenticateUserUseCase } from '@application/use-cases'
-import { MongoHelper } from '@infra/db/mongo/helpers'
+import { MongoConnection } from '@infra/db/mongo/helpers'
 import { JwtAdapter, BcryptAdapter } from '@infra/gateways'
 import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
 import { env } from '@main/config/env'
@@ -11,10 +11,12 @@ import { makeFakeUser } from '@tests/factories'
 describe('AuthenticateUserImp', () => {
   let sut: AuthenticateUserUseCase
   let userRepo: MongoUserRepository
+  let connection: MongoConnection
 
   beforeAll(async () => {
-    await MongoHelper.connect(env.db.mongo.uri)
-    await MongoHelper.clearCollections(['users'])
+    connection = MongoConnection.getInstance()
+    await connection.connect(env.db.mongo.uri)
+    await connection.clearCollections(['users'])
     userRepo = new MongoUserRepository()
     const hashComparer = new BcryptAdapter()
     const tokenGenerator = new JwtAdapter('any_secret')
@@ -26,7 +28,7 @@ describe('AuthenticateUserImp', () => {
   })
 
   afterAll(async () => {
-    await MongoHelper.disconnect()
+    await connection.disconnect()
   })
 
   it('should return a token when the provided password and email match', async () => {
@@ -52,7 +54,7 @@ describe('AuthenticateUserImp', () => {
   })
 
   it('should return AuthenticationError when User was not found', async () => {
-    await MongoHelper.clearCollections(['users'])
+    await connection.clearCollections(['users'])
 
     const result = await sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
 

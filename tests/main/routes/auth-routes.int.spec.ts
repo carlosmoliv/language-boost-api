@@ -4,18 +4,21 @@ import { hash } from 'bcrypt'
 import { app } from '@main/config/app'
 import { env } from '@main/config/env'
 import { makeFakeUser } from '@tests/factories'
-import { MongoHelper } from '@infra/db/mongo/helpers'
+import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoUserRepository } from '@infra/db/mongo/repositories'
 import { UnauthorizedError } from '@presentation/errors'
 
 describe('Auth Routes', () => {
+  let connection: MongoConnection
+
   beforeAll(async () => {
-    await MongoHelper.connect(env.db.mongo.uri)
-    await MongoHelper.clearCollections(['users'])
+    connection = MongoConnection.getInstance()
+    await connection.connect(env.db.mongo.uri)
+    await connection.clearCollections(['users'])
   })
 
   afterAll(async () => {
-    await MongoHelper.disconnect()
+    await connection.disconnect()
   })
 
   it('should return 200 and a token when successfuly logging a User', async () => {

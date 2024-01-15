@@ -1,19 +1,21 @@
 import { makeFakeUser } from '@tests/factories'
-import { MongoHelper } from '@infra/db/mongo/helpers'
+import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoUserRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'
 
 describe('MongoUserRepository', () => {
   let sut: MongoUserRepository
+  let connection: MongoConnection
 
   beforeAll(async () => {
-    await MongoHelper.connect(env.db.mongo.uri)
-    await MongoHelper.clearCollections(['users'])
+    connection = MongoConnection.getInstance()
+    await connection.connect(env.db.mongo.uri)
+    await connection.clearCollections(['users'])
     sut = new MongoUserRepository()
   })
 
   afterAll(async () => {
-    await MongoHelper.disconnect()
+    await connection.disconnect()
   })
 
   describe('create', () => {
