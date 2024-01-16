@@ -6,7 +6,7 @@ import { DbTransaction } from '@presentation/contracts'
 export class MongoConnection implements DbTransaction {
   private static instance?: MongoConnection
   private connection?: Connection
-  public session?: ClientSession
+  private session?: ClientSession
   uri?: string
 
   static getInstance (): MongoConnection {
@@ -21,6 +21,8 @@ export class MongoConnection implements DbTransaction {
 
   async disconnect (): Promise<void> {
     await disconnect()
+    this.connection = undefined
+    this.session = undefined
   }
 
   async openTransaction (): Promise<void> {
