@@ -1,9 +1,9 @@
 {
-  "name": "knowledge-boost-api",
+  "name": "language-boost-api",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:carlosmoliv/knowledge-boost-api.git",
-  "author": "Carlos Oliveira <hello@carlosmoliveira.com>",
+  "repository": "git@github.com:carlosmoliv/language-boost-api.git",
+  "author": "Carlos Oliveira <contact@carlosmoliveira.com>",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --inspect=0.0.0.0:9229 ./src/main/server.ts",
