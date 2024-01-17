@@ -17,6 +17,7 @@ Functionalities roadmap:
 
 Nice to have in the future:
 - Add live video and real-time chat capabilities, instead of just sharing external links like Zoom or Google Meet.
+- Signin/Signup using other methods such as Apple, Google, Facebook
 
 ## :dart: Requirements
 
