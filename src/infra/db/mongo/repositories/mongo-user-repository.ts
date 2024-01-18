@@ -6,7 +6,7 @@ export class MongoUserRepository implements UserRepository {
     return MongoUserModel.findOne(input)
   }
 
-  async create ({ name, email, password }: UserRepository.CreateInput): Promise<void> {
-    await MongoUserModel.create({ name, email, password })
+  async create (input: UserRepository.CreateInput): Promise<void> {
+    await MongoUserModel.create(input)
   }
 }
