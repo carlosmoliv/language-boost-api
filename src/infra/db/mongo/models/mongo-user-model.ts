@@ -1,14 +1,24 @@
-import { prop, getModelForClass } from '@typegoose/typegoose'
+import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose'
 
+@modelOptions({ schemaOptions: { timestamps: true } })
 class User {
   @prop()
-  public name!: string
+  name!: string
 
   @prop()
-  public email!: string
+  email!: string
 
   @prop()
-  public password!: string
+  password!: string
+
+  @prop()
+  status!: string
+
+  @prop()
+  role!: string
+
+  @prop()
+  verifiedAt?: Date
 }
 
 export const MongoUserModel = getModelForClass(User)
