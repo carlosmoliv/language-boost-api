@@ -4,6 +4,7 @@ import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-rep
 import { env } from '@main/config/env'
 import { RegisterStudentUseCase } from '@application/use-cases/register-user-use-case'
 import { makeFakeUser } from '@tests/factories'
+import { EmailAlreadyInUseError } from '@application/use-cases/errors'
 
 describe('RegisterStudentUseCase', () => {
   let connection: MongoConnection
@@ -32,6 +33,7 @@ describe('RegisterStudentUseCase', () => {
     await sut.execute(userData)
 
     const studentRegistered = await userRepository.findByCriteria({ email: userData.email })
+
     expect(studentRegistered).toEqual(expect.objectContaining({
       name: userData.name,
       email: userData.email,
@@ -39,5 +41,16 @@ describe('RegisterStudentUseCase', () => {
       role: 'student',
       verifiedAt: null
     }))
+  })
+
+  it('should return error when the email provided is already in use', async () => {
+    const userData1 = makeFakeUser()
+    await userRepository.create(userData1)
+    const userData2 = makeFakeUser()
+
+    const result = await sut.execute({ ...userData2, email: userData1.email })
+
+    expect(result.isLeft).toBeTruthy()
+    expect(result.value).toBeInstanceOf(EmailAlreadyInUseError)
   })
 })
