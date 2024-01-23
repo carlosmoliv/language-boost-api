@@ -30,10 +30,10 @@ describe('RegisterStudentUseCase', () => {
   it('should register a new Student', async () => {
     const userData = makeFakeUser()
 
-    await sut.execute(userData)
+    const result = await sut.execute(userData)
 
     const studentRegistered = await userRepository.findByCriteria({ email: userData.email })
-
+    expect(result.isRight).toBeTruthy()
     expect(studentRegistered).toEqual(expect.objectContaining({
       name: userData.name,
       email: userData.email,
