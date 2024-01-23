@@ -6,6 +6,11 @@ export const ok = (data: any): HttpResponse => ({
   body: data
 })
 
+export const noContent = (): HttpResponse => ({
+  statusCode: 204,
+  body: null
+})
+
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
   body: error
@@ -21,9 +26,9 @@ export const forbidden = (): HttpResponse => ({
   body: new ForbiddenError()
 })
 
-export const noContent = (): HttpResponse => ({
-  statusCode: 204,
-  body: null
+export const conflict = (error: Error): HttpResponse => ({
+  statusCode: 409,
+  body: error
 })
 
 export const serverError = (error: unknown): HttpResponse => ({
