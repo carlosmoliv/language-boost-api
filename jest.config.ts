@@ -8,7 +8,7 @@ const config: Config = {
     '!<rootDir>/src/**/index.ts',
     '!<rootDir>/src/data/contracts/**',
   ],
-  coverageDirectory: "coverage",
+  coverageDirectory: "<rootDir>/coverage",
   coverageProvider: "v8",
   moduleNameMapper: {
     '^@main/(.*)$': '<rootDir>/src/main/$1',
