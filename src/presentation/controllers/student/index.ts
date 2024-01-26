@@ -1,1 +1,1 @@
-export * from './register-student-controller'
+export * from './signup-student-controller'
