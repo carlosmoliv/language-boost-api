@@ -9,7 +9,8 @@ My approach involves applying Test-Driven Development (TDD), Clean Architecture,
 Functionalities roadmap:
 - Authentication
   - Login
-  - Registration
+  - Student Registration (Three steps Onboarding)
+  - Tutor Registration
 - Email verification
 - Student Profile
 - Tutor Profile
