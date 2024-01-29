@@ -6,6 +6,8 @@ An API for a language learning platform that I'm developing from scratch for stu
 
 My approach involves applying Test-Driven Development (TDD), Clean Architecture, Clean Code, Design Patterns, and SOLID principles. I'm adhering to the Classic School of TDD (also known as Detroit/Chicago), focusing on testing behavior rather than implementation details. This project aims to enhance my understanding of best practices in software development.
 
+Regarding the test strategy, influenced by the Classical School and drawing insights from Vladimir Korikov's book, I'll opt for targeted mocking. This means I'll only mock when necessary, specifically in situations involving unmanaged out-of-process dependencies like SMTP and Payment gateways.
+
 Functionalities roadmap:
 - Authentication
   - Login
@@ -15,6 +17,7 @@ Functionalities roadmap:
 - Student Profile
 - Tutor Profile
 - Lesson Scheduling
+- Payment features
 
 Nice to have in the future:
 - Add live video and real-time chat capabilities, instead of just sharing external links like Zoom or Google Meet.
