@@ -1,3 +1,5 @@
-import { BaseUser } from '@domain/entities'
+import { BaseUser, Onboarding } from '@domain/entities'
 
-export class Student extends BaseUser {}
+export class Student extends BaseUser {
+  onboarding?: Onboarding
+}
