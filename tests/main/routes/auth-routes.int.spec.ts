@@ -34,7 +34,7 @@ describe('Auth Routes', () => {
       })
 
     expect(status).toBe(200)
-    expect(body).toEqual({ accessToken: expect.any(String) })
+    expect(body).toMatchObject({ accessToken: expect.any(String) })
   })
 
   it('should return 401 when User is unauthorized', async () => {

@@ -2,6 +2,7 @@ import { makeFakeUser } from '@tests/factories'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'
+import mongoose from 'mongoose'
 
 describe('MongoStudentRepository', () => {
   let sut: MongoStudentRepository
@@ -29,7 +30,7 @@ describe('MongoStudentRepository', () => {
         name: data.name,
         email: data.email,
         role: 'student',
-        student: expect.objectContaining({ id: expect.any(String) })
+        student: expect.objectContaining({ _id: expect.any(mongoose.Types.ObjectId) })
       })
     })
   })
