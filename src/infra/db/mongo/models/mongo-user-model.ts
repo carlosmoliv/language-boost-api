@@ -1,7 +1,9 @@
-import { prop, getModelForClass, modelOptions } from '@typegoose/typegoose'
+import { prop, getModelForClass, modelOptions, Ref } from '@typegoose/typegoose'
+
+import { Student } from '@infra/db/mongo/models'
 
 @modelOptions({ schemaOptions: { timestamps: true } })
-class User {
+export class User {
   @prop()
   name!: string
 
@@ -19,6 +21,9 @@ class User {
 
   @prop()
   verifiedAt?: Date
+
+  @prop({ ref: () => Student })
+  student?: Ref<Student>
 }
 
 export const MongoUserModel = getModelForClass(User)
