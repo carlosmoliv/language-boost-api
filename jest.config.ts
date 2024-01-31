@@ -6,7 +6,7 @@ const config: Config = {
     '<rootDir>/src/**/*.ts',
     '!<rootDir>/src/main/**',
     '!<rootDir>/src/**/index.ts',
-    '!<rootDir>/src/data/contracts/**',
+    '!<rootDir>/src/application/contracts/**',
   ],
   coverageDirectory: "<rootDir>/coverage",
   coverageProvider: "v8",
