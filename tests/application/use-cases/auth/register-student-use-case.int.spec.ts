@@ -1,22 +1,22 @@
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { BcryptAdapter } from '@infra/gateways'
-import { MongoUserRepository } from '@infra/db/mongo/repositories/mongo-user-repository'
+import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'
-import { RegisterStudentUseCase } from '@application/use-cases/register-user-use-case'
+import { RegisterStudentUseCase } from '@application/use-cases'
 import { makeFakeUser } from '@tests/factories'
 import { EmailAlreadyInUseError } from '@application/use-cases/errors'
 
 describe('RegisterStudentUseCase', () => {
   let connection: MongoConnection
   let sut: RegisterStudentUseCase
-  let userRepository: MongoUserRepository
+  let userRepository: MongoStudentRepository
 
   beforeAll(async () => {
     connection = MongoConnection.getInstance()
     await connection.connect(env.db.mongo.uri)
     await connection.clearCollections(['users'])
     const hasher = new BcryptAdapter()
-    userRepository = new MongoUserRepository()
+    userRepository = new MongoStudentRepository()
     sut = new RegisterStudentUseCase(
       userRepository,
       hasher
@@ -32,7 +32,7 @@ describe('RegisterStudentUseCase', () => {
 
     const result = await sut.execute(userData)
 
-    const studentRegistered = await userRepository.findByCriteria({ email: userData.email })
+    const studentRegistered = await userRepository.findByEmail({ email: userData.email })
     expect(result.isRight).toBeTruthy()
     expect(studentRegistered).toEqual(expect.objectContaining({
       name: userData.name,

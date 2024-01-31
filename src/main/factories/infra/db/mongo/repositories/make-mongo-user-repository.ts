@@ -1,3 +1,3 @@
-import { MongoUserRepository } from '@infra/db/mongo/repositories'
+import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 
-export const makeMongoUserRepository = (): MongoUserRepository => new MongoUserRepository()
+export const makeMongoUserRepository = (): MongoStudentRepository => new MongoStudentRepository()

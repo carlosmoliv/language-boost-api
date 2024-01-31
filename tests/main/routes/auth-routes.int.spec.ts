@@ -5,7 +5,7 @@ import { app } from '@main/config/app'
 import { env } from '@main/config/env'
 import { makeFakeUser } from '@tests/factories'
 import { MongoConnection } from '@infra/db/mongo/helpers'
-import { MongoUserRepository } from '@infra/db/mongo/repositories'
+import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { UnauthorizedError } from '@presentation/errors'
 
 describe('Auth Routes', () => {
@@ -24,7 +24,7 @@ describe('Auth Routes', () => {
   it('should return 200 and a token when successfuly logging a User', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
-    await new MongoUserRepository().create({ ...userData, password })
+    await new MongoStudentRepository().create({ ...userData, password })
 
     const { status, body } = await request(app)
       .post('/api/login')
@@ -40,7 +40,7 @@ describe('Auth Routes', () => {
   it('should return 401 when User is unauthorized', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
-    await new MongoUserRepository().create({ ...userData, password })
+    await new MongoStudentRepository().create({ ...userData, password })
 
     const { status, body } = await request(app)
       .post('/api/login')

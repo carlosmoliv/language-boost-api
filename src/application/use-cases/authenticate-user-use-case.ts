@@ -1,18 +1,18 @@
 import { HashComparer, TokenGenerator } from '@application/contracts/gateways'
-import { UserRepository } from '@application/contracts/repositories'
+import { StudentRepository } from '@application/contracts/repositories'
 import { AuthenticationError } from '@application/use-cases/errors'
 import { AccessToken } from '@domain/entities'
 import { Either, left, right } from '@utils/either'
 
 export class AuthenticateUserUseCase {
   constructor (
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: StudentRepository,
     private readonly hashComparer: HashComparer,
     private readonly tokenGenerator: TokenGenerator
   ) {}
 
   async execute ({ email, password }: AuthenticateUserUseCase.Input): Promise<AuthenticateUserUseCase.Output> {
-    const user = await this.userRepository.findByCriteria({ email })
+    const user = await this.userRepository.findByEmail({ email })
     if (user === null) return left(new AuthenticationError())
     const passwordMatch = await this.hashComparer.compare({ plainText: password, digest: user.password })
     if (!passwordMatch) return left(new AuthenticationError())
