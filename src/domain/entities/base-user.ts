@@ -1,10 +1,9 @@
-export type UserStatus = 'active' | 'inactive' | 'pending'
-export type UserRole = 'student' | 'tutor' | 'admin'
+import { UserRoles, UserStatus } from '@domain/entities'
 
 export abstract class BaseUser {
-  status?: UserStatus = 'pending'
+  status?: UserStatus = UserStatus.Pending
   verifiedAt?: Date | null = null
-  role?: UserRole = 'student'
+  role?: UserRoles = UserRoles.Student
 
   constructor (
     readonly name: string,
