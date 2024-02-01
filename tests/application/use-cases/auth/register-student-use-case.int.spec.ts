@@ -1,10 +1,11 @@
+import { RegisterStudentUseCase } from '@application/use-cases'
+import { EmailAlreadyInUseError } from '@application/use-cases/errors'
+import { UserRoles, UserStatus } from '@domain/entities'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { BcryptAdapter } from '@infra/gateways'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'
-import { RegisterStudentUseCase } from '@application/use-cases'
 import { makeFakeUser } from '@tests/factories'
-import { EmailAlreadyInUseError } from '@application/use-cases/errors'
 
 describe('RegisterStudentUseCase', () => {
   let connection: MongoConnection
@@ -37,8 +38,8 @@ describe('RegisterStudentUseCase', () => {
     expect(studentRegistered).toEqual(expect.objectContaining({
       name: userData.name,
       email: userData.email,
-      status: 'pending',
-      role: 'student',
+      status: UserStatus.Pending,
+      role: UserRoles.Student,
       verifiedAt: null
     }))
   })

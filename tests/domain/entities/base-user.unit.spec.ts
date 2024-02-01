@@ -1,4 +1,4 @@
-import { BaseUser } from '@domain/entities'
+import { BaseUser, UserRoles, UserStatus } from '@domain/entities'
 
 class UserStub extends BaseUser {}
 
@@ -20,10 +20,10 @@ describe('BaseUser', () => {
   })
 
   it('should set role to Student as default if no role is passed', async () => {
-    expect(sut.role).toBe('student')
+    expect(sut.role).toBe(UserRoles.Student)
   })
 
   it('should set status to pending', async () => {
-    expect(sut.status).toBe('pending')
+    expect(sut.status).toBe(UserStatus.Pending)
   })
 })
