@@ -32,7 +32,7 @@ describe('Student Routes', () => {
     expect(status).toBe(204)
   })
 
-  it.each(['name', 'email', 'email'])('should return 400 if %s is not provided', async (field) => {
+  it.each(['name', 'email', 'email'])('should return 400 when %s is not provided', async (field) => {
     const userData = makeFakeUser()
 
     const { status } = await request(app)
