@@ -3,6 +3,11 @@ import { RegisterStudentUseCase } from '@application/use-cases'
 import { conflict, noContent, serverError } from '@presentation/helpers'
 import { Controller, HttpResponse } from '@presentation/interfaces'
 
+export namespace SignUpStudentController {
+  export type Request = { name: string, email: string, password: string }
+  export type Response = undefined | Error
+}
+
 export class SignUpStudentController implements Controller {
   constructor (
     private readonly registerStudent: RegisterStudentUseCase
@@ -10,16 +15,11 @@ export class SignUpStudentController implements Controller {
 
   async handle (request: SignUpStudentController.Request): Promise<HttpResponse<SignUpStudentController.Response>> {
     try {
-      const result = await this.registerStudent.execute(request)
-      if (result.isLeft() && result.value instanceof EmailAlreadyInUseError) return conflict(result.value)
+      await this.registerStudent.execute(request)
       return noContent()
     } catch (error) {
+      if (error instanceof EmailAlreadyInUseError) return conflict(error)
       return serverError(error)
     }
   }
-}
-
-export namespace SignUpStudentController {
-  export type Request = { name: string, email: string, password: string }
-  export type Response = undefined | Error
 }

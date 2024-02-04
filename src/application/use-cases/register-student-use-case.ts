@@ -2,11 +2,9 @@ import { Hasher } from '@application/contracts/gateways'
 import { StudentRepository } from '@application/contracts/repositories'
 import { EmailAlreadyInUseError } from '@application/use-cases/errors'
 import { Onboarding, Student } from '@domain/entities'
-import { Either, left, right } from '@utils/either'
 
 export namespace RegisterStudentUseCase {
   export type Input = { name: string, email: string, password: string }
-  export type Output = Either<EmailAlreadyInUseError, void>
 }
 
 export class RegisterStudentUseCase {
@@ -15,12 +13,11 @@ export class RegisterStudentUseCase {
     private readonly hasher: Hasher
   ) {}
 
-  async execute ({ email, name, password }: RegisterStudentUseCase.Input): Promise<RegisterStudentUseCase.Output> {
+  async execute ({ email, name, password }: RegisterStudentUseCase.Input): Promise<void> {
     const studentAlreadyExists = await this.studentRepository.findByEmail({ email })
-    if (studentAlreadyExists) return left(new EmailAlreadyInUseError())
+    if (studentAlreadyExists) throw new EmailAlreadyInUseError()
     const hashedPassword = await this.hasher.hash({ plainText: password })
     const student = new Student(name, email, hashedPassword, new Onboarding())
     await this.studentRepository.create(student)
-    return right(undefined)
   }
 }

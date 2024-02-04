@@ -31,10 +31,9 @@ describe('RegisterStudentUseCase', () => {
   it('should register a new Student', async () => {
     const userData = makeFakeUser()
 
-    const result = await sut.execute(userData)
+    await sut.execute(userData)
 
     const studentRegistered = await userRepository.findByEmail({ email: userData.email })
-    expect(result.isRight).toBeTruthy()
     expect(studentRegistered).toEqual(expect.objectContaining({
       name: userData.name,
       email: userData.email,
@@ -44,14 +43,13 @@ describe('RegisterStudentUseCase', () => {
     }))
   })
 
-  it('should return error when the email provided is already in use', async () => {
+  it('should return exception when the email provided is already in use', async () => {
     const userData1 = makeFakeUser()
     await userRepository.create(userData1)
     const userData2 = makeFakeUser()
 
-    const result = await sut.execute({ ...userData2, email: userData1.email })
+    const result = sut.execute({ ...userData2, email: userData1.email })
 
-    expect(result.isLeft).toBeTruthy()
-    expect(result.value).toBeInstanceOf(EmailAlreadyInUseError)
+    await expect(result).rejects.toThrow(EmailAlreadyInUseError)
   })
 })
