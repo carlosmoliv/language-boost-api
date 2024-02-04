@@ -21,7 +21,7 @@ describe('MongoStudentRepository', () => {
     await connection.disconnect()
   })
 
-  describe('create', () => {
+  describe('create()', () => {
     it('should create an Student User', async () => {
       const data = { ...makeFakeUser(), role: UserRoles.Student }
 
