@@ -1,16 +1,17 @@
 import { Controller, HttpResponse } from '@presentation/interfaces'
 import { ok, serverError, unauthorized } from '@presentation/helpers/http'
 import { AuthenticateUserUseCase } from '@application/use-cases'
+import { AuthenticationError } from '@application/use-cases/errors'
 
 export class LoginController implements Controller {
   constructor (private readonly authenticateUser: AuthenticateUserUseCase) {}
 
   async handle ({ email, password }: LoginController.Request): Promise<HttpResponse<LoginController.Response>> {
     try {
-      const result = await this.authenticateUser.execute({ email, password })
-      if (result.isLeft()) return unauthorized()
-      return ok({ accessToken: result.value.accessToken })
+      const accessToken = await this.authenticateUser.execute({ email, password })
+      return ok(accessToken)
     } catch (error) {
+      if (error instanceof AuthenticationError) return unauthorized()
       return serverError(error)
     }
   }

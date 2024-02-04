@@ -38,8 +38,7 @@ describe('AuthenticateUserImp', () => {
 
     const result = await sut.execute({ email: userData.email, password: userData.password })
 
-    expect(result?.isRight).toBeTruthy()
-    expect(result?.value).toEqual({ accessToken: expect.any(String) })
+    expect(result).toEqual({ accessToken: expect.any(String) })
   })
 
   it('should return AuthenticationError when the provided password does not match', async () => {
@@ -47,18 +46,16 @@ describe('AuthenticateUserImp', () => {
     const password = await hash(userData.password, 12)
     await studentRepository.create({ ...userData, password })
 
-    const result = await sut.execute({ email: userData.email, password: 'any_invalid_password' })
+    const result = sut.execute({ email: userData.email, password: 'any_invalid_password' })
 
-    expect(result.isLeft()).toBeTruthy()
-    expect(result.value).toBeInstanceOf(AuthenticationError)
+    await expect(result).rejects.toThrow(AuthenticationError)
   })
 
   it('should return AuthenticationError when User was not found', async () => {
     await connection.clearCollections(['users'])
 
-    const result = await sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
+    const result = sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
 
-    expect(result.isLeft()).toBeTruthy()
-    expect(result.value).toBeInstanceOf(AuthenticationError)
+    await expect(result).rejects.toThrow(AuthenticationError)
   })
 })
