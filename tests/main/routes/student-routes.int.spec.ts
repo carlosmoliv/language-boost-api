@@ -18,7 +18,7 @@ describe('Student Routes', () => {
     await connection.disconnect()
   })
 
-  it('should return 204 and create a Student when successfuly creating a Student', async () => {
+  test('Register a Student', async () => {
     const userData = makeFakeUser()
 
     const { status } = await request(app)
@@ -32,7 +32,7 @@ describe('Student Routes', () => {
     expect(status).toBe(204)
   })
 
-  it.each(['name', 'email', 'email'])('should return 400 when %s is not provided', async (field) => {
+  test.each(['name', 'email', 'email'])('Register fails when %s is not provided', async (field) => {
     const userData = makeFakeUser()
 
     const { status } = await request(app)

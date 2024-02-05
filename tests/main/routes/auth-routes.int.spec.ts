@@ -21,7 +21,7 @@ describe('Auth Routes', () => {
     await connection.disconnect()
   })
 
-  it('should return 200 and a token when successfuly logging a User', async () => {
+  test('Authentication succeeds when credentials match', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
     await new MongoStudentRepository().create({ ...userData, password })
@@ -37,7 +37,7 @@ describe('Auth Routes', () => {
     expect(body).toMatchObject({ accessToken: expect.any(String) })
   })
 
-  it('should return 401 when User is unauthorized', async () => {
+  test('Unauthorize authentication when credentials does not match', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
     await new MongoStudentRepository().create({ ...userData, password })
@@ -53,27 +53,19 @@ describe('Auth Routes', () => {
     expect(body).toEqual({ error: new UnauthorizedError().message })
   })
 
-  it('should return 400 when password is not provided', async () => {
+  test.each(['password', 'email'])('Authentication fails when %s is not provided', async (field) => {
+    const credentialsData = { email: 'carlos@gmail.com', password: '123456' }
     const { status } = await request(app)
       .post('/api/login')
       .send({
-        email: 'carlos@gmail.com'
+        ...credentialsData,
+        [field]: undefined
       })
 
     expect(status).toBe(400)
   })
 
-  it('should return 400 when email is not provided', async () => {
-    const { status } = await request(app)
-      .post('/api/login')
-      .send({
-        password: '123456'
-      })
-
-    expect(status).toBe(400)
-  })
-
-  it('should return 400 when email is not valid', async () => {
+  test('should return 400 when email is not valid', async () => {
     const { status } = await request(app)
       .post('/api/login')
       .send({

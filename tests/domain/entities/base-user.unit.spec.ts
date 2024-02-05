@@ -9,21 +9,21 @@ describe('BaseUser', () => {
     sut = new UserStub('any_name', 'any_email@mail.com', 'any_password')
   })
 
-  it('should return true if User is verified', async () => {
+  test('Confirm that the User is verified', async () => {
     sut.verify(new Date())
 
     expect(sut.isVerified()).toBe(true)
   })
 
-  it('should return false if User is not verified', async () => {
+  test('Confirm that the User is not verified', async () => {
     expect(sut.isVerified()).toBe(false)
   })
 
-  it('should set role to Student as default when no role is provided', async () => {
+  test('Default role is Student', async () => {
     expect(sut.role).toBe(UserRoles.Student)
   })
 
-  it('should set status to pending', async () => {
+  test('Default status is Pending', async () => {
     expect(sut.status).toBe(UserStatus.Pending)
   })
 })

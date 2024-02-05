@@ -22,7 +22,7 @@ describe('MongoStudentRepository', () => {
   })
 
   describe('create()', () => {
-    it('should create an Student User', async () => {
+    test('Create a Student and check on database', async () => {
       const data = { ...makeFakeUser(), role: UserRoles.Student }
 
       await sut.create(data)
@@ -38,7 +38,7 @@ describe('MongoStudentRepository', () => {
   })
 
   describe('findByEmail()', () => {
-    it('should return an Student with the provided email', async () => {
+    test('Retrieve a student using the email', async () => {
       const data = makeFakeUser()
       await sut.create(data)
 
