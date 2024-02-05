@@ -28,7 +28,7 @@ describe('RegisterStudentUseCase', () => {
     await connection.disconnect()
   })
 
-  it('should register a new Student', async () => {
+  test('Register a Student', async () => {
     const userData = makeFakeUser()
 
     await sut.execute(userData)
@@ -43,7 +43,7 @@ describe('RegisterStudentUseCase', () => {
     }))
   })
 
-  it('should return exception when the email provided is already in use', async () => {
+  test('Register fails when email already exists', async () => {
     const userData1 = makeFakeUser()
     await userRepository.create(userData1)
     const userData2 = makeFakeUser()
