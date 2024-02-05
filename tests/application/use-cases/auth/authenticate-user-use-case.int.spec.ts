@@ -8,7 +8,7 @@ import { env } from '@main/config/env'
 import { AuthenticationError } from '@application/use-cases/errors'
 import { makeFakeUser } from '@tests/factories'
 
-describe('AuthenticateUserImp', () => {
+describe('AuthenticateUserUseCase', () => {
   let sut: AuthenticateUserUseCase
   let studentRepository: MongoStudentRepository
   let connection: MongoConnection
@@ -31,7 +31,7 @@ describe('AuthenticateUserImp', () => {
     await connection.disconnect()
   })
 
-  it('should return a token when the provided password and email match', async () => {
+  test('Generate an access token when email and password match', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
     await studentRepository.create({ ...userData, password })
@@ -41,7 +41,7 @@ describe('AuthenticateUserImp', () => {
     expect(result).toEqual({ accessToken: expect.any(String) })
   })
 
-  it('should return AuthenticationError when the provided password does not match', async () => {
+  test('Authenticate fails when password does not match', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
     await studentRepository.create({ ...userData, password })
@@ -51,7 +51,7 @@ describe('AuthenticateUserImp', () => {
     await expect(result).rejects.toThrow(AuthenticationError)
   })
 
-  it('should return AuthenticationError when User was not found', async () => {
+  test('Authenticate fails when User is not found', async () => {
     await connection.clearCollections(['users'])
 
     const result = sut.execute({ email: 'any_email@gmail.com', password: 'any_password' })
