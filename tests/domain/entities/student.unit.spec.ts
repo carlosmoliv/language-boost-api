@@ -12,4 +12,13 @@ describe('Student', () => {
 
     expect(sut.onboarding[step]).toBe(true)
   })
+
+  test('Not a valid step', () => {
+    const perfomingInvalidStep = (): void => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      sut.markOnboardingStep('invalid_step' as any)
+    }
+
+    expect(perfomingInvalidStep).toThrow()
+  })
 })

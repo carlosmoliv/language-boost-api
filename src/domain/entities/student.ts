@@ -24,6 +24,8 @@ export class Student extends BaseUser {
       case OnboardingSteps.PreferredTopicsComplete:
         this.onboarding.preferredTopicsComplete = true
         break
+      default:
+        throw new Error('Not a valid Step')
     }
   }
 }
