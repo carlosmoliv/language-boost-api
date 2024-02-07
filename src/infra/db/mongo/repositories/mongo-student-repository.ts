@@ -8,8 +8,8 @@ export class MongoStudentRepository implements StudentRepository {
     return student && MongoHelper.map(student.toObject())
   }
 
-  async create (input: StudentRepository.CreateInput): Promise<void> {
-    const student = await MongoStudentModel.create({})
-    await MongoUserModel.create({ ...input, student: student.id })
+  async create ({ onboarding, ...userData }: StudentRepository.CreateInput): Promise<void> {
+    const student = await MongoStudentModel.create({ onboarding })
+    await MongoUserModel.create({ ...userData, student: student.id })
   }
 }

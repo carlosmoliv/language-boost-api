@@ -4,7 +4,7 @@ import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { makeFakeUser } from '@tests/factories'
 import { env } from '@main/config/env'
-import { UserRoles } from '@domain/entities'
+import { Onboarding, UserRoles } from '@domain/entities'
 
 describe('MongoStudentRepository', () => {
   let sut: MongoStudentRepository
@@ -33,6 +33,20 @@ describe('MongoStudentRepository', () => {
         email: data.email,
         role: UserRoles.Student,
         student: expect.objectContaining({ _id: expect.any(mongoose.Types.ObjectId) })
+      })
+    })
+
+    test.only('Create a Student with Onboarding info and check on database', async () => {
+      const onboarding = new Onboarding(true)
+      const userData = { ...makeFakeUser(), role: UserRoles.Student, onboarding }
+
+      await sut.create(userData)
+
+      const retrievedUser = await sut.findByEmail({ email: userData.email })
+      expect(retrievedUser).toMatchObject({
+        student: {
+          onboarding: expect.objectContaining({ signupComplete: true })
+        }
       })
     })
   })
