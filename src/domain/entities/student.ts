@@ -2,10 +2,10 @@ import { BaseUser, Onboarding, OnboardingSteps } from '@domain/entities'
 
 export class Student extends BaseUser {
   constructor (
-    name: string,
-    email: string,
-    password: string,
-    readonly onboarding: Onboarding
+    public name: string,
+    public email: string,
+    public password: string,
+    public onboarding: Onboarding
   ) {
     super(name, email, password)
   }

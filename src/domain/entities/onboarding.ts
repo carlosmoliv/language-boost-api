@@ -1,6 +1,8 @@
 export class Onboarding {
-  signupComplete: boolean = false
-  languageProficiencyComplete: boolean = false
-  learningGoalsComplete: boolean = false
-  preferredTopicsComplete: boolean = false
+  constructor (
+    public signupComplete: boolean = false,
+    public languageProficiencyComplete: boolean = false,
+    public learningGoalsComplete: boolean = false,
+    public preferredTopicsComplete: boolean = false
+  ) {}
 }

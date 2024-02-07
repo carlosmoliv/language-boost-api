@@ -1,21 +1,20 @@
 import { UserRoles, UserStatus } from '@domain/entities'
 
 export abstract class BaseUser {
-  status?: UserStatus = UserStatus.Pending
-  verifiedAt?: Date | null = null
-  role?: UserRoles = UserRoles.Student
-
   constructor (
-    readonly name: string,
-    readonly email: string,
-    readonly password: string
+    public name: string,
+    public email: string,
+    public password: string,
+    public status: UserStatus = UserStatus.Pending,
+    public verifiedAt: Date | null = null,
+    public role: UserRoles = UserRoles.Student
   ) {}
 
-  isVerified (): boolean {
+  public isVerified (): boolean {
     return !!this.verifiedAt
   }
 
-  verify (date: Date): void {
+  public verify (date: Date): void {
     this.verifiedAt = date
   }
 }
