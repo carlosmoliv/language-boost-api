@@ -36,7 +36,7 @@ describe('MongoStudentRepository', () => {
       })
     })
 
-    test.only('Create a Student with Onboarding info and check on database', async () => {
+    test('Create a Student with Onboarding info and check on database', async () => {
       const onboarding = new Onboarding(true)
       const userData = { ...makeFakeUser(), role: UserRoles.Student, onboarding }
 
@@ -59,6 +59,18 @@ describe('MongoStudentRepository', () => {
       const result = await sut.findByEmail({ email: data.email })
 
       expect(result?.email).toBe(data.email)
+    })
+  })
+
+  describe('findById()', () => {
+    test('Retrieve a student using the ID', async () => {
+      const id = new mongoose.Types.ObjectId().toHexString()
+      const data = makeFakeUser()
+      await sut.create({ ...data, id })
+
+      const result = await sut.findById({ id })
+
+      expect(result?.id).toBe(id)
     })
   })
 })
