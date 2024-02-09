@@ -1,4 +1,4 @@
-import { Onboarding } from '@domain/entities'
+import { Onboarding, StudentData } from '@domain/entities'
 
 export interface StudentRepository {
   create: (input: StudentRepository.CreateInput) => Promise<void>
@@ -11,6 +11,5 @@ export namespace StudentRepository {
   export type FindByEmailInput = { email: string }
   export type FindByEmailOutput = { id: string, name: string, email: string, password: string, onboarding: Onboarding } | null
   export type FindByIdInput = { id: string }
-  export type FindByIdOutput = { id: string, name: string, email: string, password: string, onboarding: Onboarding } | null
-
+  export type FindByIdOutput = StudentData | null
 }
