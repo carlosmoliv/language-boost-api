@@ -1,5 +1,13 @@
 import { BaseUser, Onboarding, OnboardingSteps } from '@domain/entities'
 
+export type StudentData = {
+  id: string
+  name: string
+  email: string
+  password: string
+  onboarding?: Onboarding
+}
+
 export class Student extends BaseUser {
   constructor (
     public name: string,
@@ -27,5 +35,10 @@ export class Student extends BaseUser {
       default:
         throw new Error('Not a valid Step')
     }
+  }
+
+  static create ({ onboarding, name, email, password }: StudentData): Student {
+    const onboardingOrCreate = onboarding ?? new Onboarding()
+    return new Student(name, email, password, onboardingOrCreate)
   }
 }
