@@ -7,7 +7,8 @@ export abstract class BaseUser {
     public password: string,
     public status: UserStatus = UserStatus.Pending,
     public verifiedAt: Date | null = null,
-    public role: UserRoles = UserRoles.Student
+    public role: UserRoles = UserRoles.Student,
+    public id?: string
   ) {}
 
   public isVerified (): boolean {
