@@ -1,9 +1,13 @@
 import { faker } from '@faker-js/faker'
 
-type Output = { name: string, email: string, password: string }
+import { UserRoles } from '@domain/entities'
 
-export const makeFakeUser = (): Output => ({
+type Input = { role?: UserRoles }
+type Output = { name: string, email: string, password: string, role: UserRoles }
+
+export const makeFakeUser = ({ role = UserRoles.Student }: Input = {}): Output => ({
   name: faker.person.firstName(),
   email: faker.internet.email(),
-  password: faker.internet.password()
+  password: faker.internet.password(),
+  role
 })
