@@ -5,6 +5,7 @@ import { env } from '@main/config/env'
 import { makeFakeUser } from '@tests/factories'
 import mongoose from 'mongoose'
 import { UpdateOnboardingProgressUseCase } from '@application/use-cases'
+import { StudentNotFoundError } from '@application/use-cases/errors'
 
 describe('UpdateOnboardingProgressUseCase', () => {
   let connection: MongoConnection
@@ -38,5 +39,13 @@ describe('UpdateOnboardingProgressUseCase', () => {
         }
       }
     })
+  })
+
+  test('Update fails when user does not exist', async () => {
+    const userId = new mongoose.Types.ObjectId().toHexString()
+
+    const promise = sut.execute({ userId, onboardingStep: OnboardingSteps.SignupComplete })
+
+    await expect(promise).rejects.toThrow(StudentNotFoundError)
   })
 })
