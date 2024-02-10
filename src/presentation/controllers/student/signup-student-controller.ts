@@ -3,11 +3,6 @@ import { RegisterStudentUseCase } from '@application/use-cases'
 import { conflict, noContent, serverError } from '@presentation/helpers'
 import { Controller, HttpResponse } from '@presentation/interfaces'
 
-export namespace SignUpStudentController {
-  export type Request = { name: string, email: string, password: string }
-  export type Response = undefined | Error
-}
-
 export class SignUpStudentController implements Controller {
   constructor (
     private readonly registerStudent: RegisterStudentUseCase
@@ -22,4 +17,9 @@ export class SignUpStudentController implements Controller {
       return serverError(error)
     }
   }
+}
+
+export namespace SignUpStudentController {
+  export type Request = { name: string, email: string, password: string }
+  export type Response = undefined | Error
 }

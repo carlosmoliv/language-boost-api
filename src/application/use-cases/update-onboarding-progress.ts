@@ -2,10 +2,6 @@ import { StudentRepository } from '@application/contracts/repositories'
 import { OnboardingSteps, Student } from '@domain/entities'
 import { StudentNotFoundError } from '@application/use-cases/errors'
 
-export namespace UpdateOnboardingProgressUseCase {
-  export type Input = { userId: string, onboardingStep: OnboardingSteps }
-}
-
 export class UpdateOnboardingProgressUseCase {
   constructor (private readonly studentRepository: StudentRepository) {}
 
@@ -16,4 +12,8 @@ export class UpdateOnboardingProgressUseCase {
     student.markOnboardingStep(onboardingStep)
     await this.studentRepository.save({ ...student, id: studentFromDb.id })
   }
+}
+
+export namespace UpdateOnboardingProgressUseCase {
+  export type Input = { userId: string, onboardingStep: OnboardingSteps }
 }

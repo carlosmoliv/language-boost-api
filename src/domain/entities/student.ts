@@ -33,7 +33,7 @@ export class Student extends BaseUser {
         this.onboarding.preferredTopicsComplete = true
         break
       default:
-        throw new Error('Not a valid Step')
+        throw new Error('Not a valid onboarding step.')
     }
   }
 
