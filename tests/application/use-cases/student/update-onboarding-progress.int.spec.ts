@@ -31,7 +31,7 @@ describe('UpdateOnboardingProgressUseCase', () => {
 
     await sut.execute({ userId, onboardingStep: OnboardingSteps.SignupComplete })
 
-    const studentWithOnboarding = await studentRepository.findByEmail({ email: userData.email })
+    const studentWithOnboarding = await studentRepository.findByEmail(userData.email)
     expect(studentWithOnboarding).toMatchObject({
       student: {
         onboarding: {

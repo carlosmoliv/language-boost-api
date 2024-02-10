@@ -33,7 +33,7 @@ describe('RegisterStudentUseCase', () => {
 
     await sut.execute(userData)
 
-    const studentRegistered = await userRepository.findByEmail({ email: userData.email })
+    const studentRegistered = await userRepository.findByEmail(userData.email)
     expect(studentRegistered).toEqual(expect.objectContaining({
       name: userData.name,
       email: userData.email,

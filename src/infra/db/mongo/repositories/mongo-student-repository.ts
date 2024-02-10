@@ -4,7 +4,6 @@ import { MongoUserModel, MongoStudentModel } from '@infra/db/mongo/models'
 import { StudentRepository } from '@application/contracts/repositories'
 import { MongoHelper } from '@infra/db/mongo/helpers'
 import { StudentMap } from '@infra/db/mongo/helpers/mappers'
-import { StudentData } from '@domain/entities'
 
 export class MongoStudentRepository implements StudentRepository {
   async create ({ onboarding, id, ...userData }: StudentRepository.CreateInput): Promise<void> {
@@ -12,18 +11,18 @@ export class MongoStudentRepository implements StudentRepository {
     await MongoUserModel.create({ ...userData, _id: id, student: student.id })
   }
 
-  async findByEmail ({ email }: StudentRepository.FindByEmailInput): Promise<StudentRepository.FindByEmailOutput> {
+  async save ({ email, id, name, password, ...studentData }: StudentRepository.SaveInput): Promise<void> {
+    const user = await MongoUserModel.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(id) }, { name, email, password })
+    if (user) await MongoStudentModel.updateOne({ _id: user.student }, { ...studentData })
+  }
+
+  async findByEmail (email: string): Promise<StudentRepository.FindOutput> {
     const student = await MongoUserModel.findOne({ email }).populate('student')
     return student && MongoHelper.map(student.toObject())
   }
 
-  async findById ({ id }: StudentRepository.FindByIdInput): Promise<StudentRepository.FindByIdOutput> {
+  async findById (id: string): Promise<StudentRepository.FindOutput> {
     const student = await MongoUserModel.findById(new mongoose.Types.ObjectId(id)).populate('student')
     return student && StudentMap.toDomain(student.toObject())
-  }
-
-  async save ({ email, id, name, password, ...studentData }: StudentData): Promise<void> {
-    const user = await MongoUserModel.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(id) }, { name, email, password })
-    if (user) await MongoStudentModel.updateOne({ _id: user.student }, { ...studentData })
   }
 }

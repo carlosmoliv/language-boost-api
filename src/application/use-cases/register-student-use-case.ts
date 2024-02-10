@@ -14,7 +14,7 @@ export class RegisterStudentUseCase {
   ) {}
 
   async execute ({ email, name, password }: RegisterStudentUseCase.Input): Promise<void> {
-    const studentAlreadyExists = await this.studentRepository.findByEmail({ email })
+    const studentAlreadyExists = await this.studentRepository.findByEmail(email)
     if (studentAlreadyExists) throw new EmailAlreadyInUseError()
     const hashedPassword = await this.hasher.hash({ plainText: password })
     const student = new Student(name, email, hashedPassword, new Onboarding())

@@ -10,7 +10,7 @@ export class UpdateOnboardingProgressUseCase {
   constructor (private readonly studentRepository: StudentRepository) {}
 
   async execute ({ userId, onboardingStep }: UpdateOnboardingProgressUseCase.Input): Promise<void> {
-    const studentFromDb = await this.studentRepository.findById({ id: userId })
+    const studentFromDb = await this.studentRepository.findById(userId)
     if (!studentFromDb) throw new StudentNotFoundError()
     const student = Student.create(studentFromDb)
     student.markOnboardingStep(onboardingStep)

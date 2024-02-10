@@ -27,7 +27,7 @@ describe('MongoStudentRepository', () => {
 
       await sut.create(data)
 
-      const retrievedUser = await sut.findByEmail({ email: data.email })
+      const retrievedUser = await sut.findByEmail(data.email)
       expect(retrievedUser).toMatchObject({
         name: data.name,
         email: data.email,
@@ -42,7 +42,7 @@ describe('MongoStudentRepository', () => {
 
       await sut.create(userData)
 
-      const retrievedUser = await sut.findByEmail({ email: userData.email })
+      const retrievedUser = await sut.findByEmail(userData.email)
       expect(retrievedUser).toMatchObject({
         student: {
           onboarding: expect.objectContaining({ signupComplete: true })
@@ -56,7 +56,7 @@ describe('MongoStudentRepository', () => {
       const data = makeFakeUser()
       await sut.create(data)
 
-      const result = await sut.findByEmail({ email: data.email })
+      const result = await sut.findByEmail(data.email)
 
       expect(result?.email).toBe(data.email)
     })
@@ -68,7 +68,7 @@ describe('MongoStudentRepository', () => {
       const data = makeFakeUser()
       await sut.create({ ...data, id })
 
-      const result = await sut.findById({ id })
+      const result = await sut.findById(id)
 
       expect(result?.id).toBe(id)
     })
@@ -82,7 +82,7 @@ describe('MongoStudentRepository', () => {
 
       await sut.save(newStudentData)
 
-      const studentRetrieved = await sut.findById({ id: studentData.id })
+      const studentRetrieved = await sut.findById(studentData.id)
       expect(studentRetrieved?.name).toBe(newStudentData.name)
     })
   })
