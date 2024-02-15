@@ -1,3 +1,3 @@
 export interface MessageBroker {
-  publish: <TMessage>(message: TMessage) => void
+  publish: <TMessage>(message: TMessage, routingKey: string) => void
 }
