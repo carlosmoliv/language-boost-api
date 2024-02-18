@@ -21,9 +21,9 @@ export const unauthorized = (): HttpResponse => ({
   body: new UnauthorizedError()
 })
 
-export const forbidden = (): HttpResponse => ({
+export const forbidden = (error: Error): HttpResponse => ({
   statusCode: 403,
-  body: new ForbiddenError()
+  body: error ?? new ForbiddenError()
 })
 
 export const conflict = (error: Error): HttpResponse => ({
