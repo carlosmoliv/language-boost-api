@@ -1,12 +1,15 @@
 import amqplib from 'amqplib'
 import { RabbitMQAdapter } from '@infra/gateways'
+import { env } from '@main/config/env'
 
 jest.mock('amqplib')
 
 describe('RabbitMQAdapter', () => {
   let sut: RabbitMQAdapter
+  let exchangeName: string
 
   beforeAll(() => {
+    exchangeName = env.rabbitMQ.exchangeName
     sut = new RabbitMQAdapter()
   })
 
@@ -22,7 +25,7 @@ describe('RabbitMQAdapter', () => {
 
     expect(amqplib.connect).toHaveBeenCalledWith('amqp://localhost')
     expect(mockedConnection.createChannel).toHaveBeenCalled()
-    expect(mockedChannel.assertExchange).toHaveBeenCalledWith('logExchange', 'direct', { durable: true })
-    expect(mockedChannel.publish).toHaveBeenCalledWith('logExchange', routingKey, Buffer.from(JSON.stringify(message)))
+    expect(mockedChannel.assertExchange).toHaveBeenCalledWith(exchangeName, 'direct', { durable: true })
+    expect(mockedChannel.publish).toHaveBeenCalledWith(exchangeName, routingKey, Buffer.from(JSON.stringify(message)))
   })
 })

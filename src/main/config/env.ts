@@ -10,6 +10,6 @@ export const env = {
   },
   rabbitMQ: {
     url: process.env.RABBITMQ_URL ?? 'amqp://localhost',
-    exchangeName: process.env.RABBITMQ_URL_EXCHANGE ?? 'logExchange'
+    exchangeName: process.env.RABBITMQ_URL_EXCHANGE ?? 'testExchange'
   }
 }
