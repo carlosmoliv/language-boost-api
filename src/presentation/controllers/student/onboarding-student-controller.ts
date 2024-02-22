@@ -6,7 +6,7 @@ import { Controller, HttpResponse } from '@presentation/interfaces'
 export class OnboardingStudentController implements Controller {
   constructor (private readonly updateOnboardingProgress: UpdateOnboardingProgressUseCase) {}
 
-  async handle (request: OnboardingStudentController.Input): Promise<HttpResponse<OnboardingStudentController.Output>> {
+  async handle (request: OnboardingStudentController.Request): Promise<HttpResponse<OnboardingStudentController.Response>> {
     try {
       await this.updateOnboardingProgress.execute(request)
       return noContent()
@@ -17,6 +17,6 @@ export class OnboardingStudentController implements Controller {
 }
 
 export namespace OnboardingStudentController {
-  export type Input = { userId: string, onboardingStep: OnboardingSteps }
-  export type Output = undefined | Error
+  export type Request = { userId: string, onboardingStep: OnboardingSteps }
+  export type Response = undefined | Error
 }

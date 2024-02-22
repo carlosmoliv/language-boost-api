@@ -5,6 +5,7 @@ import { env } from '@main/config/env'
 import { makeCreateFakeStudentOnDatabase } from '@tests/factories'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { OnboardingSteps } from '@domain/entities'
+import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 
 describe('Student Routes', () => {
   let connection: MongoConnection
@@ -34,6 +35,20 @@ describe('Student Routes', () => {
         .send({ onboardingStep: OnboardingSteps.SignupComplete })
 
       expect(status).toBe(204)
+      const student = await new MongoStudentRepository().findById(user.id)
+      expect(student).toMatchObject({
+        onboarding: {
+          signupComplete: true
+        }
+      })
+    })
+
+    test('Update fails when an invalid onboarding step is provided.', async () => {
+      const { status } = await request(app)
+        .put('/api/students/userId/onboarding')
+        .send({ onboardingStep: 'invalid_option' })
+
+      expect(status).toBe(400)
     })
   })
 })
