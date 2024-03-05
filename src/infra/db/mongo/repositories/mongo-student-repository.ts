@@ -11,8 +11,9 @@ export class MongoStudentRepository implements StudentRepository {
     await MongoUserModel.create({ ...userData, _id: id, student: student.id })
   }
 
-  async save ({ email, id, name, password, ...studentData }: StudentRepository.SaveInput): Promise<void> {
-    const user = await MongoUserModel.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(id) }, { name, email, password })
+  async update ({ id, data }: StudentRepository.UpdateInput): Promise<void> {
+    const { name, password, email, role, ...studentData } = data
+    const user = await MongoUserModel.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(id) }, { name, email, password, role })
     if (user) await MongoStudentModel.updateOne({ _id: user.student }, { ...studentData })
   }
 

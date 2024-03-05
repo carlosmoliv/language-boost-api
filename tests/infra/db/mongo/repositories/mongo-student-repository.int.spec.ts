@@ -74,15 +74,16 @@ describe('MongoStudentRepository', () => {
     })
   })
 
-  describe('save()', () => {
-    test('Save student data', async () => {
-      const studentData = { id: new mongoose.Types.ObjectId().toHexString(), ...makeFakeUser() }
-      await sut.create(studentData)
+  describe('update()', () => {
+    test('Update student data', async () => {
+      const id = new mongoose.Types.ObjectId().toHexString()
+      const studentData = makeFakeUser()
+      await sut.create({ id, ...studentData })
       const newStudentData = { ...studentData, name: makeFakeUser().name }
 
-      await sut.save(newStudentData)
+      await sut.update({ id, data: newStudentData })
 
-      const studentRetrieved = await sut.findById(studentData.id)
+      const studentRetrieved = await sut.findById(id)
       expect(studentRetrieved?.name).toBe(newStudentData.name)
     })
   })
