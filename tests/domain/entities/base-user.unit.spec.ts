@@ -6,7 +6,7 @@ describe('BaseUser', () => {
   let sut: UserStub
 
   beforeEach(() => {
-    sut = new UserStub('any_name', 'any_email@mail.com', 'any_password')
+    sut = new UserStub({ name: 'any_name', email: 'any_email@mail.com', password: 'any_password' })
   })
 
   test('Confirm that the User is verified', async () => {

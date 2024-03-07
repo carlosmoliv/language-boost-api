@@ -47,8 +47,9 @@ describe('RegisterStudentUseCase', () => {
     const userData1 = makeFakeUser()
     await userRepository.create(userData1)
     const userData2 = makeFakeUser()
+    userData2.email = userData1.email
 
-    const result = sut.execute({ ...userData2, email: userData1.email })
+    const result = sut.execute(userData2)
 
     await expect(result).rejects.toThrow(EmailAlreadyInUseError)
   })

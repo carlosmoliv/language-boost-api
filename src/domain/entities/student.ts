@@ -1,21 +1,32 @@
-import { BaseUser, Onboarding, OnboardingSteps } from '@domain/entities'
+import { BaseUser, Onboarding, OnboardingSteps, UserProps } from '@domain/entities'
 
-export type StudentData = {
-  id: string
-  name: string
-  email: string
-  password: string
+export type StudentProps = UserProps & {
   onboarding?: Onboarding
 }
 
 export class Student extends BaseUser {
-  constructor (
-    public name: string,
-    public email: string,
-    public password: string,
-    public onboarding: Onboarding
-  ) {
-    super(name, email, password)
+  private _onboarding: Onboarding
+
+  constructor ({
+    name,
+    email,
+    password,
+    role,
+    status,
+    verifiedAt,
+    id,
+    onboarding
+  }: StudentProps) {
+    super({ name, email, password, status, verifiedAt, role, id })
+    this._onboarding = onboarding ?? new Onboarding()
+  }
+
+  public get onboarding (): Onboarding {
+    return this._onboarding
+  }
+
+  public set onboarding (onboarding: Onboarding) {
+    this._onboarding = onboarding
   }
 
   markOnboardingStep (step: OnboardingSteps): void {
@@ -37,8 +48,7 @@ export class Student extends BaseUser {
     }
   }
 
-  static create ({ onboarding, name, email, password }: StudentData): Student {
-    const onboardingOrCreate = onboarding ?? new Onboarding()
-    return new Student(name, email, password, onboardingOrCreate)
+  static create (props: StudentProps): Student {
+    return new Student(props)
   }
 }

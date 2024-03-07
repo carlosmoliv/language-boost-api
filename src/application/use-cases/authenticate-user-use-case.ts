@@ -12,7 +12,7 @@ export class AuthenticateUserUseCase {
 
   async execute ({ email, password }: AuthenticateUserUseCase.Input): Promise<AuthenticateUserUseCase.Output> {
     const user = await this.userRepository.findByEmail(email)
-    if (user === null) throw new AuthenticationError()
+    if (!user?.id) throw new AuthenticationError()
     const passwordMatch = await this.hashComparer.compare({ plainText: password, digest: user.password })
     if (!passwordMatch) throw new AuthenticationError()
     const accessToken = await this.tokenGenerator.generate({ key: user.id, expirationInMs: AccessToken.expirationInMs })

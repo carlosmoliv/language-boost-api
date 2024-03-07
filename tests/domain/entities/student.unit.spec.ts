@@ -1,10 +1,10 @@
-import { Onboarding, OnboardingSteps, Student } from '@domain/entities'
+import { OnboardingSteps, Student } from '@domain/entities'
 
 describe('Student', () => {
   let sut: Student
 
   beforeEach(() => {
-    sut = new Student('any_name', 'any_email@mail.com', 'any_password', new Onboarding())
+    sut = new Student({ name: 'any_name', email: 'any_email@mail.com', password: 'any_password' })
   })
 
   test.each([Object.values(OnboardingSteps)])('Mark step %s as complete', async (step) => {
@@ -14,11 +14,11 @@ describe('Student', () => {
   })
 
   test('Not a valid step', () => {
-    const perfomingInvalidStep = (): void => {
+    const performingInvalidStep = (): void => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       sut.markOnboardingStep('invalid_step' as any)
     }
 
-    expect(perfomingInvalidStep).toThrow()
+    expect(performingInvalidStep).toThrow()
   })
 })

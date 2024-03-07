@@ -23,14 +23,16 @@ describe('Auth Routes', () => {
 
   test('Authentication succeeds when credentials match', async () => {
     const userData = makeFakeUser()
+    const plainPassword = userData.password
     const password = await hash(userData.password, 12)
-    await new MongoStudentRepository().create({ ...userData, password })
+    userData.password = password
+    await new MongoStudentRepository().create(userData)
 
     const { status, body } = await request(app)
       .post('/api/login')
       .send({
         email: userData.email,
-        password: userData.password
+        password: plainPassword
       })
 
     expect(status).toBe(200)
@@ -40,7 +42,8 @@ describe('Auth Routes', () => {
   test('Unauthorize authentication when credentials does not match', async () => {
     const userData = makeFakeUser()
     const password = await hash(userData.password, 12)
-    await new MongoStudentRepository().create({ ...userData, password })
+    userData.password = password
+    await new MongoStudentRepository().create(userData)
 
     const { status, body } = await request(app)
       .post('/api/login')

@@ -1,7 +1,7 @@
 import { Hasher } from '@application/contracts/gateways'
 import { StudentRepository } from '@application/contracts/repositories'
 import { EmailAlreadyInUseError } from '@application/use-cases/errors'
-import { Onboarding, Student } from '@domain/entities'
+import { Student } from '@domain/entities'
 
 export class RegisterStudentUseCase {
   constructor (
@@ -13,7 +13,7 @@ export class RegisterStudentUseCase {
     const studentAlreadyExists = await this.studentRepository.findByEmail(email)
     if (studentAlreadyExists) throw new EmailAlreadyInUseError()
     const hashedPassword = await this.hasher.hash({ plainText: password })
-    const student = new Student(name, email, hashedPassword, new Onboarding())
+    const student = new Student({ name, email, password: hashedPassword })
     await this.studentRepository.create(student)
   }
 }

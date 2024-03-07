@@ -6,15 +6,16 @@ import { MongoHelper } from '@infra/db/mongo/helpers'
 import { StudentMap } from '@infra/db/mongo/helpers/mappers'
 
 export class MongoStudentRepository implements StudentRepository {
-  async create ({ onboarding, id, ...userData }: StudentRepository.CreateInput): Promise<void> {
-    const student = await MongoStudentModel.create({ onboarding })
-    await MongoUserModel.create({ ...userData, _id: id, student: student.id })
+  async create (input: StudentRepository.CreateInput): Promise<void> {
+    const { user, student } = StudentMap.toPersistance(input)
+    const result = await MongoStudentModel.create(student)
+    await MongoUserModel.create({ ...user, student: result.id })
   }
 
-  async update ({ id, data }: StudentRepository.UpdateInput): Promise<void> {
-    const { name, password, email, role, ...studentData } = data
-    const user = await MongoUserModel.findOneAndUpdate({ _id: new mongoose.Types.ObjectId(id) }, { name, email, password, role })
-    if (user) await MongoStudentModel.updateOne({ _id: user.student }, { ...studentData })
+  async update (input: StudentRepository.UpdateInput): Promise<void> {
+    const { user, student } = StudentMap.toPersistance(input)
+    const result = await MongoUserModel.findOneAndUpdate({ _id: user._id }, { user })
+    if (result) await MongoStudentModel.updateOne({ _id: result.student }, { student })
   }
 
   async findByEmail (email: string): Promise<StudentRepository.FindOutput> {

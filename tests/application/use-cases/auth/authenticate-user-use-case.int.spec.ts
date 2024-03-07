@@ -32,21 +32,23 @@ describe('AuthenticateUserUseCase', () => {
   })
 
   test('Generate an access token when email and password match', async () => {
-    const userData = makeFakeUser()
-    const password = await hash(userData.password, 12)
-    await studentRepository.create({ ...userData, password })
+    const user = makeFakeUser()
+    const plainPassword = user.password
+    user.password = await hash(user.password, 12)
+    await studentRepository.create(user)
 
-    const result = await sut.execute({ email: userData.email, password: userData.password })
+    const result = await sut.execute({ email: user.email, password: plainPassword })
 
     expect(result).toEqual({ accessToken: expect.any(String) })
   })
 
   test('Authenticate fails when password does not match', async () => {
-    const userData = makeFakeUser()
-    const password = await hash(userData.password, 12)
-    await studentRepository.create({ ...userData, password })
+    const user = makeFakeUser()
+    const password = await hash(user.password, 12)
+    user.password = password
+    await studentRepository.create(user)
 
-    const result = sut.execute({ email: userData.email, password: 'any_invalid_password' })
+    const result = sut.execute({ email: user.email, password: 'any_invalid_password' })
 
     await expect(result).rejects.toThrow(AuthenticationError)
   })

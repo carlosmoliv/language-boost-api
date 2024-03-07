@@ -1,5 +1,5 @@
 export enum UserStatus {
   Active = 'active',
-  Ictive = 'inactive',
+  Inactive = 'inactive',
   Pending = 'pending'
 }

@@ -1,14 +1,14 @@
-import { StudentData } from '@domain/entities'
+import { Student } from '@domain/entities'
 
 export interface StudentRepository {
   create: (input: StudentRepository.CreateInput) => Promise<void>
-  save: (input: StudentRepository.SaveInput) => Promise<void>
+  update: (input: StudentRepository.UpdateInput) => Promise<void>
   findByEmail: (email: string) => Promise<StudentRepository.FindOutput>
   findById: (id: string) => Promise<StudentRepository.FindOutput>
 }
 
 export namespace StudentRepository {
-  export type CreateInput = Omit<StudentData, 'id'> & { id?: string }
-  export type SaveInput = StudentData
-  export type FindOutput = StudentData | null
+  export type CreateInput = Student
+  export type UpdateInput = Student
+  export type FindOutput = Student | null
 }
