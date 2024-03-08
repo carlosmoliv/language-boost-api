@@ -2,10 +2,11 @@ import request from 'supertest'
 
 import { app } from '@main/config/app'
 import { env } from '@main/config/env'
-import { makeCreateFakeStudentOnDatabase } from '@tests/factories'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { OnboardingSteps } from '@domain/entities'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
+import mongoose from 'mongoose'
+import { makeFakeUser } from '@tests/factories'
 
 describe('Student Routes', () => {
   let connection: MongoConnection
@@ -28,15 +29,15 @@ describe('Student Routes', () => {
 
     test('Mark Signup step as complete', async () => {
       publishSpy.mockResolvedValueOnce({})
-      const user = await makeCreateFakeStudentOnDatabase()
+      const id = new mongoose.Types.ObjectId().toHexString()
+      await new MongoStudentRepository().create(makeFakeUser({ id }))
 
       const { status } = await request(app)
-        .put(`/api/students/${user.id}/onboarding`)
+        .put(`/api/students/${id}/onboarding`)
         .send({ onboardingStep: OnboardingSteps.SignupComplete })
 
+      const student = await new MongoStudentRepository().findById(id)
       expect(status).toBe(204)
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const student = await new MongoStudentRepository().findById(user.id)
       expect(student).toMatchObject({
         onboarding: {
           signupComplete: true

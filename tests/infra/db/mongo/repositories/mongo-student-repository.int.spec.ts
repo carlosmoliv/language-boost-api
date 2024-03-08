@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
-import { makeCreateFakeStudentOnDatabase, makeFakeUser } from '@tests/factories'
+import { makeFakeUser } from '@tests/factories'
 import { env } from '@main/config/env'
 import { UserRoles } from '@domain/entities'
 
@@ -57,12 +57,12 @@ describe('MongoStudentRepository', () => {
 
   describe('findById()', () => {
     test('Retrieve a student using the ID', async () => {
-      const student = await makeCreateFakeStudentOnDatabase()
+      const id = new mongoose.Types.ObjectId().toHexString()
+      await sut.create(makeFakeUser({ id }))
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      const result = await sut.findById(student._id)
+      const result = await sut.findById(id)
 
-      expect(result?.id).toBe(student.id)
+      expect(result?.id).toBe(id)
     })
   })
 
