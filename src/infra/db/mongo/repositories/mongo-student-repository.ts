@@ -14,8 +14,9 @@ export class MongoStudentRepository implements StudentRepository {
 
   async update (input: StudentRepository.UpdateInput): Promise<void> {
     const { user, student } = StudentMap.toPersistance(input)
-    const result = await MongoUserModel.findOneAndUpdate({ _id: user._id }, { user })
-    if (result) await MongoStudentModel.updateOne({ _id: result.student }, { student })
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const updatedUser = await MongoUserModel.findByIdAndUpdate(user._id, { ...user }, { new: true })
+    if (updatedUser) await MongoStudentModel.updateOne({ _id: updatedUser.student }, { student })
   }
 
   async findByEmail (email: string): Promise<StudentRepository.FindOutput> {

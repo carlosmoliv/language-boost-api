@@ -66,20 +66,18 @@ describe('MongoStudentRepository', () => {
     })
   })
 
-  // describe.only('update()', () => {
-  //   test('Update student data', async () => {
-  //     const studentData = makeFakeUser({ id: new mongoose.Types.ObjectId().toHexString() })
-  //     const newData = { name: makeFakeUser().name }
-  //     const createdStudent = await sut.findById(studentData.id)
-  //     studentData.name = newData.name
-  //     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  describe('update()', () => {
+    test.only('Update student data', async () => {
+      const id = new mongoose.Types.ObjectId().toHexString()
+      const student = makeFakeUser({ id })
+      await sut.create(student)
+      const newData = { name: makeFakeUser().name }
+      student.name = newData.name
 
-  //     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  //     await sut.update(studentData)
+      await sut.update(student)
 
-  //     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  //     const fuck = await sut.findById(student.id)
-  //     expect(fuck?.name).toBe(newStudentData.name)
-  //   })
-  // })
+      const studentFromDatabase = await sut.findById(id)
+      expect(studentFromDatabase?.name).toBe(newData.name)
+    })
+  })
 })
