@@ -67,7 +67,7 @@ describe('MongoStudentRepository', () => {
   })
 
   describe('update()', () => {
-    test.only('Update student data', async () => {
+    test('Update student data', async () => {
       const id = new mongoose.Types.ObjectId().toHexString()
       const student = makeFakeUser({ id })
       await sut.create(student)

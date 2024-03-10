@@ -1,4 +1,4 @@
-import { Student, StudentProps } from '@domain/entities'
+import { Onboarding, Student, StudentProps } from '@domain/entities'
 
 export const StudentMap = {
   toDomain (raw: any): Student {
@@ -15,17 +15,18 @@ export const StudentMap = {
     return new Student(props)
   },
 
-  toPersistance (student: Student): any {
+  toPersistance (student: Student): Omit<StudentProps, 'id' | 'onboarding'> & {
+    _id?: string
+    student: { onboarding: Onboarding }
+  } {
     return {
-      user: {
-        _id: student.id,
-        name: student.name,
-        email: student.email,
-        password: student.password,
-        role: student.role,
-        status: student.status,
-        verifiedAt: student.verifiedAt
-      },
+      _id: student.id,
+      name: student.name,
+      email: student.email,
+      password: student.password,
+      role: student.role,
+      status: student.status,
+      verifiedAt: student.verifiedAt,
       student: {
         onboarding: student.onboarding
       }

@@ -7,15 +7,14 @@ import { StudentMap } from '@infra/db/mongo/helpers/mappers'
 
 export class MongoStudentRepository implements StudentRepository {
   async create (input: StudentRepository.CreateInput): Promise<void> {
-    const { user, student } = StudentMap.toPersistance(input)
+    const { student, ...userData } = StudentMap.toPersistance(input)
     const result = await MongoStudentModel.create(student)
-    await MongoUserModel.create({ ...user, student: result.id })
+    await MongoUserModel.create({ ...userData, student: result.id })
   }
 
   async update (input: StudentRepository.UpdateInput): Promise<void> {
-    const { user, student } = StudentMap.toPersistance(input)
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    const updatedUser = await MongoUserModel.findByIdAndUpdate(user._id, { ...user }, { new: true })
+    const { student, ...userData } = StudentMap.toPersistance(input)
+    const updatedUser = await MongoUserModel.findByIdAndUpdate(userData._id, { ...userData }, { new: true })
     if (updatedUser) await MongoStudentModel.updateOne({ _id: updatedUser.student }, { student })
   }
 
