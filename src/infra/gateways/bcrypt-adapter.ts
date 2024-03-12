@@ -1,13 +1,13 @@
 import { compare, hash } from 'bcrypt'
 
-import { HashComparer, Hasher } from '@application/contracts/gateways'
+import { PasswordHashing } from '@application/contracts/gateways'
 
-export class BcryptAdapter implements HashComparer, Hasher {
-  async compare ({ plainText, digest }: HashComparer.Input): Promise<HashComparer.Output> {
+export class BcryptAdapter implements PasswordHashing {
+  async compare (plainText: string, digest: string): Promise<boolean> {
     return compare(plainText, digest)
   }
 
-  async hash ({ plainText }: Hasher.Input): Promise<Hasher.Output> {
+  async hash (plainText: string): Promise<string> {
     return hash(plainText, 12)
   }
 }
