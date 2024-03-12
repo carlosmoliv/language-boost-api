@@ -1,3 +1,3 @@
 export * from './password-hashing'
-export * from './token-generator'
+export * from './token'
 export * from './message-broker'

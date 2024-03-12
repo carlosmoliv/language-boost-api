@@ -1,4 +1,4 @@
-import { PasswordHashing, TokenGenerator } from '@application/contracts/gateways'
+import { PasswordHashing, Token } from '@application/contracts/gateways'
 import { StudentRepository } from '@application/contracts/repositories'
 import { AuthenticationError } from '@application/use-cases/errors'
 import { AccessToken } from '@domain/entities'
@@ -7,7 +7,7 @@ export class AuthenticateUserUseCase {
   constructor (
     private readonly userRepository: StudentRepository,
     private readonly passwordHashing: PasswordHashing,
-    private readonly tokenGenerator: TokenGenerator
+    private readonly token: Token
   ) {}
 
   async execute ({ email, password }: AuthenticateUserUseCase.Input): Promise<AuthenticateUserUseCase.Output> {
@@ -15,7 +15,7 @@ export class AuthenticateUserUseCase {
     if (!user?.id) throw new AuthenticationError()
     const passwordMatch = await this.passwordHashing.compare(password, user.password)
     if (!passwordMatch) throw new AuthenticationError()
-    const accessToken = await this.tokenGenerator.generate({ key: user.id, expirationInMs: AccessToken.expirationInMs })
+    const accessToken = await this.token.generate(user.id, AccessToken.expirationInMs)
     return { accessToken }
   }
 }
