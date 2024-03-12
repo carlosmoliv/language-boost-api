@@ -1,11 +1,11 @@
 import request from 'supertest'
+import mongoose from 'mongoose'
 
 import { app } from '@main/config/app'
 import { env } from '@main/config/env'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { OnboardingSteps } from '@domain/entities'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
-import mongoose from 'mongoose'
 import { makeFakeUser } from '@tests/factories'
 
 describe('Student Routes', () => {
@@ -21,7 +21,7 @@ describe('Student Routes', () => {
     await connection.disconnect()
   })
 
-  describe.skip('/api/onboarding/:userId', () => {
+  describe('/api/onboarding/:userId', () => {
     const publishSpy = jest.fn()
     jest.mock('@infra/gateways/rabbit-mq-adapter', () => ({
       RabbitMQAdapter: jest.fn().mockReturnValue({ publish: publishSpy })
@@ -38,11 +38,7 @@ describe('Student Routes', () => {
 
       const student = await new MongoStudentRepository().findById(id)
       expect(status).toBe(204)
-      expect(student).toMatchObject({
-        onboarding: {
-          signupComplete: true
-        }
-      })
+      expect(student?.onboarding.signupComplete).toBe(true)
     })
 
     test('Update fails when an invalid onboarding step is provided.', async () => {

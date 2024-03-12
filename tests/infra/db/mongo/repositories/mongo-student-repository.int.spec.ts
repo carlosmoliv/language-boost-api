@@ -71,13 +71,15 @@ describe('MongoStudentRepository', () => {
       const id = new mongoose.Types.ObjectId().toHexString()
       const student = makeFakeUser({ id })
       await sut.create(student)
-      const newData = { name: makeFakeUser().name }
+      const newData = { name: makeFakeUser().name, onboarding: { signupComplete: true } }
       student.name = newData.name
+      student.onboarding.signupComplete = true
 
       await sut.update(student)
 
       const studentFromDatabase = await sut.findById(id)
       expect(studentFromDatabase?.name).toBe(newData.name)
+      expect(studentFromDatabase?.onboarding.signupComplete).toBe(true)
     })
   })
 })
