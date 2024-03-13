@@ -8,13 +8,13 @@ import { Student } from '@domain/entities'
 
 export class MongoStudentRepository implements StudentRepository {
   async create (student: Student): Promise<void> {
-    const { student: studentData, ...userData } = StudentMap.toPersistance(student)
+    const { student: studentData, ...userData } = StudentMap.toPersistence(student)
     const result = await MongoStudentModel.create(studentData)
     await MongoUserModel.create({ ...userData, student: result.id })
   }
 
   async update (student: Student): Promise<void> {
-    const { student: studentData, ...userData } = StudentMap.toPersistance(student)
+    const { student: studentData, ...userData } = StudentMap.toPersistence(student)
     const updatedUser = await MongoUserModel.findByIdAndUpdate(userData._id, { ...userData }, { new: true })
     if (updatedUser) await MongoStudentModel.findByIdAndUpdate(updatedUser.student, { ...studentData })
   }

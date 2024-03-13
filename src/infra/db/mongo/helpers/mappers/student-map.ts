@@ -16,7 +16,7 @@ export const StudentMap = {
     return new Student(props)
   },
 
-  toPersistance (student: Student): Omit<StudentProps, 'id' | 'onboarding'> & {
+  toPersistence (student: Student): Omit<StudentProps, 'id' | 'onboarding'> & {
     _id?: string
     student: { onboarding: Onboarding }
   } {
