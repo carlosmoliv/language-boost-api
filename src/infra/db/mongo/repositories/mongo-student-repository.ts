@@ -4,26 +4,27 @@ import { MongoUserModel, MongoStudentModel } from '@infra/db/mongo/models'
 import { StudentRepository } from '@application/contracts/repositories'
 import { MongoHelper } from '@infra/db/mongo/helpers'
 import { StudentMap } from '@infra/db/mongo/helpers/mappers'
+import { Student } from '@domain/entities'
 
 export class MongoStudentRepository implements StudentRepository {
-  async create (input: StudentRepository.CreateInput): Promise<void> {
-    const { student, ...userData } = StudentMap.toPersistance(input)
-    const result = await MongoStudentModel.create(student)
+  async create (student: Student): Promise<void> {
+    const { student: studentData, ...userData } = StudentMap.toPersistance(student)
+    const result = await MongoStudentModel.create(studentData)
     await MongoUserModel.create({ ...userData, student: result.id })
   }
 
-  async update (input: StudentRepository.UpdateInput): Promise<void> {
-    const { student, ...userData } = StudentMap.toPersistance(input)
+  async update (student: Student): Promise<void> {
+    const { student: studentData, ...userData } = StudentMap.toPersistance(student)
     const updatedUser = await MongoUserModel.findByIdAndUpdate(userData._id, { ...userData }, { new: true })
-    if (updatedUser) await MongoStudentModel.findByIdAndUpdate(updatedUser.student, { ...student })
+    if (updatedUser) await MongoStudentModel.findByIdAndUpdate(updatedUser.student, { ...studentData })
   }
 
-  async findByEmail (email: string): Promise<StudentRepository.FindOutput> {
+  async findByEmail (email: string): Promise<Student | null> {
     const student = await MongoUserModel.findOne({ email }).populate('student')
     return student && MongoHelper.map(student.toObject())
   }
 
-  async findById (id: string): Promise<StudentRepository.FindOutput> {
+  async findById (id: string): Promise<Student | null> {
     const student = await MongoUserModel.findById(new mongoose.Types.ObjectId(id)).populate('student')
     return student && StudentMap.toDomain(student.toObject())
   }
