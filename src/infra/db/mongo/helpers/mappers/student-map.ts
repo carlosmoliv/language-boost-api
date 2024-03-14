@@ -3,6 +3,15 @@ import { StudentProps } from '@domain/entities/student'
 
 export const StudentMap = {
   toDomain (raw: any): Student {
+    const onboardingProps = raw.student.onboarding
+      ? {
+        signupComplete: raw.student.onboarding.signupComplete ?? false,
+        languageProficiencyComplete: raw.student.onboarding.languageProficiencyComplete ?? false,
+        learningGoalsComplete: raw.student.onboarding.learningGoalsComplete ?? false,
+        preferredTopicsComplete: raw.student.onboarding.learningGoalsComplete ?? false
+      }
+      : undefined
+
     const props: StudentProps = {
       name: raw.name,
       email: raw.email,
@@ -11,14 +20,21 @@ export const StudentMap = {
       status: raw.status,
       verifiedAt: raw.verifiedAt,
       id: raw._id.toHexString(),
-      onboarding: raw.student.onboarding ?? undefined
+      onboarding: Onboarding.create(onboardingProps)
     }
     return new Student(props)
   },
 
   toPersistence (student: Student): Omit<StudentProps, 'id' | 'onboarding'> & {
     _id?: string
-    student: { onboarding: Onboarding }
+    student: {
+      onboarding: {
+        signupComplete: boolean
+        preferredTopicsComplete: boolean
+        learningGoalsComplete: boolean
+        languageProficiencyComplete: boolean
+      }
+    }
   } {
     return {
       _id: student.id,
@@ -29,7 +45,12 @@ export const StudentMap = {
       status: student.status,
       verifiedAt: student.verifiedAt,
       student: {
-        onboarding: student.onboarding
+        onboarding: {
+          signupComplete: student.onboarding.signupComplete,
+          preferredTopicsComplete: student.onboarding.preferredTopicsComplete,
+          learningGoalsComplete: student.onboarding.learningGoalsComplete,
+          languageProficiencyComplete: student.onboarding.languageProficiencyComplete
+        }
       }
     }
   }

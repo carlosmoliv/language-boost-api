@@ -15,7 +15,7 @@ export class Student extends BaseUser {
     onboarding
   }: StudentProps) {
     super({ name, email, password, status, verifiedAt, role, id })
-    this._onboarding = onboarding ?? new Onboarding()
+    this._onboarding = onboarding ?? Onboarding.create()
   }
 
   public get onboarding (): Onboarding {
