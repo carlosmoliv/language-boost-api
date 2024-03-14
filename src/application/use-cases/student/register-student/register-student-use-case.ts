@@ -1,6 +1,6 @@
 import { PasswordHashing } from '@application/contracts/gateways'
 import { StudentRepository } from '@application/contracts/repositories'
-import { EmailAlreadyInUseError } from '@application/use-cases/errors'
+import { EmailAlreadyInUseError } from '@application/use-cases/student/register-student'
 import { Student } from '@domain/entities/student'
 
 export class RegisterStudentUseCase {

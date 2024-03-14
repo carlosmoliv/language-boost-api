@@ -6,8 +6,7 @@ import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'
 import { makeFakeUser } from '@tests/factories'
-import { UpdateOnboardingProgressUseCase } from '@application/use-cases'
-import { StudentNotFoundError } from '@application/use-cases/errors'
+import { UpdateOnboardingProgressUseCase, StudentNotFoundError } from '@application/use-cases/student/update-onboarding'
 import { MessageBroker } from '@application/contracts/gateways'
 
 describe('UpdateOnboardingProgressUseCase', () => {

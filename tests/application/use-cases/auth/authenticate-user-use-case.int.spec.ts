@@ -1,11 +1,10 @@
 import { hash } from 'bcrypt'
 
-import { AuthenticateUserUseCase } from '@application/use-cases'
+import { AuthenticateUserUseCase, AuthenticationError } from '@application/use-cases/authentication/authenticate-user'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { JwtAdapter, BcryptAdapter } from '@infra/gateways'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories/mongo-student-repository'
 import { env } from '@main/config/env'
-import { AuthenticationError } from '@application/use-cases/errors'
 import { makeFakeUser } from '@tests/factories'
 
 describe('AuthenticateUserUseCase', () => {

@@ -1,6 +1,6 @@
 import { StudentRepository } from '@application/contracts/repositories'
 import { OnboardingSteps } from '@domain/entities/student'
-import { StudentNotFoundError } from '@application/use-cases/errors'
+import { StudentNotFoundError } from '@application/use-cases/student/update-onboarding'
 import { MessageBroker } from '@application/contracts/gateways'
 
 export class UpdateOnboardingProgressUseCase {

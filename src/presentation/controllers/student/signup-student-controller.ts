@@ -1,5 +1,4 @@
-import { EmailAlreadyInUseError } from '@application/use-cases/errors'
-import { RegisterStudentUseCase } from '@application/use-cases'
+import { EmailAlreadyInUseError, RegisterStudentUseCase } from '@application/use-cases/student/register-student'
 import { conflict, noContent, serverError } from '@presentation/helpers'
 import { Controller, HttpResponse } from '@presentation/interfaces'
 

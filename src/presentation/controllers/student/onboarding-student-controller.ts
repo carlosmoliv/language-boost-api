@@ -1,4 +1,4 @@
-import { UpdateOnboardingProgressUseCase } from '@application/use-cases'
+import { UpdateOnboardingProgressUseCase } from '@application/use-cases/student/update-onboarding'
 import { OnboardingSteps } from '@domain/entities/student'
 import { noContent, serverError } from '@presentation/helpers'
 import { Controller, HttpResponse } from '@presentation/interfaces'

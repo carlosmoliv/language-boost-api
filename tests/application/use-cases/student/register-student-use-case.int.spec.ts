@@ -1,5 +1,4 @@
-import { RegisterStudentUseCase } from '@application/use-cases'
-import { EmailAlreadyInUseError } from '@application/use-cases/errors'
+import { RegisterStudentUseCase, EmailAlreadyInUseError } from '@application/use-cases/student/register-student'
 import { UserRoles, UserStatus } from '@domain/entities/base-user'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { BcryptAdapter } from '@infra/gateways'

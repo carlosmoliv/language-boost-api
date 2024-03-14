@@ -1,6 +1,6 @@
 import { PasswordHashing, Token } from '@application/contracts/gateways'
 import { StudentRepository } from '@application/contracts/repositories'
-import { AuthenticationError } from '@application/use-cases/errors'
+import { AuthenticationError } from '@application/use-cases/authentication/authenticate-user'
 import { AccessToken } from '@domain/entities'
 
 export class AuthenticateUserUseCase {

@@ -1,7 +1,6 @@
 import { Controller, HttpResponse } from '@presentation/interfaces'
 import { ok, serverError, unauthorized } from '@presentation/helpers/http'
-import { AuthenticateUserUseCase } from '@application/use-cases'
-import { AuthenticationError } from '@application/use-cases/errors'
+import { AuthenticateUserUseCase, AuthenticationError } from '@application/use-cases/authentication/authenticate-user'
 
 export class LoginController implements Controller {
   constructor (private readonly authenticateUser: AuthenticateUserUseCase) {}
