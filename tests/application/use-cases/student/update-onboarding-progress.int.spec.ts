@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { mock, MockProxy } from 'jest-mock-extended'
 
-import { OnboardingSteps } from '@domain/entities'
+import { OnboardingSteps } from '@domain/entities/student'
 import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { env } from '@main/config/env'

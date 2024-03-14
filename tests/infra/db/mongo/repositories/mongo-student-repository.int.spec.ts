@@ -4,7 +4,7 @@ import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { makeFakeUser } from '@tests/factories'
 import { env } from '@main/config/env'
-import { UserRoles } from '@domain/entities'
+import { UserRoles } from '@domain/entities/base-user'
 
 describe('MongoStudentRepository', () => {
   let sut: MongoStudentRepository

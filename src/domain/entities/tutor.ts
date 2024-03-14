@@ -1,3 +1,3 @@
-import { BaseUser } from '@domain/entities'
+import { BaseUser } from '@domain/entities/base-user'
 
 export class Tutor extends BaseUser { }

@@ -1,5 +1,5 @@
-import { BaseUser, Onboarding, OnboardingSteps } from '@domain/entities'
-import { StudentProps } from '@domain/entities/student'
+import { BaseUser } from '@domain/entities/base-user'
+import { Onboarding, OnboardingSteps, StudentProps } from '@domain/entities/student'
 
 export class Student extends BaseUser {
   private _onboarding: Onboarding

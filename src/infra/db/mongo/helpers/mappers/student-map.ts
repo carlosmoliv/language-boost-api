@@ -1,5 +1,4 @@
-import { Onboarding, Student } from '@domain/entities'
-import { StudentProps } from '@domain/entities/student'
+import { Onboarding, Student, StudentProps } from '@domain/entities/student'
 
 export const StudentMap = {
   toDomain (raw: any): Student {

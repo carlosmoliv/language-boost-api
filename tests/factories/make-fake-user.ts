@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker'
 
-import { Student, UserRoles } from '@domain/entities'
+import { UserRoles } from '@domain/entities/base-user'
+import { Student } from '@domain/entities/student'
 
 type Input = { role?: UserRoles, id?: string }
 

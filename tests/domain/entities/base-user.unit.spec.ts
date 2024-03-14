@@ -1,4 +1,4 @@
-import { BaseUser, UserRoles, UserStatus } from '@domain/entities'
+import { BaseUser, UserRoles, UserStatus } from '@domain/entities/base-user'
 
 class UserStub extends BaseUser {}
 

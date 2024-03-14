@@ -1,5 +1,5 @@
 import { UpdateOnboardingProgressUseCase } from '@application/use-cases'
-import { OnboardingSteps } from '@domain/entities'
+import { OnboardingSteps } from '@domain/entities/student'
 import { noContent, serverError } from '@presentation/helpers'
 import { Controller, HttpResponse } from '@presentation/interfaces'
 

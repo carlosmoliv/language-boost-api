@@ -1,4 +1,4 @@
-import { OnboardingSteps, Student } from '@domain/entities'
+import { OnboardingSteps, Student } from '@domain/entities/student'
 
 describe('Student', () => {
   let sut: Student

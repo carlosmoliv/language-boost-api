@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import { app } from '@main/config/app'
 import { env } from '@main/config/env'
 import { MongoConnection } from '@infra/db/mongo/helpers'
-import { OnboardingSteps } from '@domain/entities'
+import { OnboardingSteps } from '@domain/entities/student'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { makeFakeUser } from '@tests/factories'
 
