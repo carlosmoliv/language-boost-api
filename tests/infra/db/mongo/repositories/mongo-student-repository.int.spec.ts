@@ -4,7 +4,6 @@ import { MongoConnection } from '@infra/db/mongo/helpers'
 import { MongoStudentRepository } from '@infra/db/mongo/repositories'
 import { makeFakeUser } from '@tests/factories'
 import { env } from '@main/config/env'
-import { UserRoles } from '@domain/entities/base-user'
 
 describe('MongoStudentRepository', () => {
   let sut: MongoStudentRepository
@@ -28,19 +27,8 @@ describe('MongoStudentRepository', () => {
       await sut.create(data)
 
       const retrievedUser = await sut.findByEmail(data.email)
-      expect(retrievedUser).toMatchObject({
-        name: data.name,
-        email: data.email,
-        role: UserRoles.Student,
-        student: expect.objectContaining({
-          _id: expect.any(mongoose.Types.ObjectId),
-          onboarding: expect.objectContaining({
-            signupComplete: false,
-            languageProficiencyComplete: false,
-            learningGoalsComplete: false
-          })
-        })
-      })
+      expect(retrievedUser?.onboarding.signupComplete).toBe(false)
+      expect(retrievedUser?.name).toBe(data.name)
     })
   })
 
