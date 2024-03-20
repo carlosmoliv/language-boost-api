@@ -1,2 +1,2 @@
 export * from './access-token'
-export * from './tutor'
+export * from './tutor/tutor'

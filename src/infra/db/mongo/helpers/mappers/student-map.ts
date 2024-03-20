@@ -2,12 +2,13 @@ import { Onboarding, Student, StudentProps } from '@domain/entities/student'
 
 export const StudentMap = {
   toDomain (raw: any): Student {
-    const onboardingProps = raw.student.onboarding
+    const onboarding = raw.student?.onboarding
+    const onboardingProps = onboarding
       ? {
-        signupComplete: raw.student.onboarding.signupComplete ?? false,
-        languageProficiencyComplete: raw.student.onboarding.languageProficiencyComplete ?? false,
-        learningGoalsComplete: raw.student.onboarding.learningGoalsComplete ?? false,
-        preferredTopicsComplete: raw.student.onboarding.learningGoalsComplete ?? false
+        signupComplete: onboarding.signupComplete ?? false,
+        languageProficiencyComplete: onboarding.languageProficiencyComplete ?? false,
+        learningGoalsComplete: onboarding.learningGoalsComplete ?? false,
+        preferredTopicsComplete: onboarding.learningGoalsComplete ?? false
       }
       : undefined
 

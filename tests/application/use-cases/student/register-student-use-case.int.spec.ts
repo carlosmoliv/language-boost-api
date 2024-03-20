@@ -15,11 +15,10 @@ describe('RegisterStudentUseCase', () => {
     connection = MongoConnection.getInstance()
     await connection.connect(env.db.mongo.uri)
     await connection.clearCollections(['users'])
-    const hasher = new BcryptAdapter()
     userRepository = new MongoStudentRepository()
     sut = new RegisterStudentUseCase(
       userRepository,
-      hasher
+      new BcryptAdapter()
     )
   })
 
