@@ -23,13 +23,19 @@ describe('GetStudentByEmailUseCase', () => {
     await connection.disconnect()
   })
 
-  test('Return a Student correlated with the email provided', async () => {
+  test('Get Student data when email provided is valid', async () => {
     const userData = makeFakeUser()
     await studentRepository.create(userData)
 
-    const student = await sut.execute(userData)
+    const student = await sut.execute({ email: userData.email })
 
     const studentRegistered = await studentRepository.findByEmail(userData.email)
     expect(studentRegistered?.email).toBe(student.email)
+  })
+
+  test('Fails when Student does not exist', async () => {
+    const result = sut.execute({ email: 'user@gmail.com' })
+
+    await expect(result).rejects.toThrow()
   })
 })
