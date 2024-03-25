@@ -15,7 +15,7 @@ export class AuthenticateUserUseCase {
     if (!user?.id) throw new AuthenticationError()
     const passwordMatch = await this.passwordHashing.compare(password, user.password)
     if (!passwordMatch) throw new AuthenticationError()
-    const accessToken = await this.token.generate(user.id, AccessToken.expirationInMs)
+    const accessToken = await this.token.generate({ userId: user.id, role: user.role }, AccessToken.expirationInMs)
     return { accessToken }
   }
 }
