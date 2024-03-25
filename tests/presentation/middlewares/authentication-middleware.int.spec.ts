@@ -4,21 +4,39 @@ import { env } from '@main/config/env'
 import mongoose from 'mongoose'
 import { AccessToken } from '@domain/entities'
 import { AuthenticationMiddleware } from '@presentation/middlewares'
+import { UserRoles } from '@domain/entities/base-user'
+import { HttpStatus } from '@presentation/enums'
 
 describe('AuthenticationMiddleware', () => {
   let tokenGateway: Token
+  let sut: AuthenticationMiddleware
 
   beforeAll(() => {
     tokenGateway = new JwtAdapter(env.jwt.secret)
+    sut = new AuthenticationMiddleware(tokenGateway)
   })
 
   test('Allow request to proceed when User token is valid', async () => {
-    const userId = new mongoose.Types.ObjectId().toHexString()
-    const token = await tokenGateway.generate(userId, AccessToken.expirationInMs)
+    const payload = {
+      userId: new mongoose.Types.ObjectId().toHexString(),
+      role: UserRoles.Student
+    }
+    const token = await tokenGateway.generate(payload, AccessToken.expirationInMs)
 
-    const sut = new AuthenticationMiddleware(tokenGateway)
     const result = await sut.handle(token)
 
-    expect(result.body).toBe(userId)
+    expect(result.body).toMatchObject(payload)
+  })
+
+  test('Does not allow User with no correct permission', async () => {
+    const payload = {
+      userId: new mongoose.Types.ObjectId().toHexString(),
+      role: UserRoles.Student
+    }
+    const token = await tokenGateway.generate(payload, 0)
+
+    const result = await sut.handle(token)
+
+    expect(result.statusCode).toBe(HttpStatus.Forbidden)
   })
 })
