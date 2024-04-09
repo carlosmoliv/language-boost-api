@@ -11,5 +11,5 @@ export class Onboarding {
   learningGoalsComplete!: boolean
 
   @prop()
-  prefferedTopicsComplete!: boolean
+  preferredTopicsComplete!: boolean
 }
