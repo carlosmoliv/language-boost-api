@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:carlosmoliv/language-boost-api.git",
-  "author": "Carlos Oliveira <contact@carlosmoliveira.com>",
+  "author": "Carlos Oliveira <carlosviniciusmoliveira@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --inspect=0.0.0.0:9229 ./src/main/server.ts",
@@ -16,8 +16,10 @@
     "test:watch": "yarn test --watch",
     "test:coverage": "yarn test --coverage",
     "test:staged": "yarn test --findRelatedTests",
-    "test:unit": "yarn test --watch -c jest.unit.config.ts",
-    "test:integration": "yarn test --watch -c jest.integration.config.ts"
+    "test:unit": "yarn test -c jest.unit.config.ts",
+    "pretest:integration": "docker compose up -d test-db",
+    "test:integration": "MONGO_URI='mongodb://localhost:27018/language-boost-api' yarn test -c jest.integration.config.ts",
+    "posttest:integration": "docker compose stop test-db && docker compose rm -f test-db"
   },
   "dependencies": {
     "@typegoose/typegoose": "^12.0.0",
