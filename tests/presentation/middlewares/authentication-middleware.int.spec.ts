@@ -28,7 +28,7 @@ describe('AuthenticationMiddleware', () => {
     expect(result.body).toMatchObject(payload)
   })
 
-  test('Does not allow User with no correct permission', async () => {
+  test('Prevent Users with an invalid token', async () => {
     const payload = {
       userId: new mongoose.Types.ObjectId().toHexString(),
       role: UserRoles.Student
@@ -36,6 +36,18 @@ describe('AuthenticationMiddleware', () => {
     const token = await tokenGateway.generate(payload, 0)
 
     const result = await sut.handle(token)
+
+    expect(result.statusCode).toBe(HttpStatus.Forbidden)
+  })
+
+  test('Prevent users with insufficient role permission', async () => {
+    const payload = {
+      userId: new mongoose.Types.ObjectId().toHexString(),
+      role: UserRoles.Student
+    }
+    const token = await tokenGateway.generate(payload, AccessToken.expirationInMs)
+
+    const result = await sut.handle(token, [UserRoles.Admin])
 
     expect(result.statusCode).toBe(HttpStatus.Forbidden)
   })

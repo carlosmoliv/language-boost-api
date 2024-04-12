@@ -2,18 +2,18 @@ import { HttpResponse } from '@presentation/interfaces'
 import { Token } from '@application/contracts/gateways'
 import { forbidden, ok } from '@presentation/helpers'
 import { Middleware } from '@presentation/interfaces/middleware'
-import { JsonWebTokenError } from 'jsonwebtoken'
+import { UserRoles } from '@domain/entities/base-user'
 
 export class AuthenticationMiddleware implements Middleware {
-  constructor (private readonly token: Token) {}
+  constructor (private readonly tokenService: Token) {}
 
-  async handle (accessToken: string): Promise<HttpResponse> {
+  async handle (accessToken: string, roles?: UserRoles[]): Promise<HttpResponse> {
     try {
-      const userId = this.token.validate(accessToken)
-      return ok(userId)
+      const userData = this.tokenService.validate(accessToken)
+      if (roles && roles.some((role) => role !== userData.role)) return forbidden()
+      return ok(userData)
     } catch (err) {
-      if (err instanceof JsonWebTokenError) return forbidden()
-      throw err
+      return forbidden()
     }
   }
 }
