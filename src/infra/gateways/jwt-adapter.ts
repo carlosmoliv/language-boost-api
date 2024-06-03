@@ -5,7 +5,7 @@ import { Token, TokenPayload } from '@application/contracts/gateways'
 export class JwtAdapter implements Token {
   constructor (private readonly secret: string) {}
 
-  async generate (payload: TokenPayload, expirationInMs: number): Promise<string> {
+  async generate<T extends string | Buffer | object>(payload: T, expirationInMs: number): Promise<string> {
     const expirationInSeconds = expirationInMs / 1000
     return sign(payload, this.secret, { expiresIn: expirationInSeconds })
   }
