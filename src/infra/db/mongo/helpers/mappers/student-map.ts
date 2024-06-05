@@ -22,18 +22,13 @@ export const StudentMap = {
       id: raw._id.toHexString(),
       onboarding: Onboarding.create(onboardingProps)
     }
-    return new Student(props)
+    return Student.create(props)
   },
 
   toPersistence (student: Student): Omit<StudentProps, 'id' | 'onboarding'> & {
     _id?: string
     student: {
-      onboarding: {
-        signupComplete: boolean
-        preferredTopicsComplete: boolean
-        learningGoalsComplete: boolean
-        languageProficiencyComplete: boolean
-      }
+      onboarding: Onboarding
     }
   } {
     return {

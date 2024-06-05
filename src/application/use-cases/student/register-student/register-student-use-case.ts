@@ -13,7 +13,7 @@ export class RegisterStudentUseCase {
     const studentAlreadyExists = await this.studentRepository.findByEmail(email)
     if (studentAlreadyExists) throw new EmailAlreadyInUseError()
     const hashedPassword = await this.passwordHashing.hash(password)
-    const student = new Student({ name, email, password: hashedPassword })
+    const student = Student.create({ name, email, password: hashedPassword })
     await this.studentRepository.create(student)
   }
 }
