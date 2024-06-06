@@ -11,7 +11,7 @@ export class Tutor extends BaseUser {
     verifiedAt: Date | null,
     role: UserRoles,
     id?: string,
-    public spots?: AvailabilitySlot[]
+    public availability?: AvailabilitySlot[]
   ) {
     super(
       name,
@@ -33,7 +33,7 @@ export class Tutor extends BaseUser {
       props.verifiedAt ?? null,
       UserRoles.Tutor,
       props.id,
-      props.spots
+      props.availability
     )
   }
 }
