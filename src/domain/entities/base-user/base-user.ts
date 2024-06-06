@@ -1,7 +1,7 @@
 import { UserRoles, UserStatus } from '@domain/entities/base-user'
 
 export abstract class BaseUser {
-  constructor (
+  protected constructor (
     public name: string,
     public email: string,
     public password: string,
