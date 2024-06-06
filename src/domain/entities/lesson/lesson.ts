@@ -1,4 +1,6 @@
 import { LessonProps } from '@domain/entities/lesson/lesson-props'
+import { Student } from '@domain/entities/student'
+import { Tutor } from '@domain/entities/tutor'
 
 export class Lesson {
   constructor (
@@ -7,19 +9,19 @@ export class Lesson {
     public description: string,
     public startTime: Date,
     public endTime: Date,
-    public tutorId: string,
-    public studentId: string
+    public tutor: Tutor,
+    public student: Student
   ) {}
 
-  static create (lessonProps: LessonProps): Lesson {
+  static create (props: LessonProps): Lesson {
     return new Lesson(
-      lessonProps.id,
-      lessonProps.title,
-      lessonProps.description,
-      lessonProps.startTime,
-      lessonProps.endTime,
-      lessonProps.tutorId,
-      lessonProps.studentId
+      props.id,
+      props.title,
+      props.description,
+      props.startTime,
+      props.endTime,
+      props.tutor,
+      props.student
     )
   }
 }
