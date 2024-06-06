@@ -1,9 +1,4 @@
-export type OnboardingProps = {
-  signupComplete?: boolean
-  languageProficiencyComplete?: boolean
-  learningGoalsComplete?: boolean
-  preferredTopicsComplete?: boolean
-}
+import { OnboardingProps } from '@domain/entities/student/onboarding-props'
 
 export class Onboarding {
   constructor (
