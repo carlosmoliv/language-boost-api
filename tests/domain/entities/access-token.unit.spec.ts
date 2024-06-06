@@ -1,4 +1,4 @@
-import { AccessToken } from '@domain/entities'
+import { AccessToken } from '../../../src/common'
 
 describe('AccessToken', () => {
   test('Expiration time of 30 minutes', async () => {
