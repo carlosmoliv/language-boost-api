@@ -13,15 +13,7 @@ export class Tutor extends BaseUser {
     id?: string,
     public availability?: AvailabilitySlot[]
   ) {
-    super(
-      name,
-      email,
-      password,
-      status,
-      verifiedAt,
-      role,
-      id
-    )
+    super(name, email, password, status, verifiedAt, role, id)
   }
 
   static create (props: TutorProps): Tutor {
