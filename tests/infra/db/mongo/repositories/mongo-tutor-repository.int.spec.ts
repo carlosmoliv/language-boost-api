@@ -7,12 +7,18 @@ import { MongoTutorRepository } from '@infra/db/mongo/repositories/mongo-tutor-r
 describe('MongoTutorRepository', () => {
   let sut: MongoTutorRepository
   let connection: MongoConnection
+  let tutor: Tutor
 
   beforeAll(async () => {
     connection = MongoConnection.getInstance()
     await connection.connect(env.db.mongo.uri)
     await connection.clearCollections(['users', 'tutors'])
     sut = new MongoTutorRepository()
+    tutor = Tutor.create({
+      name: faker.person.firstName(),
+      email: faker.internet.email(),
+      password: faker.internet.password()
+    })
   })
 
   afterAll(async () => {
@@ -21,31 +27,24 @@ describe('MongoTutorRepository', () => {
 
   describe('create()', () => {
     test('Create a Student and check on database', async () => {
-      const tutor = Tutor.create({
-        name: faker.person.firstName(),
-        email: faker.internet.email(),
-        password: faker.internet.password()
-      })
-
       await sut.create(tutor)
 
-      // const retrievedTutor = await sut.findByEmail(tutor.email)
-      // expect(retrievedTutor?.onboarding.signupComplete).toBe(false)
-      // expect(retrievedTutor?.name).toBe(tutor.name)
+      const retrievedTutor = await sut.findByEmail(tutor.email)
+      expect(retrievedTutor?.onboarding.signupComplete).toBe(false)
+      expect(retrievedTutor?.name).toBe(tutor.name)
     })
   })
 
-  // describe('findByEmail()', () => {
-  //   test('Retrieve a student using the email', async () => {
-  //     const data = makeFakeUser()
-  //     await sut.create(data)
-  //
-  //     const result = await sut.findByEmail(data.email)
-  //
-  //     expect(result?.email).toBe(data.email)
-  //   })
-  // })
-  //
+  describe('findByEmail()', () => {
+    test('Retrieve a student using the email', async () => {
+      await sut.create(tutor)
+
+      const result = await sut.findByEmail(tutor.email)
+
+      expect(result?.email).toBe(tutor.email)
+    })
+  })
+
   // describe('update()', () => {
   //   test('Update student data', async () => {
   //     const id = new mongoose.Types.ObjectId().toHexString()
